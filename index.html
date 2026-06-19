@@ -99,28 +99,43 @@
       </p>
     </div>
 
-    <!-- Schéma : vos solutions + Urbafence -->
-    <div class="uf-equation reveal" aria-hidden="false">
+    <!-- Schéma : vos solutions (discret) + Urbafence (valorisé) -->
+    <div class="uf-equation reveal">
       <div class="uf-eq-block uf-eq-base">
         <span class="uf-eq-label">Vos solutions habituelles</span>
         <ul class="uf-eq-list">
           <li>Grillage soudé</li>
-          <li>Clôture barreaudée</li>
+          <li>Barreaudage</li>
           <li>Panneau rigide</li>
         </ul>
       </div>
+
       <div class="uf-eq-plus" aria-hidden="true">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5 L12 19 M5 12 L19 12"></path></svg>
       </div>
+
       <div class="uf-eq-block uf-eq-brand">
-        <span class="uf-eq-label">Urbafence</span>
-        <ul class="uf-eq-list">
-          <li>Occultation &amp; intimité</li>
+        <!-- Mini pattern de tôle perforée (décoratif) -->
+        <span class="uf-eq-perf" aria-hidden="true"></span>
+        <div class="uf-eq-brand-head">
+          <img class="uf-eq-logo" src="images/logo-urbafence.svg" alt="Urbafence"
+               width="160" height="35"
+               onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-eq-logo-fallback&quot;>Urbafence</span>'">
+          <span class="uf-eq-badge">Solution premium</span>
+        </div>
+        <p class="uf-eq-sub">L'occultation sur mesure en tôle perforée</p>
+        <ul class="uf-eq-list uf-eq-list--brand">
+          <li>Privacy / intimité</li>
           <li>Tôle perforée haut de gamme</li>
-          <li>Sur mesure à la demande</li>
+          <li>Fabrication à la demande</li>
+          <li>Dimensions, motif et couleur configurés par projet</li>
         </ul>
       </div>
     </div>
+
+    <p class="uf-eq-foot reveal">
+      Vous gardez vos solutions de référence. Urbafence vous permet d'ajouter une réponse premium pour les projets où l'occultation, l'esthétique et la sécurité visuelle deviennent centrales.
+    </p>
 
     <!-- 3 piliers -->
     <ul class="uf-pillars reveal">
@@ -290,100 +305,103 @@
         </p>
       </div>
 
-      <!-- Colonne droite — configurateur résumé -->
-      <div class="uf-config reveal">
-        <ol class="uf-config-steps">
+      <!-- Colonne droite — mini-configurateur interactif -->
+      <div class="uf-configurator reveal" id="ufConfigurator"
+           data-height="1600" data-length="8" data-implantation="muret"
+           data-pattern="regulier" data-occultation="60" data-color="anthracite">
 
-          <li class="uf-config-step">
-            <span class="uf-config-num">1</span>
-            <div class="uf-config-body">
-              <h3>Dimensions</h3>
-              <p>Ajustées au relevé de terrain.</p>
-              <div class="uf-config-visual uf-vis-dims" aria-hidden="true">
-                <svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="20" y="10" width="80" height="28" rx="2"></rect>
-                  <path d="M20 4 L100 4 M20 1 L20 7 M100 1 L100 7"></path>
-                  <path d="M110 10 L110 38 M107 10 L113 10 M107 38 L113 38"></path>
-                </svg>
-                <span class="uf-config-cap">largeur · hauteur · linéaire</span>
-              </div>
+        <div class="uf-cfg-head">
+          <span class="uf-cfg-brand">
+            <span class="uf-cfg-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+                <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
+                <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
+                <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
+              </svg>
+            </span>
+            Configurateur Urbafence
+          </span>
+          <span class="uf-cfg-title">Composez votre clôture en quelques paramètres</span>
+        </div>
+
+        <!-- A. Aperçu visuel -->
+        <div class="uf-cfg-preview">
+          <div class="uf-cfg-stage" id="ufStage" aria-hidden="true">
+            <div class="uf-cfg-sky"></div>
+            <div class="uf-cfg-return" id="ufReturn"></div>
+            <div class="uf-cfg-fence" id="ufFence"></div>
+            <div class="uf-cfg-base" id="ufBase"></div>
+            <div class="uf-cfg-ground"></div>
+          </div>
+          <span class="uf-cfg-disclaimer">Simulation visuelle non contractuelle.</span>
+        </div>
+
+        <!-- B. Contrôles -->
+        <div class="uf-cfg-controls">
+
+          <div class="uf-cfg-field">
+            <label class="uf-cfg-label" for="ufHeight">Hauteur <output id="ufHeightOut" for="ufHeight">1 600 mm</output></label>
+            <input class="uf-cfg-range" type="range" id="ufHeight" min="1000" max="1800" step="100" value="1600">
+          </div>
+
+          <div class="uf-cfg-field">
+            <label class="uf-cfg-label" for="ufLength">Longueur <output id="ufLengthOut" for="ufLength">8 m</output></label>
+            <input class="uf-cfg-range" type="range" id="ufLength" min="2" max="12" step="1" value="8">
+          </div>
+
+          <div class="uf-cfg-field">
+            <span class="uf-cfg-label" id="ufImplLabel">Implantation</span>
+            <div class="uf-cfg-segment" role="group" aria-labelledby="ufImplLabel" data-control="implantation">
+              <button type="button" class="uf-cfg-seg-btn" data-value="muret" aria-pressed="true">Sur muret</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="beton" aria-pressed="false">Sur longrine béton</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="platines" aria-pressed="false">Sur platines</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="angle" aria-pressed="false">Avec retour d'angle</button>
             </div>
-          </li>
+          </div>
 
-          <li class="uf-config-step">
-            <span class="uf-config-num">2</span>
-            <div class="uf-config-body">
-              <h3>Implantation</h3>
-              <p>Pensée selon le chantier.</p>
-              <div class="uf-config-visual uf-vis-impl" aria-hidden="true">
-                <svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 38 L50 38 L50 14"></path>
-                  <path d="M70 38 L110 38"></path>
-                  <circle cx="50" cy="38" r="2.4" fill="currentColor" stroke="none"></circle>
-                </svg>
-                <span class="uf-config-cap">droit · angle · retour</span>
-              </div>
+          <div class="uf-cfg-field">
+            <span class="uf-cfg-label" id="ufPatternLabel">Motif</span>
+            <div class="uf-cfg-segment" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
+              <button type="button" class="uf-cfg-seg-btn" data-value="regulier" aria-pressed="true">Régulier</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="graphique" aria-pressed="false">Graphique</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="vegetal" aria-pressed="false">Végétal</button>
+              <button type="button" class="uf-cfg-seg-btn" data-value="aleatoire" aria-pressed="false">Aléatoire</button>
             </div>
-          </li>
+          </div>
 
-          <li class="uf-config-step">
-            <span class="uf-config-num">3</span>
-            <div class="uf-config-body">
-              <h3>Motif</h3>
-              <p>Régulier, aléatoire, végétal, graphique…</p>
-              <div class="uf-config-visual uf-vis-motifs" aria-hidden="true">
-                <svg viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg">
-                  <g transform="translate(8,8)">
-                    <rect width="30" height="32" rx="2"></rect>
-                    <circle cx="9" cy="9" r="2" fill="currentColor" stroke="none"></circle>
-                    <circle cx="21" cy="9" r="2" fill="currentColor" stroke="none"></circle>
-                    <circle cx="9" cy="23" r="2" fill="currentColor" stroke="none"></circle>
-                    <circle cx="21" cy="23" r="2" fill="currentColor" stroke="none"></circle>
-                  </g>
-                  <g transform="translate(45,8)">
-                    <rect width="30" height="32" rx="2"></rect>
-                    <path d="M6 26 L11 8 L16 22 L21 6 L25 26" fill="none"></path>
-                  </g>
-                  <g transform="translate(82,8)">
-                    <rect width="30" height="32" rx="2"></rect>
-                    <path d="M8 8 L22 8 M8 16 L22 16 M8 24 L22 24" fill="none"></path>
-                  </g>
-                </svg>
-                <span class="uf-config-cap">trois familles de perforation</span>
-              </div>
+          <div class="uf-cfg-field">
+            <label class="uf-cfg-label" for="ufOcc">Niveau d'occultation <output id="ufOccOut" for="ufOcc">60 % — privacy renforcée</output></label>
+            <div class="uf-cfg-occ-row">
+              <span class="uf-cfg-occ-end">Plus ajouré</span>
+              <input class="uf-cfg-range uf-cfg-range--occ" type="range" id="ufOcc" min="10" max="90" step="5" value="60">
+              <span class="uf-cfg-occ-end">Plus occultant</span>
             </div>
-          </li>
+          </div>
 
-          <li class="uf-config-step">
-            <span class="uf-config-num">4</span>
-            <div class="uf-config-body">
-              <h3>Occultation</h3>
-              <p>Selon le besoin de privacy / intimité et de lumière.</p>
-              <div class="uf-config-visual uf-vis-gauge" aria-hidden="true">
-                <span class="uf-gauge-label">plus ouvert</span>
-                <span class="uf-gauge-track"><span class="uf-gauge-fill"></span></span>
-                <span class="uf-gauge-label">plus occultant</span>
-              </div>
-            </div>
-          </li>
+          <div class="uf-cfg-field">
+            <span class="uf-cfg-label" id="ufColorLabel">Couleur <output id="ufColorOut">Gris anthracite</output></span>
+            <div class="uf-cfg-swatches" role="group" aria-labelledby="ufColorLabel" data-control="color" id="ufSwatches"></div>
+          </div>
 
-          <li class="uf-config-step">
-            <span class="uf-config-num">5</span>
-            <div class="uf-config-body">
-              <h3>Couleur</h3>
-              <p>Thermolaquage selon l'environnement.</p>
-              <div class="uf-config-visual uf-vis-ral" aria-hidden="true">
-                <span class="uf-ral" style="--ral:#2a2e30"></span>
-                <span class="uf-ral" style="--ral:#5a5f5c"></span>
-                <span class="uf-ral" style="--ral:#7a6a55"></span>
-                <span class="uf-ral" style="--ral:#35823F"></span>
-                <span class="uf-ral" style="--ral:#b8b2a6"></span>
-                <span class="uf-config-cap">nuancier RAL</span>
-              </div>
-            </div>
-          </li>
+        </div>
 
-        </ol>
+        <!-- C. Résumé dynamique -->
+        <div class="uf-cfg-summary" aria-live="polite">
+          <span class="uf-cfg-summary-title">Votre configuration</span>
+          <ul class="uf-cfg-summary-list">
+            <li><span>Hauteur</span><strong id="ufSumHeight">1 600 mm</strong></li>
+            <li><span>Longueur</span><strong id="ufSumLength">8 m</strong></li>
+            <li><span>Implantation</span><strong id="ufSumImpl">Sur muret</strong></li>
+            <li><span>Motif</span><strong id="ufSumPattern">Régulier</strong></li>
+            <li><span>Occultation</span><strong id="ufSumOcc">60 % — privacy renforcée</strong></li>
+            <li><span>Couleur</span><strong id="ufSumColor">Gris anthracite</strong></li>
+          </ul>
+          <p class="uf-cfg-summary-line">Une clôture configurée pour limiter les vues, s'intégrer au chantier et être transmise en production.</p>
+          <a class="btn btn-primary uf-cfg-cta" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
+            Configurer un vrai projet <span class="arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -490,6 +508,48 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ============== TIMELINE / DÉLAI (~4 semaines) ============== -->
+<section class="uf-timeline" id="delais">
+  <div class="container">
+    <div class="uf-timeline-head reveal">
+      <span class="eyebrow">Le parcours projet</span>
+      <h2>De la configuration à la livraison, <em>un rythme lisible.</em></h2>
+      <p>Un délai indicatif d'environ 4 semaines, de la validation du dossier à la préparation pour le chantier.</p>
+    </div>
+
+    <ol class="uf-timeline-track reveal">
+      <li class="uf-timeline-step">
+        <span class="uf-timeline-marker"><span class="uf-timeline-dot"></span></span>
+        <span class="uf-timeline-when">Jour 0</span>
+        <h3 class="uf-timeline-title">Configuration</h3>
+        <p class="uf-timeline-text">Vous renseignez les dimensions, l'implantation, le motif et la couleur.</p>
+      </li>
+      <li class="uf-timeline-step">
+        <span class="uf-timeline-marker"><span class="uf-timeline-dot"></span></span>
+        <span class="uf-timeline-when">Semaine 1</span>
+        <h3 class="uf-timeline-title">Validation du projet</h3>
+        <p class="uf-timeline-text">Le projet est vérifié, chiffré et validé avant transmission.</p>
+      </li>
+      <li class="uf-timeline-step">
+        <span class="uf-timeline-marker"><span class="uf-timeline-dot"></span></span>
+        <span class="uf-timeline-when">Semaines 2 à 3</span>
+        <h3 class="uf-timeline-title">Mise en production</h3>
+        <p class="uf-timeline-text">Les éléments sont fabriqués à la demande selon la configuration validée.</p>
+      </li>
+      <li class="uf-timeline-step uf-timeline-step--end">
+        <span class="uf-timeline-marker"><span class="uf-timeline-dot"></span></span>
+        <span class="uf-timeline-when">Autour de 4 semaines</span>
+        <h3 class="uf-timeline-title">Expédition / chantier</h3>
+        <p class="uf-timeline-text">La clôture est préparée pour livraison et pose sur chantier.</p>
+      </li>
+    </ol>
+
+    <p class="uf-timeline-note reveal">
+      Délai indicatif, susceptible de varier selon la configuration, la charge de production et la validation du dossier.
+    </p>
   </div>
 </section>
 
@@ -639,7 +699,17 @@
   <div class="final-cta-bg-image" style="background-image:url('images/cta-fond.jpg')"></div>
   <div class="final-cta-overlay"></div>
   <div class="container">
-    <span class="eyebrow">Votre espace partenaire</span>
+    <span class="final-cta-brand">
+      <span class="uf-cfg-mark uf-cfg-mark--light" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+          <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
+          <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
+          <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
+        </svg>
+      </span>
+      Urbafence · Cercle Partenaire
+    </span>
     <h2 class="final-headline-xl">
       Rejoignez le <em>Cercle</em> Partenaire.
     </h2>
