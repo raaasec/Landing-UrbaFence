@@ -308,7 +308,7 @@
       <!-- Colonne droite — mini-configurateur interactif -->
       <div class="uf-configurator reveal" id="ufConfigurator"
            data-height="1600" data-length="8" data-implantation="muret"
-           data-pattern="regulier" data-occultation="60" data-color="anthracite">
+           data-pattern="privacy" data-color="anthracite">
 
         <div class="uf-cfg-head">
           <span class="uf-cfg-brand">
@@ -334,7 +334,12 @@
             <div class="uf-cfg-base" id="ufBase"></div>
             <div class="uf-cfg-ground"></div>
           </div>
-          <span class="uf-cfg-disclaimer">Simulation visuelle non contractuelle.</span>
+          <!-- Cote de longueur (illustrative) -->
+          <div class="uf-cfg-cote" aria-hidden="true">
+            <span class="uf-cfg-cote-bar" id="ufCoteBar"><span class="uf-cfg-cote-val" id="ufCoteVal">8 m</span></span>
+          </div>
+          <span class="uf-cfg-preview-label">Aperçu indicatif — linéaire configuré&nbsp;: <strong id="ufCoteLabel">8 m</strong></span>
+          <span class="uf-cfg-disclaimer">Vue indicative — les dimensions exactes sont configurées au projet.</span>
         </div>
 
         <!-- B. Contrôles -->
@@ -361,22 +366,29 @@
           </div>
 
           <div class="uf-cfg-field">
-            <span class="uf-cfg-label" id="ufPatternLabel">Motif</span>
-            <div class="uf-cfg-segment" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
-              <button type="button" class="uf-cfg-seg-btn" data-value="regulier" aria-pressed="true">Régulier</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="graphique" aria-pressed="false">Graphique</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="vegetal" aria-pressed="false">Végétal</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="aleatoire" aria-pressed="false">Aléatoire</button>
+            <span class="uf-cfg-label" id="ufPatternLabel">Motif <output id="ufPatternOut">Privacy renforcée — très occultant</output></span>
+            <p class="uf-cfg-hint">Choisissez un motif selon le niveau d'occultation recherché. Le niveau d'occultation dépend du dessin de perforation.</p>
+            <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
+              <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
+                <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Privacy renforcée</span>
+                <span class="uf-cfg-motif-level">Très occultant</span>
+                <span class="uf-cfg-motif-desc">Pour les projets où l'intimité et la limitation des vues sont prioritaires.</span>
+              </button>
+              <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
+                <span class="uf-cfg-motif-swatch uf-motif--balanced" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Équilibré</span>
+                <span class="uf-cfg-motif-level">Occultation intermédiaire</span>
+                <span class="uf-cfg-motif-desc">Un équilibre entre protection visuelle, lumière et rendu décoratif.</span>
+              </button>
+              <button type="button" class="uf-cfg-motif" data-value="open" aria-pressed="false">
+                <span class="uf-cfg-motif-swatch uf-motif--open" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Ajouré</span>
+                <span class="uf-cfg-motif-level">Plus ouvert</span>
+                <span class="uf-cfg-motif-desc">Pour les projets où l'on souhaite un rendu plus léger et plus graphique.</span>
+              </button>
             </div>
-          </div>
-
-          <div class="uf-cfg-field">
-            <label class="uf-cfg-label" for="ufOcc">Niveau d'occultation <output id="ufOccOut" for="ufOcc">60 % — privacy renforcée</output></label>
-            <div class="uf-cfg-occ-row">
-              <span class="uf-cfg-occ-end">Plus ajouré</span>
-              <input class="uf-cfg-range uf-cfg-range--occ" type="range" id="ufOcc" min="10" max="90" step="5" value="60">
-              <span class="uf-cfg-occ-end">Plus occultant</span>
-            </div>
+            <p class="uf-cfg-note">Les motifs présentés sont indicatifs. Le choix final se fait selon les possibilités de la gamme et les contraintes du projet.</p>
           </div>
 
           <div class="uf-cfg-field">
@@ -393,11 +405,11 @@
             <li><span>Hauteur</span><strong id="ufSumHeight">1 600 mm</strong></li>
             <li><span>Longueur</span><strong id="ufSumLength">8 m</strong></li>
             <li><span>Implantation</span><strong id="ufSumImpl">Sur muret</strong></li>
-            <li><span>Motif</span><strong id="ufSumPattern">Régulier</strong></li>
-            <li><span>Occultation</span><strong id="ufSumOcc">60 % — privacy renforcée</strong></li>
+            <li><span>Motif</span><strong id="ufSumPattern">Privacy renforcée</strong></li>
+            <li><span>Niveau</span><strong id="ufSumLevel">Très occultant</strong></li>
             <li><span>Couleur</span><strong id="ufSumColor">Gris anthracite</strong></li>
           </ul>
-          <p class="uf-cfg-summary-line">Une clôture configurée pour limiter les vues, s'intégrer au chantier et être transmise en production.</p>
+          <p class="uf-cfg-summary-line">Une clôture configurée selon vos cotes, votre implantation, votre couleur et le niveau d'occultation recherché.</p>
           <a class="btn btn-primary uf-cfg-cta" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
             Configurer un vrai projet <span class="arrow">→</span>
           </a>

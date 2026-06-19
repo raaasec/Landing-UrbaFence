@@ -1334,9 +1334,8 @@ section.uf-custom {
   /* variables pilotées par le JS (valeurs par défaut) */
   --uf-panel-color: #2f3436;
   --uf-panel-h: 140px;
-  --uf-perf-size: 1.8px;
-  --uf-perf-gap: 9px;
-  --uf-hole: rgba(245, 242, 236, 0.78);
+  --uf-len-w: 80%;
+  --uf-hole: rgba(245, 242, 236, 0.82);
 }
 .uf-cfg-head { margin-bottom: 16px; }
 .uf-cfg-brand {
@@ -1410,41 +1409,60 @@ section.uf-custom {
 .uf-configurator[data-implantation="angle"] .uf-cfg-fence { bottom: 18px; right: 52px; }
 .uf-configurator[data-implantation="angle"] .uf-cfg-return { opacity: 1; visibility: visible; }
 .uf-cfg-disclaimer {
-  display: block; margin-top: 8px; text-align: right;
+  display: block; margin-top: 4px; text-align: right;
   font-size: 11px; font-style: italic; color: var(--ink-300);
 }
+/* Cote de longueur illustrative (largeur stable, longueur via la cote) */
+.uf-cfg-cote { margin-top: 12px; display: flex; justify-content: center; }
+.uf-cfg-cote-bar {
+  position: relative; height: 18px;
+  width: var(--uf-len-w, 80%); max-width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  transition: width .4s var(--ease-out);
+}
+.uf-cfg-cote-bar::before { /* trait horizontal */
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
+  background: var(--ink-200);
+}
+.uf-cfg-cote-bar::after { /* embouts verticaux */
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  height: 9px; border-left: 1px solid var(--ink-300); border-right: 1px solid var(--ink-300);
+}
+.uf-cfg-cote-val {
+  position: relative; z-index: 1; background: var(--bg-card);
+  padding: 0 8px; font-size: 11px; font-weight: 600; color: var(--ink-500);
+  letter-spacing: 0.02em;
+}
+.uf-cfg-preview-label {
+  display: block; margin-top: 8px; text-align: center;
+  font-size: 12px; color: var(--secondary);
+}
+.uf-cfg-preview-label strong { color: var(--ink); font-weight: 600; }
 
-/* Motifs de perforation (panneaux + retour) */
-.uf-configurator[data-pattern="regulier"] .uf-cfg-panel,
-.uf-configurator[data-pattern="regulier"] .uf-cfg-return {
-  background-image: radial-gradient(circle, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.6px));
-  background-size: var(--uf-perf-gap) var(--uf-perf-gap);
+/* Motifs de perforation — 3 dessins réellement différents (panneaux + retour) */
+.uf-configurator[data-pattern="privacy"] .uf-cfg-panel,
+.uf-configurator[data-pattern="privacy"] .uf-cfg-return,
+.uf-motif--privacy {
+  /* Très occultant : petits trous très espacés, beaucoup de tôle pleine */
+  background-image: radial-gradient(circle, var(--uf-hole) 1.3px, transparent 1.9px);
+  background-size: 13px 13px;
 }
-.uf-configurator[data-pattern="graphique"] .uf-cfg-panel,
-.uf-configurator[data-pattern="graphique"] .uf-cfg-return {
+.uf-configurator[data-pattern="balanced"] .uf-cfg-panel,
+.uf-configurator[data-pattern="balanced"] .uf-cfg-return,
+.uf-motif--balanced {
+  /* Intermédiaire : trous moyens en quinconce, rythme plus ouvert */
   background-image:
-    radial-gradient(circle, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.6px)),
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.10) 0 1px, transparent 1px var(--uf-perf-gap)),
-    repeating-linear-gradient(90deg, rgba(0,0,0,0.10) 0 1px, transparent 1px var(--uf-perf-gap));
-  background-size: var(--uf-perf-gap) var(--uf-perf-gap);
+    radial-gradient(circle, var(--uf-hole) 2.1px, transparent 2.8px),
+    radial-gradient(circle, var(--uf-hole) 2.1px, transparent 2.8px);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
 }
-.uf-configurator[data-pattern="vegetal"] .uf-cfg-panel,
-.uf-configurator[data-pattern="vegetal"] .uf-cfg-return {
-  background-image:
-    radial-gradient(circle, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.6px)),
-    radial-gradient(circle, var(--uf-hole) calc(var(--uf-perf-size) * 0.62), transparent calc(var(--uf-perf-size) * 0.62 + 0.6px));
-  background-size: var(--uf-perf-gap) var(--uf-perf-gap);
-  background-position: 0 0, calc(var(--uf-perf-gap) / 2) calc(var(--uf-perf-gap) / 2);
-}
-.uf-configurator[data-pattern="aleatoire"] .uf-cfg-panel,
-.uf-configurator[data-pattern="aleatoire"] .uf-cfg-return {
-  background-image:
-    radial-gradient(circle at 18% 24%, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.7px)),
-    radial-gradient(circle at 68% 16%, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.7px)),
-    radial-gradient(circle at 42% 62%, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.7px)),
-    radial-gradient(circle at 84% 74%, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.7px)),
-    radial-gradient(circle at 12% 82%, var(--uf-hole) var(--uf-perf-size), transparent calc(var(--uf-perf-size) + 0.7px));
-  background-size: calc(var(--uf-perf-gap) * 2.6) calc(var(--uf-perf-gap) * 2.6);
+.uf-configurator[data-pattern="open"] .uf-cfg-panel,
+.uf-configurator[data-pattern="open"] .uf-cfg-return,
+.uf-motif--open {
+  /* Plus ajouré : fentes verticales, dessin graphique et nettement plus ouvert */
+  background-image: repeating-linear-gradient(90deg,
+    var(--uf-hole) 0 3px, transparent 3px 8px);
 }
 
 /* B. Contrôles */
@@ -1478,8 +1496,44 @@ section.uf-custom {
   box-shadow: 0 2px 8px rgba(53, 130, 63, 0.35); cursor: grab; border-width: 3px;
 }
 .uf-cfg-range:focus-visible { box-shadow: 0 0 0 3px rgba(53,130,63,0.22); }
-.uf-cfg-occ-row { display: flex; align-items: center; gap: 12px; }
-.uf-cfg-occ-end { font-size: 10.5px; color: var(--ink-300); white-space: nowrap; letter-spacing: 0.02em; }
+/* Aides textuelles motif */
+.uf-cfg-hint { font-size: 12px; line-height: 1.45; color: var(--text); margin: -2px 0 2px; }
+.uf-cfg-note { font-size: 11px; line-height: 1.45; font-style: italic; color: var(--ink-300); margin-top: 2px; }
+/* Cartes motifs (remplacent l'ancien slider d'occultation) */
+.uf-cfg-motifs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.uf-cfg-motif {
+  display: flex; flex-direction: column; gap: 6px; text-align: left;
+  padding: 10px 10px 12px; cursor: pointer;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--r-md);
+  transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.uf-cfg-motif:hover { border-color: var(--brand-100); }
+.uf-cfg-motif[aria-pressed="true"] {
+  border-color: var(--accent); background: var(--bg-card);
+  box-shadow: 0 8px 20px rgba(53, 130, 63, 0.14), inset 0 0 0 1px var(--accent);
+}
+.uf-cfg-motif:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.uf-cfg-motif-swatch {
+  display: block; height: 46px; border-radius: var(--r-xs);
+  background-color: #2f3436; background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18);
+  --uf-hole: rgba(245, 242, 236, 0.82);
+}
+.uf-cfg-motif-name { font-family: var(--sans); font-size: 12.5px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.uf-cfg-motif-level {
+  display: inline-block; align-self: flex-start;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent); background: rgba(53, 130, 63, 0.10);
+  padding: 3px 7px; border-radius: var(--r-pill);
+}
+.uf-cfg-motif-desc { font-size: 11px; line-height: 1.4; color: var(--text); }
+@media (max-width: 560px) {
+  .uf-cfg-motifs { grid-template-columns: 1fr; }
+  .uf-cfg-motif { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .uf-cfg-motif-swatch { width: 64px; height: 44px; flex-shrink: 0; }
+  .uf-cfg-motif-name { flex: 1 1 auto; }
+  .uf-cfg-motif-desc { flex-basis: 100%; }
+}
 /* Boutons segmentés */
 .uf-cfg-segment { display: flex; flex-wrap: wrap; gap: 8px; }
 .uf-cfg-seg-btn {
