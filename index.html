@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cercle Partenaire — Urbafence</title>
+  <meta name="description" content="Le Cercle Partenaire : un cadre de collaboration dédié aux professionnels de la clôture. Conditions partenaires, prix sécurisés et outils pensés pour vos chantiers.">
+
+  <!-- Polices Google Fonts : Fraunces (titres) + Hind (textes).
+       preconnect = on prépare la connexion pour charger les polices plus vite. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Hind:wght@400;500;600;700&display=swap">
+
+  <!-- Feuille de styles du projet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     ZONE RÉSERVÉE DSI — TOPBAR / BANDEAU DE SERVICE
+     Le bandeau du haut (téléphone, horaires, etc.) sera intégré ici
+     par la DSI, à partir du header du site Urbafence actuel.
+     Laissez ce conteneur vide, ou collez-y directement le code existant.
+     ============================================================ -->
+<div id="dsi-topbar"></div>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-texture" aria-hidden="true"></div>
+  <div class="hero-bg-shape"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- COLONNE GAUCHE — texte -->
+      <div class="hero-copy">
+        <span class="eyebrow">Cercle Partenaire</span>
+        <h1 class="hero-display">
+          <span class="line line-1">Une bonne collaboration</span>
+          <span class="hero-divider" aria-hidden="true">
+            <span class="dot"></span>
+            <svg class="line-art" viewBox="0 0 240 14" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path class="path-line" d="M 0 10 Q 100 10 200 4"></path>
+              <path class="path-arrow" d="M 192 1 L 204 4 L 196 12"></path>
+            </svg>
+          </span>
+          <span class="line line-2">se construit <em>dans le temps.</em></span>
+        </h1>
+        <p class="hero-lead">
+          Le Cercle Partenaire réunit les professionnels de la clôture qui travaillent régulièrement avec Urbafence&nbsp;: conditions dédiées, prix sécurisés et outils pensés pour faire avancer vos chantiers.
+        </p>
+        <div class="hero-cta-row">
+          <a href="https://urbafence.com/mon-compte/" class="btn btn-primary">
+            Accéder à mon compte
+            <span class="arrow">→</span>
+          </a>
+          <a href="#avantages-rapides" class="btn btn-ghost">Voir les avantages</a>
+        </div>
+        <div class="hero-meta">Activation rapide · Conditions partenaires immédiates</div>
+      </div>
+
+      <!-- COLONNE DROITE — composition visuelle (2 photos) -->
+      <div class="hero-visual">
+        <div class="hero-accent-line" aria-hidden="true"></div>
+
+        <div class="hero-photo">
+          <!-- IMG-HERO-1 · Photo principale du hero · clôture posée sur muret, en situation · format portrait 4/5 (≈ 1200×1500 px) -->
+          <img src="images/hero-principal.jpg"
+               alt="Clôture décorative Urbafence posée sur un muret"
+               onerror="this.onerror=null;this.src='https://placehold.co/1200x1500/EAF3E7/35823F?text=A+ajouter'">
+          <div class="hero-photo-caption">
+            <span>Clôture sur muret</span>
+            <span class="ref">Pose sur platine</span>
+          </div>
+        </div>
+
+        <div class="hero-photo-2">
+          <!-- IMG-HERO-2 · Photo secondaire (incrustée) · détail d'une clôture sur béton · format portrait 3/4 (≈ 600×800 px) -->
+          <img src="images/hero-detail.jpg"
+               alt="Détail d'une clôture Urbafence sur soubassement béton"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x800/9BC391/1F4E26?text=A+ajouter'">
+          <span class="ref-mini">Sur béton</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== LEVIERS — les 6 avantages ============== -->
+<section class="dual-angles" id="avantages-rapides">
+  <div class="container">
+    <div class="dual-angles-intro reveal">
+      <span class="eyebrow">Des avantages concrets</span>
+      <h2>Six leviers, <em>tous accessibles</em>, quelle que soit votre structure.</h2>
+      <p>Que vous soyez une petite équipe ou une entreprise structurée, vous accédez aux mêmes avantages. Selon votre activité, certains vous parleront plus que d'autres — mais aucun ne vous est fermé.</p>
+    </div>
+
+    <ul class="tppme-grid reveal">
+
+      <!-- 01 — Catalogue personnalisé offert -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-tpe">Particulièrement apprécié des petites structures</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5 C 6 5 9 6 12 7 C 15 6 18 5 21 5 L 21 19 C 18 19 15 20 12 21 C 9 20 6 19 3 19 Z"></path>
+            <path d="M12 7 L 12 21"></path>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Présentez vos projets de clôture en rendez-vous.</h4>
+        <p class="tppme-item-body"><strong>Catalogue papier personnalisé offert</strong>, imprimé et livré chez vous. Une ressource concrète à présenter à vos clients sur leurs projets de clôture.</p>
+      </li>
+
+      <!-- 02 — Configurateur partenaires -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-all">Pour toutes les structures</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="6" r="1.6"></circle>
+            <path d="M12 7.6 L 6 20"></path>
+            <path d="M12 7.6 L 18 20"></path>
+            <path d="M9 14 L 15 14"></path>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Chiffrez et mettez en plan plus vite.</h4>
+        <p class="tppme-item-body"><strong>Fonctionnalités configurateur réservées</strong>&nbsp;: options partenaires, devis instantanés et temps gagné sur la mise en plan de vos clôtures.</p>
+      </li>
+
+      <!-- 03 — Motifs à prix maîtrisé (bonus) -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-all">Pour toutes les structures</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12 L 12 3 L 21 3 L 21 12 L 12 21 Z"></path>
+            <circle cx="16.5" cy="7.5" r="1.4"></circle>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Proposez des clôtures pour tous les budgets.</h4>
+        <p class="tppme-item-body"><strong>Sélection de motifs à prix maîtrisé</strong>, utile pour les projets de clôture à budget serré, sans renoncer au décor.</p>
+      </li>
+
+      <!-- 04 — Devis avec prix bloqués 3 mois -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-pme">Particulièrement utile aux structures qui planifient</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="11" width="14" height="9" rx="1.5"></rect>
+            <path d="M8 11 V 8 a 4 4 0 0 1 8 0 V 11"></path>
+            <circle cx="12" cy="15.5" r="1.3"></circle>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Sécurisez vos chantiers planifiés.</h4>
+        <p class="tppme-item-body"><strong>Devis avec prix bloqués 3&nbsp;mois.</strong> Le temps que vos chantiers se confirment, votre tarification reste acquise.</p>
+      </li>
+
+      <!-- 05 — Support Partenaires dédié -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-all">Pour toutes les structures</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 14 a 8 8 0 0 1 16 0"></path>
+            <path d="M4 14 V 17 a 2 2 0 0 0 2 2 H 8 V 13 H 6 a 2 2 0 0 0 -2 1 Z"></path>
+            <path d="M20 14 V 17 a 2 2 0 0 1 -2 2 H 16 V 13 H 18 a 2 2 0 0 1 2 1 Z"></path>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Gardez vos chantiers en mouvement.</h4>
+        <p class="tppme-item-body"><strong>Support Partenaires dédié</strong>&nbsp;: ligne réservée, horaires étendus et disponibilité le samedi. Des réponses plus rapides, moins d'allers-retours.</p>
+      </li>
+
+      <!-- 06 — 15 % de remise immédiate -->
+      <li class="tppme-item">
+        <span class="tppme-item-tag tag-all">Pour toutes les structures</span>
+        <span class="tppme-item-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="2.5"></circle>
+            <circle cx="16" cy="16" r="2.5"></circle>
+            <path d="M6 18 L 18 6"></path>
+          </svg>
+        </span>
+        <h4 class="tppme-item-title">Appliquez vos conditions automatiquement.</h4>
+        <p class="tppme-item-body"><strong>15&nbsp;% de remise immédiate</strong> sur le catalogue Urbafence, appliquée automatiquement à partir d'un panier de 1&nbsp;500&nbsp;€.</p>
+      </li>
+    </ul>
+
+    <!-- ============== MOTIFS À PRIX MAÎTRISÉ ============== -->
+    <div class="motifs-section reveal">
+      <div class="motifs-header">
+        <span class="motifs-eyebrow">Inclus dans le Cercle</span>
+        <h3>Une sélection de motifs <em>à prix maîtrisé</em></h3>
+        <p>Des motifs de clôture accessibles, utiles pour les projets à budget serré. Avec votre remise partenaire de 15&nbsp;%, leur prix descend encore.</p>
+      </div>
+
+      <div class="motifs-grid" id="motifsGrid">
+        <div class="motifs-viewport" id="motifsViewport">
+          <div class="motifs-track" id="motifsTrack">
+
+          <!-- Les liens pointent vers la home urbafence.com en attendant les pages produit définitives.
+               À remplacer par [LIEN_PRODUIT_URBAFENCE] de chaque motif quand elles existeront. -->
+
+          <!-- TOCIMA -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="tocima" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect width="20" height="20" fill="#2a2e30"></rect>
+                    <circle cx="10" cy="10" r="3.5" fill="#F3F0ED"></circle>
+                    <circle cx="0" cy="0" r="1.5" fill="#F3F0ED"></circle>
+                    <circle cx="20" cy="0" r="1.5" fill="#F3F0ED"></circle>
+                    <circle cx="0" cy="20" r="1.5" fill="#F3F0ED"></circle>
+                    <circle cx="20" cy="20" r="1.5" fill="#F3F0ED"></circle>
+                  </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#tocima)"></rect>
+              </svg>
+            </div>
+            <div class="motif-info">
+              <div class="motif-name">Tocima</div>
+              <div class="motif-meta">29 % de vide</div>
+              <div class="motif-price-wrap">
+                <div class="motif-price-old">49,00 € / m²</div>
+                <div class="motif-price-new">41,65 € / m²</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- OCTOPUS -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="octopus" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse">
+                    <rect width="25" height="25" fill="#2a2e30"></rect>
+                    <path d="M12.5 8 L17 12.5 L12.5 17 L8 12.5 Z" fill="#F3F0ED"></path>
+                    <circle cx="12.5" cy="12.5" r="1" fill="#2a2e30"></circle>
+                  </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#octopus)"></rect>
+              </svg>
+            </div>
+            <div class="motif-info">
+              <div class="motif-name">Octopus</div>
+              <div class="motif-meta">12 % de vide</div>
+              <div class="motif-price-wrap">
+                <div class="motif-price-old">48,00 € / m²</div>
+                <div class="motif-price-new">40,80 € / m²</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- AGOSTINE MAGMA -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="agostine" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+                    <rect width="22" height="22" fill="#2a2e30"></rect>
+                    <path d="M3 5 Q8 2 11 6 T19 7 L18 12 Q14 14 11 11 T4 10 Z" fill="#F3F0ED"></path>
+                    <ellipse cx="11" cy="17" rx="3" ry="1.5" fill="#F3F0ED"></ellipse>
+                  </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#agostine)"></rect>
+              </svg>
+            </div>
+            <div class="motif-info">
+              <div class="motif-name">Agostine Magma</div>
+              <div class="motif-meta">36 % de vide</div>
+              <div class="motif-price-wrap">
+                <div class="motif-price-old">48,00 € / m²</div>
+                <div class="motif-price-new">40,80 € / m²</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- ARTEFACT -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="artefact" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+                    <rect width="18" height="18" fill="#2a2e30"></rect>
+                    <rect x="4" y="4" width="4" height="4" fill="#F3F0ED"></rect>
+                    <rect x="10" y="10" width="4" height="4" fill="#F3F0ED"></rect>
+                    <rect x="10" y="2" width="2" height="2" fill="#F3F0ED"></rect>
+                    <rect x="2" y="14" width="2" height="2" fill="#F3F0ED"></rect>
+                  </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#artefact)"></rect>
+              </svg>
+            </div>
+            <div class="motif-info">
+              <div class="motif-name">Artefact</div>
+              <div class="motif-meta">30 % de vide</div>
+              <div class="motif-price-wrap">
+                <div class="motif-price-old">45,00 € / m²</div>
+                <div class="motif-price-new">38,25 € / m²</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- OPALE GRIO -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <pattern id="opale" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                    <rect width="16" height="16" fill="#2a2e30"></rect>
+                    <ellipse cx="8" cy="8" rx="4" ry="2" fill="#F3F0ED" transform="rotate(30 8 8)"></ellipse>
+                    <circle cx="0" cy="8" r="1" fill="#F3F0ED"></circle>
+                    <circle cx="16" cy="8" r="1" fill="#F3F0ED"></circle>
+                  </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#opale)"></rect>
+              </svg>
+            </div>
+            <div class="motif-info">
+              <div class="motif-name">Opale Grio</div>
+              <div class="motif-meta">20 % de vide</div>
+              <div class="motif-price-wrap">
+                <div class="motif-price-old">43,00 € / m²</div>
+                <div class="motif-price-new">36,55 € / m²</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- DUPLICATAS pour la boucle infinie (aria-hidden : non lus par les lecteurs d'écran) -->
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card" aria-hidden="true" tabindex="-1">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="url(#tocima)"></rect></svg></div>
+            <div class="motif-info"><div class="motif-name">Tocima</div><div class="motif-meta">29 % de vide</div><div class="motif-price-wrap"><div class="motif-price-old">49,00 € / m²</div><div class="motif-price-new">41,65 € / m²</div></div></div>
+          </a>
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card" aria-hidden="true" tabindex="-1">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="url(#octopus)"></rect></svg></div>
+            <div class="motif-info"><div class="motif-name">Octopus</div><div class="motif-meta">12 % de vide</div><div class="motif-price-wrap"><div class="motif-price-old">48,00 € / m²</div><div class="motif-price-new">40,80 € / m²</div></div></div>
+          </a>
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card" aria-hidden="true" tabindex="-1">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="url(#agostine)"></rect></svg></div>
+            <div class="motif-info"><div class="motif-name">Agostine Magma</div><div class="motif-meta">36 % de vide</div><div class="motif-price-wrap"><div class="motif-price-old">48,00 € / m²</div><div class="motif-price-new">40,80 € / m²</div></div></div>
+          </a>
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card" aria-hidden="true" tabindex="-1">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="url(#artefact)"></rect></svg></div>
+            <div class="motif-info"><div class="motif-name">Artefact</div><div class="motif-meta">30 % de vide</div><div class="motif-price-wrap"><div class="motif-price-old">45,00 € / m²</div><div class="motif-price-new">38,25 € / m²</div></div></div>
+          </a>
+          <a href="https://urbafence.com/" target="_blank" rel="noopener" class="motif-card" aria-hidden="true" tabindex="-1">
+            <span class="motif-badge">−15&nbsp;%</span>
+            <div class="motif-pattern"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="url(#opale)"></rect></svg></div>
+            <div class="motif-info"><div class="motif-name">Opale Grio</div><div class="motif-meta">20 % de vide</div><div class="motif-price-wrap"><div class="motif-price-old">43,00 € / m²</div><div class="motif-price-new">36,55 € / m²</div></div></div>
+          </a>
+
+          </div><!-- /.motifs-track -->
+        </div><!-- /.motifs-viewport -->
+
+        <div class="motifs-controls">
+          <button class="motifs-nav-btn" type="button" id="motifsPrev" aria-label="Motif précédent">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <input class="motifs-slider" type="range" id="motifsSlider" min="0" max="100" value="0" aria-label="Faire défiler les motifs">
+          <button class="motifs-nav-btn" type="button" id="motifsNext" aria-label="Motif suivant">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div><!-- /.motifs-grid -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== POSITIONNEMENT ============== -->
+<section class="positioning" id="cadre">
+  <div class="container">
+    <div class="positioning-grid">
+      <div class="positioning-visual reveal">
+        <!-- IMG-POSITION-1 · Visuel de la section positionnement · clôture en situation, ambiance extérieure · format portrait 5/6 (≈ 1000×1200 px) -->
+        <img src="images/positionnement.jpg"
+             alt="Clôture Urbafence installée le long d'une rue"
+             onerror="this.onerror=null;this.src='https://placehold.co/1000x1200/EAF3E7/35823F?text=A+ajouter'">
+      </div>
+      <div class="positioning-text reveal">
+        <span class="eyebrow">L'origine du programme</span>
+        <h2>Construire dans la durée, <em>pas seulement vendre.</em></h2>
+        <p>
+          Une partie des professionnels avec lesquels nous travaillons ont choisi d'inscrire leur relation avec Urbafence dans un cadre dédié&nbsp;: le <strong>Cercle Partenaire</strong>.
+        </p>
+        <p>
+          Ce cadre s'adapte à votre façon de travailler. Que vous avanciez chantier par chantier ou que vous pilotiez plusieurs projets en parallèle, il vous ouvre des conditions partenaires et des outils pensés pour fluidifier vos échanges et vous faire gagner du temps.
+        </p>
+        <p>
+          Il s'adresse à tous les pros de la clôture — cloturistes, paysagistes, second œuvre du bâtiment — qui souhaitent travailler plus simplement avec nos équipes, sans changer leurs habitudes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== RÉALISATIONS (mosaïque) ============== -->
+<section class="realisations" id="realisations">
+  <div class="container">
+    <div class="realisations-head reveal">
+      <div>
+        <span class="eyebrow">Savoir-faire</span>
+        <h2>Ce que vous <em>réalisez.</em></h2>
+      </div>
+      <p class="intro-text">
+        Clôtures sur muret, clôtures sur béton, séparatifs urbains, brise-vue, portillons assortis. Un aperçu de ce que vos équipes posent à partir des solutions Urbafence.
+      </p>
+    </div>
+
+    <div class="realisations-grid reveal">
+      <div class="real-card span-7 row-2">
+        <!-- IMG-REA-1 · Réalisation principale (grande tuile) · clôture posée sur muret existant · format paysage (≈ 1200×1000 px) -->
+        <img src="images/rea-muret.jpg"
+             alt="Clôture Urbafence posée sur un muret existant" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/1200x1000/EAF3E7/35823F?text=A+ajouter'">
+        <span class="real-card-ref">Type · Muret</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Clôture sur muret</span>
+          <div class="real-card-title">Pose sur muret existant</div>
+        </div>
+      </div>
+
+      <div class="real-card span-5">
+        <!-- IMG-REA-2 · clôture sur soubassement béton · format paysage (≈ 800×600 px) -->
+        <img src="images/rea-beton.jpg"
+             alt="Clôture Urbafence sur soubassement béton" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/800x600/9BC391/1F4E26?text=A+ajouter'">
+        <span class="real-card-ref">Type · Béton</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Clôture sur béton</span>
+          <div class="real-card-title">Clôture sur longrine béton</div>
+        </div>
+      </div>
+
+      <div class="real-card span-5">
+        <!-- IMG-REA-3 · séparatif d'espace public / urbain · format paysage (≈ 800×600 px) -->
+        <img src="images/rea-urbain.jpg"
+             alt="Séparatif urbain réalisé avec une clôture Urbafence" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/800x600/EAF3E7/35823F?text=A+ajouter'">
+        <span class="real-card-ref">Type · Urbain</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Séparatif urbain</span>
+          <div class="real-card-title">Séparatif d'espace public</div>
+        </div>
+      </div>
+
+      <div class="real-card span-4">
+        <!-- IMG-REA-4 · brise-vue décoratif ajouré · format portrait (≈ 600×800 px) -->
+        <img src="images/rea-brisevue.jpg"
+             alt="Brise-vue décoratif ajouré Urbafence" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/600x800/9BC391/1F4E26?text=A+ajouter'">
+        <span class="real-card-ref">Type · Brise-vue</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Brise-vue décoratif</span>
+          <div class="real-card-title">Brise-vue ajouré</div>
+        </div>
+      </div>
+
+      <div class="real-card span-4">
+        <!-- IMG-REA-5 · portillon assorti à la clôture · format portrait (≈ 600×800 px) -->
+        <img src="images/rea-portillon.jpg"
+             alt="Portillon Urbafence assorti à la clôture" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/600x800/EAF3E7/35823F?text=A+ajouter'">
+        <span class="real-card-ref">Type · Portillon</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Portillon assorti</span>
+          <div class="real-card-title">Portillon coordonné</div>
+        </div>
+      </div>
+
+      <div class="real-card span-4">
+        <!-- IMG-REA-6 · clôture de terrasse · format portrait (≈ 600×800 px) -->
+        <img src="images/rea-terrasse.jpg"
+             alt="Clôture de terrasse Urbafence" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/600x800/9BC391/1F4E26?text=A+ajouter'">
+        <span class="real-card-ref">Type · Terrasse</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Clôture de terrasse</span>
+          <div class="real-card-title">Garde-corps de terrasse</div>
+        </div>
+      </div>
+
+      <div class="real-card span-6">
+        <!-- IMG-REA-7 · panneau de clôture à motif découpé · format paysage (≈ 900×600 px) -->
+        <img src="images/rea-decor.jpg"
+             alt="Clôture Urbafence à motif découpé" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/900x600/EAF3E7/35823F?text=A+ajouter'">
+        <span class="real-card-ref">Type · Décor</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Panneau décoratif</span>
+          <div class="real-card-title">Clôture à motif découpé</div>
+        </div>
+      </div>
+
+      <div class="real-card span-6">
+        <!-- IMG-REA-8 · clôture de collectivité (école, etc.) · format paysage (≈ 900×600 px) -->
+        <img src="images/rea-collectivite.jpg"
+             alt="Clôture Urbafence pour un site de collectivité" loading="lazy"
+             onerror="this.onerror=null;this.src='https://placehold.co/900x600/9BC391/1F4E26?text=A+ajouter'">
+        <span class="real-card-ref">Type · Collectif</span>
+        <div class="real-card-body">
+          <span class="real-card-tag">Clôture collective</span>
+          <div class="real-card-title">Clôture de collectivité</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA (version compacte, après les Réalisations) ============== -->
+<section class="final-cta final-cta--compact" id="activer">
+  <!-- IMG-CTA-BG · Image de fond du CTA (assombrie par l'overlay) · clôture en situation, plan large · format paysage large (≈ 1600×900 px) -->
+  <div class="final-cta-bg-image" style="background-image:url('images/cta-fond.jpg')"></div>
+  <div class="final-cta-overlay"></div>
+  <div class="container">
+    <span class="eyebrow">Votre espace partenaire</span>
+    <h2 class="final-headline-xl">
+      Rejoignez le <em>Cercle</em> Partenaire.
+    </h2>
+    <p>L'activation est rapide et l'accès direct. Vos conditions partenaires sont actives immédiatement.</p>
+    <a href="https://urbafence.com/mon-compte/" class="btn btn-primary">
+      Accéder à mon compte
+      <span class="arrow">→</span>
+    </a>
+    <div class="final-cta-features">
+      <span class="final-cta-feature">Activation rapide</span>
+      <span class="final-cta-feature">Au rythme de vos chantiers</span>
+      <span class="final-cta-feature">Avantages immédiats</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== AVANTAGES (cartes flip) ============== -->
+<section class="benefits" id="avantages">
+  <div class="container">
+    <div class="benefits-intro reveal">
+      <span class="eyebrow">Ce que le programme permet</span>
+      <h2>Des conditions concrètes sur vos chantiers.</h2>
+      <p>Cinq éléments qui rendent le travail au quotidien plus simple, plus rapide et plus prévisible.</p>
+    </div>
+
+    <div class="benefits-grid">
+
+      <!-- Carte mise en avant : catalogue personnalisé offert -->
+      <article class="benefit-card benefit-featured reveal">
+        <div class="benefit-featured-text">
+          <span class="eyebrow">Inclus</span>
+          <h3>Votre catalogue personnalisé offert.</h3>
+          <p>
+            Le catalogue Urbafence imprimé et livré chez vous, en cadeau de bienvenue. Une ressource physique à partager avec vos équipes et vos clients, prête à utiliser sur vos rendez-vous projet.
+          </p>
+        </div>
+        <div class="benefit-featured-visual">
+          <div class="catalogue-mockup">
+            <div class="catalogue-mockup-eyebrow">Édition partenaire</div>
+            <div class="catalogue-mockup-title">Catalogue<br>Urbafence</div>
+            <div class="catalogue-mockup-sub">ÉDITION 2026</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15 % de remise -->
+      <article class="benefit-card benefit-flip reveal">
+        <div class="benefit-flip-inner">
+          <div class="benefit-flip-face benefit-flip-front">
+            <div class="benefit-icon">%</div>
+            <h3>15&nbsp;% de remise immédiate</h3>
+            <p>Une remise partenaire appliquée automatiquement dès 1&nbsp;500&nbsp;€ de panier.</p>
+            <span class="flip-hint"><span>Survoler →</span></span>
+          </div>
+          <div class="benefit-flip-face benefit-flip-back">
+            <div class="benefit-flip-icon-back">%</div>
+            <h3>Une remise visible sur chaque commande.</h3>
+            <p><strong>15&nbsp;% de remise</strong> sur le catalogue Urbafence, appliquée automatiquement à partir de 1&nbsp;500&nbsp;€ de panier, sans code ni démarche. C'est le tarif que vous voyez.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Devis prix bloqués 3 mois -->
+      <article class="benefit-card benefit-flip reveal">
+        <div class="benefit-flip-inner">
+          <div class="benefit-flip-face benefit-flip-front">
+            <div class="benefit-icon">↻</div>
+            <h3>Devis avec prix bloqués 3 mois</h3>
+            <p>Vos devis conservent leur tarification pendant trois mois.</p>
+            <span class="flip-hint"><span>Survoler →</span></span>
+          </div>
+          <div class="benefit-flip-face benefit-flip-back">
+            <div class="benefit-flip-icon-back">↻</div>
+            <h3>Vos chantiers, sans renégociation.</h3>
+            <p>Le temps que vos chantiers planifiés se confirment, vos prix restent acquis. Vous travaillez sur une base tarifaire stable pendant <strong>trois mois</strong>.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Support Partenaires dédié -->
+      <article class="benefit-card benefit-flip reveal">
+        <div class="benefit-flip-inner">
+          <div class="benefit-flip-face benefit-flip-front">
+            <div class="benefit-icon">☎</div>
+            <h3>Support Partenaires dédié</h3>
+            <p>Une ligne réservée, des horaires étendus, le samedi inclus.</p>
+            <span class="flip-hint"><span>Survoler →</span></span>
+          </div>
+          <div class="benefit-flip-face benefit-flip-back">
+            <div class="benefit-flip-icon-back">☎</div>
+            <h3>Moins d'allers-retours.</h3>
+            <p>Vos demandes sont traitées en priorité par une <strong>équipe dédiée</strong>&nbsp;: ligne réservée, horaires étendus et disponibilité le samedi.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Configurateur partenaires -->
+      <article class="benefit-card benefit-flip reveal">
+        <div class="benefit-flip-inner">
+          <div class="benefit-flip-face benefit-flip-front">
+            <div class="benefit-icon">⚙</div>
+            <h3>Fonctionnalités configurateur partenaires</h3>
+            <p>Des options réservées activées sur le configurateur en ligne.</p>
+            <span class="flip-hint"><span>Survoler →</span></span>
+          </div>
+          <div class="benefit-flip-face benefit-flip-back">
+            <div class="benefit-flip-icon-back">⚙</div>
+            <h3>Du temps gagné sur la mise en plan.</h3>
+            <p>Options réservées, <strong>devis instantanés</strong> et paramètres avancés&nbsp;: le configurateur devient un vrai levier de productivité pour vos équipes.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONDITIONS (étapes au scroll) ============== -->
+<section class="process" id="conditions">
+  <div class="process-intro reveal">
+    <span class="eyebrow">Les conditions</span>
+    <h2>Un cadre qui vit <em>dans la durée.</em></h2>
+    <p>Votre statut partenaire prend effet dès l'inscription et vous accompagne pendant un an.</p>
+  </div>
+
+  <!-- Pile d'étapes pilotée au scroll -->
+  <div class="process-scroll" id="processScroll">
+    <div class="process-pin">
+      <div class="container process-pin-inner">
+
+        <!-- GAUCHE — barre de progression -->
+        <div class="steps-progress" id="stepsProgress">
+          <div class="steps-progress-fill" id="stepsProgressFill"></div>
+          <div class="steps-progress-item" data-step="1" data-active="true">
+            <span class="num">01</span>
+            <span class="label">Vous activez votre compte</span>
+          </div>
+          <div class="steps-progress-item" data-step="2" data-active="false">
+            <span class="num">02</span>
+            <span class="label">Vous réalisez vos projets</span>
+          </div>
+          <div class="steps-progress-item" data-step="3" data-active="false">
+            <span class="num">03</span>
+            <span class="label">Vous conservez votre statut</span>
+          </div>
+        </div>
+
+        <!-- DROITE — cartes empilées -->
+        <div class="steps-stack" id="stepsStack" data-phase="1">
+
+          <article class="step-card" data-step="1">
+            <div class="step-card-num">01</div>
+            <span class="step-card-eyebrow">Étape 01</span>
+            <h3>Vous activez <em>votre compte.</em></h3>
+            <p>Quelques clics pour confirmer votre adhésion au Cercle Partenaire. Vos <strong>conditions partenaires</strong> prennent effet immédiatement, sans délai d'instruction ni formulaire à compléter.</p>
+            <div class="step-card-foot">Activation immédiate</div>
+          </article>
+
+          <article class="step-card" data-step="2">
+            <div class="step-card-num">02</div>
+            <span class="step-card-eyebrow">Étape 02</span>
+            <h3>Vous réalisez <em>vos projets.</em></h3>
+            <p>Devis, mise en plan, validation, commande&nbsp;: chaque étape avance à votre main, <strong>au rythme de vos chantiers</strong>. Votre statut partenaire vous accompagne pendant un an.</p>
+            <div class="step-card-foot">Au rythme de vos chantiers</div>
+          </article>
+
+          <article class="step-card" data-step="3">
+            <div class="step-card-num">03</div>
+            <span class="step-card-eyebrow">Étape 03</span>
+            <h3>Vous conservez <em>votre statut.</em></h3>
+            <p>Pour le reconduire l'année suivante, nous vous invitons à concrétiser <strong>au moins trois projets</strong> sur la période, chacun d'un montant supérieur à 1&nbsp;500&nbsp;€.</p>
+            <div class="step-card-foot">Reconductible chaque année</div>
+          </article>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Note finale, hors zone "pinned" -->
+  <div class="process-after">
+    <div class="container">
+      <div class="conditions-note reveal">
+        <div class="conditions-note-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+        <div class="conditions-note-text">
+          <strong>Votre statut partenaire prend effet à votre inscription et vous accompagne pendant un an.</strong> Pour le conserver l'année suivante, nous vous invitons à concrétiser au moins trois projets sur la période, chacun d'un montant supérieur à 1&nbsp;500&nbsp;€.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ZONE RÉSERVÉE DSI — FOOTER
+     Le pied de page sera intégré ici par la DSI, à partir du footer
+     du site Urbafence actuel. Laissez ce conteneur vide, ou collez-y
+     directement le code existant.
+     ============================================================ -->
+<footer id="dsi-footer"></footer>
+
+<!-- Script du projet (animations & interactions) -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
