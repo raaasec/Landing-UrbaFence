@@ -126,58 +126,56 @@ function initUfConfigurator() {
   const root = document.getElementById('ufConfigurator');
   if (!root) return;
 
-  // Palette premium (nom + valeur)
+  // Palette d'exemples (6 finitions, nom + valeur)
   const COLORS = [
+    { id: 'anthracite', name: 'Anthracite',     hex: '#2F3436' },
     { id: 'noir',       name: 'Noir sablé',      hex: '#1F2324' },
-    { id: 'anthracite', name: 'Gris anthracite', hex: '#2F3436' },
-    { id: 'quartz',     name: 'Gris quartz',     hex: '#5E6361' },
-    { id: 'gris-clair', name: 'Gris clair',      hex: '#B7B8B2' },
+    { id: 'quartz',     name: 'Gris quartz',     hex: '#6A6F6B' },
     { id: 'blanc',      name: 'Blanc cassé',     hex: '#E8E3D7' },
     { id: 'vert',       name: 'Vert Urbafence',  hex: '#35823F' },
-    { id: 'sauge',      name: 'Vert sauge',      hex: '#7E9278' },
-    { id: 'bronze',     name: 'Bronze',          hex: '#8A6A43' },
-    { id: 'corten',     name: 'Brun corten',     hex: '#9A4F2B' },
-    { id: 'beige',      name: 'Beige pierre',    hex: '#C7B89D' },
-    { id: 'bleu',       name: 'Bleu nuit',       hex: '#1E3445' },
-    { id: 'rouge',      name: 'Rouge brun',      hex: '#6F2F24' }
+    { id: 'bronze',     name: 'Bronze',          hex: '#8A6A43' }
   ];
-  const IMPL = { muret: 'Sur muret', beton: 'Sur longrine béton', platines: 'Sur platines', angle: "Avec retour d'angle" };
+  // Choix prédéfinis (label + valeur affichée) plutôt que des sliders
+  const LENGTHS = {
+    court:    { label: 'Court',    cote: '≈ 3 m',  w: 58 },
+    standard: { label: 'Standard', cote: '≈ 6 m',  w: 78 },
+    long:     { label: 'Long',     cote: '≈ 10 m', w: 100 }
+  };
+  const HEIGHTS = {
+    bas:      { label: 'Bas',      mm: 1000, h: 100 },
+    standard: { label: 'Standard', mm: 1500, h: 138 },
+    haut:     { label: 'Haut',     mm: 1800, h: 168 }
+  };
+  const IMPL = { muret: 'Sur muret', beton: 'Sur longrine béton', platines: 'Sur platines' };
   // 3 motifs = 3 niveaux d'occultation réels (le niveau dépend du dessin, pas d'un slider)
   const PATTERNS = {
-    privacy:  { name: 'Privacy renforcée', level: 'Très occultant' },
-    balanced: { name: 'Équilibré',         level: 'Occultation intermédiaire' },
-    open:     { name: 'Ajouré',            level: 'Plus ouvert' }
+    privacy:  { name: 'Privacy',  level: 'Très occultant' },
+    balanced: { name: 'Équilibre', level: 'Intermédiaire' },
+    open:     { name: 'Ajouré',   level: 'Plus ouvert' }
   };
 
-  const fence       = root.querySelector('#ufFence');
-  const heightInput = root.querySelector('#ufHeight');
-  const lengthInput = root.querySelector('#ufLength');
-  const swatches    = root.querySelector('#ufSwatches');
-  const motifGroup  = root.querySelector('.uf-cfg-motifs');
+  const fence    = root.querySelector('#ufFence');
+  const swatches = root.querySelector('#ufSwatches');
+  const angleBtn = root.querySelector('#ufAngle');
 
   const state = {
-    height: +root.dataset.height || 1600,
-    length: +root.dataset.length || 8,
+    length:       root.dataset.length || 'standard',
+    height:       root.dataset.height || 'standard',
     implantation: root.dataset.implantation || 'muret',
-    pattern: root.dataset.pattern || 'privacy',
-    color: root.dataset.color || 'anthracite'
+    pattern:      root.dataset.pattern || 'privacy',
+    color:        root.dataset.color || 'anthracite',
+    angle:        root.dataset.angle === 'true'
   };
 
   const set = (sel, txt) => { const el = root.querySelector(sel); if (el) el.textContent = txt; };
-  const fmtMm = (v) => v.toLocaleString('fr-FR') + ' mm';
-  const colorById = (id) => COLORS.find(c => c.id === id) || COLORS[1];
+  const colorById = (id) => COLORS.find(c => c.id === id) || COLORS[0];
   const luminance = (hex) => {
     const n = parseInt(hex.slice(1), 16);
     return (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
   };
-  const rangeFill = (input) => {
-    if (!input) return;
-    const pct = (input.value - input.min) / (input.max - input.min) * 100;
-    input.style.setProperty('--uf-fill', pct + '%');
-  };
 
   // Génère les pastilles couleur
-  COLORS.forEach(c => {
+  if (swatches) COLORS.forEach(c => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'uf-cfg-swatch';
@@ -186,7 +184,7 @@ function initUfConfigurator() {
     btn.title = c.name;
     btn.setAttribute('aria-label', 'Couleur ' + c.name);
     btn.setAttribute('aria-pressed', String(c.id === state.color));
-    swatches && swatches.appendChild(btn);
+    swatches.appendChild(btn);
   });
 
   // Aperçu à largeur STABLE : toujours 3 panneaux lisibles (la longueur passe par la cote)
@@ -198,45 +196,38 @@ function initUfConfigurator() {
     fence.innerHTML = html;
   }
 
-  // Applique l'état à l'aperçu (variables CSS) + au résumé
+  // Applique l'état à l'aperçu (variables CSS) + au résumé court
   function render() {
+    const len = LENGTHS[state.length] || LENGTHS.standard;
+    const hgt = HEIGHTS[state.height] || HEIGHTS.standard;
+    const col = colorById(state.color);
+    const pat = PATTERNS[state.pattern] || PATTERNS.privacy;
+
     root.dataset.implantation = state.implantation;
     root.dataset.pattern = state.pattern;
+    root.dataset.angle = String(state.angle);
 
-    // Hauteur visuelle : 1000→1800 mm => 96→168 px
-    const h = 96 + (state.height - 1000) / 800 * 72;
-    root.style.setProperty('--uf-panel-h', h.toFixed(0) + 'px');
+    // Hauteur visuelle (panneaux jamais minuscules) + longueur via la cote
+    root.style.setProperty('--uf-panel-h', hgt.h + 'px');
+    root.style.setProperty('--uf-len-w', len.w + '%');
 
-    // Longueur illustrative : 2→12 m => cote de 55%→100% (panneaux jamais rapetissés)
-    const lenW = 55 + (state.length - 2) / 10 * 45;
-    root.style.setProperty('--uf-len-w', lenW.toFixed(0) + '%');
-
-    const col = colorById(state.color);
     root.style.setProperty('--uf-panel-color', col.hex);
     // Trous lisibles selon la teinte (simple contraste, aucune opacité réglable)
     root.style.setProperty('--uf-hole',
       luminance(col.hex) > 0.6 ? 'rgba(28,31,33,0.55)' : 'rgba(245,242,236,0.82)');
 
-    const pat = PATTERNS[state.pattern] || PATTERNS.privacy;
-
-    set('#ufHeightOut', fmtMm(state.height));
-    set('#ufLengthOut', state.length + ' m');
+    // Couleur affichée + cote
     set('#ufColorOut', col.name);
-    set('#ufPatternOut', pat.name + ' — ' + pat.level.toLowerCase());
-    set('#ufCoteVal', state.length + ' m');
-    set('#ufCoteLabel', state.length + ' m');
-    set('#ufSumHeight', fmtMm(state.height));
-    set('#ufSumLength', state.length + ' m');
-    set('#ufSumImpl', IMPL[state.implantation] || '—');
-    set('#ufSumPattern', pat.name);
-    set('#ufSumLevel', pat.level);
-    set('#ufSumColor', col.name);
+    set('#ufCoteVal', len.cote);
+
+    // Résumé compact en chips
+    set('#ufChipLen', len.label);
+    set('#ufChipImpl', (IMPL[state.implantation] || 'Sur muret') + (state.angle ? ' + angle' : ''));
+    set('#ufChipPattern', pat.name);
+    set('#ufChipColor', col.name);
   }
 
-  if (heightInput) heightInput.addEventListener('input', () => { state.height = +heightInput.value; rangeFill(heightInput); render(); });
-  if (lengthInput) lengthInput.addEventListener('input', () => { state.length = +lengthInput.value; rangeFill(lengthInput); render(); });
-
-  // Implantation (boutons segmentés)
+  // Boutons segmentés (longueur, hauteur, pose)
   root.querySelectorAll('.uf-cfg-segment').forEach(group => {
     const key = group.dataset.control;
     group.addEventListener('click', (e) => {
@@ -248,7 +239,15 @@ function initUfConfigurator() {
     });
   });
 
+  // Retour d'angle (option secondaire)
+  if (angleBtn) angleBtn.addEventListener('click', () => {
+    state.angle = !state.angle;
+    angleBtn.setAttribute('aria-pressed', String(state.angle));
+    render();
+  });
+
   // Motifs (cartes) — chaque motif change réellement le dessin de perforation
+  const motifGroup = root.querySelector('.uf-cfg-motifs');
   if (motifGroup) motifGroup.addEventListener('click', (e) => {
     const btn = e.target.closest('.uf-cfg-motif');
     if (!btn) return;
@@ -266,8 +265,6 @@ function initUfConfigurator() {
     render();
   });
 
-  rangeFill(heightInput);
-  rangeFill(lengthInput);
   buildFence();
   render();
 }

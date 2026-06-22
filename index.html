@@ -305,10 +305,10 @@
         </p>
       </div>
 
-      <!-- Colonne droite — mini-configurateur interactif -->
+      <!-- Colonne droite — mini-configurateur interactif (démonstratif) -->
       <div class="uf-configurator reveal" id="ufConfigurator"
-           data-height="1600" data-length="8" data-implantation="muret"
-           data-pattern="privacy" data-color="anthracite">
+           data-length="standard" data-height="standard" data-implantation="muret"
+           data-pattern="privacy" data-color="anthracite" data-angle="false">
 
         <div class="uf-cfg-head">
           <span class="uf-cfg-brand">
@@ -322,7 +322,8 @@
             </span>
             Configurateur Urbafence
           </span>
-          <span class="uf-cfg-title">Composez votre clôture en quelques paramètres</span>
+          <span class="uf-cfg-title">Visualisez le sur-mesure Urbafence</span>
+          <p class="uf-cfg-intro">Choisissez un format, une pose et un rendu pour comprendre le principe. La configuration finale se fait ensuite projet par projet.</p>
         </div>
 
         <!-- A. Aperçu visuel -->
@@ -336,83 +337,104 @@
           </div>
           <!-- Cote de longueur (illustrative) -->
           <div class="uf-cfg-cote" aria-hidden="true">
-            <span class="uf-cfg-cote-bar" id="ufCoteBar"><span class="uf-cfg-cote-val" id="ufCoteVal">8 m</span></span>
+            <span class="uf-cfg-cote-bar" id="ufCoteBar"><span class="uf-cfg-cote-val" id="ufCoteVal">≈ 6 m</span></span>
           </div>
-          <span class="uf-cfg-preview-label">Aperçu indicatif — linéaire configuré&nbsp;: <strong id="ufCoteLabel">8 m</strong></span>
-          <span class="uf-cfg-disclaimer">Vue indicative — les dimensions exactes sont configurées au projet.</span>
+          <span class="uf-cfg-disclaimer">Vue indicative — les dimensions exactes sont définies au projet.</span>
         </div>
 
-        <!-- B. Contrôles -->
-        <div class="uf-cfg-controls">
+        <!-- B. Parcours en 3 étapes -->
+        <div class="uf-cfg-steps">
 
-          <div class="uf-cfg-field">
-            <label class="uf-cfg-label" for="ufHeight">Hauteur <output id="ufHeightOut" for="ufHeight">1 600 mm</output></label>
-            <input class="uf-cfg-range" type="range" id="ufHeight" min="1000" max="1800" step="100" value="1600">
+          <!-- Étape 1 — Format -->
+          <div class="uf-cfg-step">
+            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">1</span> Format</span>
+            <div class="uf-cfg-step-grid">
+              <div class="uf-cfg-subfield">
+                <span class="uf-cfg-sublabel" id="ufLenLabel">Longueur</span>
+                <div class="uf-cfg-segment" role="group" aria-labelledby="ufLenLabel" data-control="length">
+                  <button type="button" class="uf-cfg-seg-btn" data-value="court" aria-pressed="false"><strong>Court</strong><small>≈ 3 m</small></button>
+                  <button type="button" class="uf-cfg-seg-btn" data-value="standard" aria-pressed="true"><strong>Standard</strong><small>≈ 6 m</small></button>
+                  <button type="button" class="uf-cfg-seg-btn" data-value="long" aria-pressed="false"><strong>Long</strong><small>≈ 10 m</small></button>
+                </div>
+              </div>
+              <div class="uf-cfg-subfield">
+                <span class="uf-cfg-sublabel" id="ufHeightLabel">Hauteur</span>
+                <div class="uf-cfg-segment" role="group" aria-labelledby="ufHeightLabel" data-control="height">
+                  <button type="button" class="uf-cfg-seg-btn" data-value="bas" aria-pressed="false"><strong>Bas</strong><small>1 000 mm</small></button>
+                  <button type="button" class="uf-cfg-seg-btn" data-value="standard" aria-pressed="true"><strong>Standard</strong><small>1 500 mm</small></button>
+                  <button type="button" class="uf-cfg-seg-btn" data-value="haut" aria-pressed="false"><strong>Haut</strong><small>1 800 mm</small></button>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="uf-cfg-field">
-            <label class="uf-cfg-label" for="ufLength">Longueur <output id="ufLengthOut" for="ufLength">8 m</output></label>
-            <input class="uf-cfg-range" type="range" id="ufLength" min="2" max="12" step="1" value="8">
-          </div>
-
-          <div class="uf-cfg-field">
-            <span class="uf-cfg-label" id="ufImplLabel">Implantation</span>
-            <div class="uf-cfg-segment" role="group" aria-labelledby="ufImplLabel" data-control="implantation">
+          <!-- Étape 2 — Pose -->
+          <div class="uf-cfg-step">
+            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">2</span> Pose</span>
+            <div class="uf-cfg-segment uf-cfg-segment--pose" role="group" aria-label="Type de pose" data-control="implantation">
               <button type="button" class="uf-cfg-seg-btn" data-value="muret" aria-pressed="true">Sur muret</button>
               <button type="button" class="uf-cfg-seg-btn" data-value="beton" aria-pressed="false">Sur longrine béton</button>
               <button type="button" class="uf-cfg-seg-btn" data-value="platines" aria-pressed="false">Sur platines</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="angle" aria-pressed="false">Avec retour d'angle</button>
             </div>
+            <button type="button" class="uf-cfg-angle-toggle" id="ufAngle" aria-pressed="false">
+              <span class="uf-cfg-angle-check" aria-hidden="true"></span> Avec retour d'angle
+            </button>
           </div>
 
-          <div class="uf-cfg-field">
-            <span class="uf-cfg-label" id="ufPatternLabel">Motif <output id="ufPatternOut">Privacy renforcée — très occultant</output></span>
-            <p class="uf-cfg-hint">Choisissez un motif selon le niveau d'occultation recherché. Le niveau d'occultation dépend du dessin de perforation.</p>
-            <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
-              <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
-                <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
-                <span class="uf-cfg-motif-name">Privacy renforcée</span>
-                <span class="uf-cfg-motif-level">Très occultant</span>
-                <span class="uf-cfg-motif-desc">Pour les projets où l'intimité et la limitation des vues sont prioritaires.</span>
-              </button>
-              <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
-                <span class="uf-cfg-motif-swatch uf-motif--balanced" aria-hidden="true"></span>
-                <span class="uf-cfg-motif-name">Équilibré</span>
-                <span class="uf-cfg-motif-level">Occultation intermédiaire</span>
-                <span class="uf-cfg-motif-desc">Un équilibre entre protection visuelle, lumière et rendu décoratif.</span>
-              </button>
-              <button type="button" class="uf-cfg-motif" data-value="open" aria-pressed="false">
-                <span class="uf-cfg-motif-swatch uf-motif--open" aria-hidden="true"></span>
-                <span class="uf-cfg-motif-name">Ajouré</span>
-                <span class="uf-cfg-motif-level">Plus ouvert</span>
-                <span class="uf-cfg-motif-desc">Pour les projets où l'on souhaite un rendu plus léger et plus graphique.</span>
-              </button>
-            </div>
-            <p class="uf-cfg-note">Les motifs présentés sont indicatifs. Le choix final se fait selon les possibilités de la gamme et les contraintes du projet.</p>
-          </div>
+          <!-- Étape 3 — Rendu -->
+          <div class="uf-cfg-step">
+            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">3</span> Rendu</span>
 
-          <div class="uf-cfg-field">
-            <span class="uf-cfg-label" id="ufColorLabel">Couleur <output id="ufColorOut">Gris anthracite</output></span>
-            <div class="uf-cfg-swatches" role="group" aria-labelledby="ufColorLabel" data-control="color" id="ufSwatches"></div>
+            <div class="uf-cfg-subfield">
+              <span class="uf-cfg-sublabel" id="ufPatternLabel">Motif</span>
+              <p class="uf-cfg-hint">Le niveau d'occultation dépend du motif choisi.</p>
+              <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
+                <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
+                  <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
+                  <span class="uf-cfg-motif-name">Privacy</span>
+                  <span class="uf-cfg-motif-level">Très occultant</span>
+                  <span class="uf-cfg-motif-desc">Pour limiter fortement les vues.</span>
+                </button>
+                <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
+                  <span class="uf-cfg-motif-swatch uf-motif--balanced" aria-hidden="true"></span>
+                  <span class="uf-cfg-motif-name">Équilibre</span>
+                  <span class="uf-cfg-motif-level">Intermédiaire</span>
+                  <span class="uf-cfg-motif-desc">Pour garder lumière et protection visuelle.</span>
+                </button>
+                <button type="button" class="uf-cfg-motif" data-value="open" aria-pressed="false">
+                  <span class="uf-cfg-motif-swatch uf-motif--open" aria-hidden="true"></span>
+                  <span class="uf-cfg-motif-name">Ajouré</span>
+                  <span class="uf-cfg-motif-level">Plus ouvert</span>
+                  <span class="uf-cfg-motif-desc">Pour un rendu plus léger et graphique.</span>
+                </button>
+              </div>
+              <p class="uf-cfg-note">Motifs indicatifs — le choix final dépend de la gamme et des contraintes du projet.</p>
+            </div>
+
+            <div class="uf-cfg-subfield">
+              <span class="uf-cfg-sublabel" id="ufColorLabel">Couleur <output id="ufColorOut">Anthracite</output></span>
+              <p class="uf-cfg-hint">Exemples de finitions.</p>
+              <div class="uf-cfg-swatches" role="group" aria-labelledby="ufColorLabel" data-control="color" id="ufSwatches"></div>
+              <p class="uf-cfg-note">D'autres teintes sont disponibles selon le projet.</p>
+            </div>
           </div>
 
         </div>
 
-        <!-- C. Résumé dynamique -->
+        <!-- C. Résumé compact + CTA -->
         <div class="uf-cfg-summary" aria-live="polite">
-          <span class="uf-cfg-summary-title">Votre configuration</span>
-          <ul class="uf-cfg-summary-list">
-            <li><span>Hauteur</span><strong id="ufSumHeight">1 600 mm</strong></li>
-            <li><span>Longueur</span><strong id="ufSumLength">8 m</strong></li>
-            <li><span>Implantation</span><strong id="ufSumImpl">Sur muret</strong></li>
-            <li><span>Motif</span><strong id="ufSumPattern">Privacy renforcée</strong></li>
-            <li><span>Niveau</span><strong id="ufSumLevel">Très occultant</strong></li>
-            <li><span>Couleur</span><strong id="ufSumColor">Gris anthracite</strong></li>
-          </ul>
-          <p class="uf-cfg-summary-line">Une clôture configurée selon vos cotes, votre implantation, votre couleur et le niveau d'occultation recherché.</p>
+          <span class="uf-cfg-summary-title">Configuration indicative</span>
+          <div class="uf-cfg-chips">
+            <span class="uf-cfg-chip" id="ufChipLen">Standard</span>
+            <span class="uf-cfg-chip" id="ufChipImpl">Sur muret</span>
+            <span class="uf-cfg-chip" id="ufChipPattern">Privacy</span>
+            <span class="uf-cfg-chip" id="ufChipColor">Anthracite</span>
+          </div>
+          <p class="uf-cfg-summary-line">Une clôture configurée selon le chantier, puis transmise en production.</p>
           <a class="btn btn-primary uf-cfg-cta" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
             Configurer un vrai projet <span class="arrow">→</span>
           </a>
+          <span class="uf-cfg-cta-sub">Le configurateur complet vous permet de renseigner vos cotes précises.</span>
         </div>
       </div>
     </div>

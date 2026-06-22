@@ -1353,6 +1353,9 @@ section.uf-custom {
   font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.9vw, 22px);
   line-height: 1.2; color: var(--ink); letter-spacing: -0.01em;
 }
+.uf-cfg-intro {
+  margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--text);
+}
 
 /* A. Aperçu visuel */
 .uf-cfg-preview { margin-bottom: 20px; }
@@ -1397,19 +1400,23 @@ section.uf-custom {
 /* Implantations */
 .uf-configurator[data-implantation="muret"] .uf-cfg-base { height: 26px;
   background: linear-gradient(180deg, #ddd7cb, #c5bdaf); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5); }
-.uf-configurator[data-implantation="muret"] .uf-cfg-fence { bottom: 24px; }
+.uf-configurator[data-implantation="muret"] .uf-cfg-fence,
+.uf-configurator[data-implantation="muret"] .uf-cfg-return { bottom: 24px; }
 .uf-configurator[data-implantation="beton"] .uf-cfg-base { height: 30px;
   background: linear-gradient(180deg, #bcbeba, #989b97); }
-.uf-configurator[data-implantation="beton"] .uf-cfg-fence { bottom: 28px; }
+.uf-configurator[data-implantation="beton"] .uf-cfg-fence,
+.uf-configurator[data-implantation="beton"] .uf-cfg-return { bottom: 28px; }
 .uf-configurator[data-implantation="platines"] .uf-cfg-base { height: 0; }
-.uf-configurator[data-implantation="platines"] .uf-cfg-fence { bottom: 16px; }
+.uf-configurator[data-implantation="platines"] .uf-cfg-fence,
+.uf-configurator[data-implantation="platines"] .uf-cfg-return { bottom: 16px; }
 .uf-configurator[data-implantation="platines"] .uf-cfg-post::after {
   content: ''; position: absolute; bottom: -7px; left: -3px; right: -3px;
   height: 4px; background: #34383a; border-radius: 1px; }
-.uf-configurator[data-implantation="angle"] .uf-cfg-fence { bottom: 18px; right: 52px; }
-.uf-configurator[data-implantation="angle"] .uf-cfg-return { opacity: 1; visibility: visible; }
+/* Retour d'angle (option secondaire, indépendante de la pose) */
+.uf-configurator[data-angle="true"] .uf-cfg-fence { right: 52px; }
+.uf-configurator[data-angle="true"] .uf-cfg-return { opacity: 1; visibility: visible; }
 .uf-cfg-disclaimer {
-  display: block; margin-top: 4px; text-align: right;
+  display: block; margin-top: 10px; text-align: center;
   font-size: 11px; font-style: italic; color: var(--ink-300);
 }
 /* Cote de longueur illustrative (largeur stable, longueur via la cote) */
@@ -1433,12 +1440,6 @@ section.uf-custom {
   padding: 0 8px; font-size: 11px; font-weight: 600; color: var(--ink-500);
   letter-spacing: 0.02em;
 }
-.uf-cfg-preview-label {
-  display: block; margin-top: 8px; text-align: center;
-  font-size: 12px; color: var(--secondary);
-}
-.uf-cfg-preview-label strong { color: var(--ink); font-weight: 600; }
-
 /* Motifs de perforation — 3 dessins réellement différents (panneaux + retour) */
 .uf-configurator[data-pattern="privacy"] .uf-cfg-panel,
 .uf-configurator[data-pattern="privacy"] .uf-cfg-return,
@@ -1465,41 +1466,72 @@ section.uf-custom {
     var(--uf-hole) 0 3px, transparent 3px 8px);
 }
 
-/* B. Contrôles */
-.uf-cfg-controls { display: flex; flex-direction: column; gap: 18px; }
-.uf-cfg-field { display: flex; flex-direction: column; gap: 9px; }
-.uf-cfg-label {
-  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+/* B. Parcours en 3 étapes */
+.uf-cfg-steps { display: flex; flex-direction: column; gap: 22px; }
+.uf-cfg-step { display: flex; flex-direction: column; gap: 12px; }
+.uf-cfg-step-head {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
   letter-spacing: 0.02em; color: var(--ink);
+}
+.uf-cfg-step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 700;
+}
+.uf-cfg-step-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.uf-cfg-subfield { display: flex; flex-direction: column; gap: 8px; }
+.uf-cfg-sublabel {
+  font-family: var(--sans); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.02em; color: var(--ink-700);
   display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
 }
-.uf-cfg-label output {
-  font-weight: 500; color: var(--accent); font-size: 12.5px; text-align: right;
+.uf-cfg-sublabel output { font-weight: 500; color: var(--accent); font-size: 12px; text-align: right; }
+.uf-cfg-hint { font-size: 11.5px; line-height: 1.45; color: var(--secondary); margin: -2px 0 0; }
+.uf-cfg-note { font-size: 11px; line-height: 1.45; font-style: italic; color: var(--ink-300); margin: 2px 0 0; }
+
+/* Boutons segmentés (longueur, hauteur, pose) */
+.uf-cfg-segment { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.uf-cfg-seg-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  font-family: var(--sans); line-height: 1.2; text-align: center;
+  padding: 10px 8px; border-radius: var(--r-md);
+  background: var(--bg-soft); border: 1px solid var(--line); color: var(--ink-700);
+  cursor: pointer; transition: all .2s var(--ease-out);
 }
-/* Slider générique */
-.uf-cfg-range {
-  -webkit-appearance: none; appearance: none;
-  width: 100%; height: 4px; margin: 0; cursor: pointer; outline: none;
-  background: var(--line); border-radius: 999px;
-  background-image: linear-gradient(var(--accent), var(--accent));
-  background-repeat: no-repeat; background-size: var(--uf-fill, 50%) 100%;
+.uf-cfg-seg-btn strong { font-size: 13px; font-weight: 700; color: inherit; }
+.uf-cfg-seg-btn small { font-size: 10.5px; font-weight: 500; color: var(--secondary); }
+.uf-cfg-segment--pose .uf-cfg-seg-btn { font-size: 12px; font-weight: 600; min-height: 44px; }
+.uf-cfg-seg-btn:hover { border-color: var(--brand-100); color: var(--ink); }
+.uf-cfg-seg-btn[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  box-shadow: 0 4px 12px rgba(53, 130, 63, 0.22);
 }
-.uf-cfg-range::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: var(--accent); border: 3px solid var(--bg-card);
-  box-shadow: 0 2px 8px rgba(53, 130, 63, 0.35); cursor: grab;
+.uf-cfg-seg-btn[aria-pressed="true"] small { color: rgba(255,255,255,0.85); }
+.uf-cfg-seg-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Retour d'angle — option secondaire discrète */
+.uf-cfg-angle-toggle {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--secondary);
+  padding: 0; background: none; border: none; cursor: pointer;
+  transition: color .2s var(--ease-out);
 }
-.uf-cfg-range::-moz-range-thumb {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: var(--accent); border: 3px solid var(--bg-card);
-  box-shadow: 0 2px 8px rgba(53, 130, 63, 0.35); cursor: grab; border-width: 3px;
+.uf-cfg-angle-toggle:hover { color: var(--ink); }
+.uf-cfg-angle-check {
+  width: 16px; height: 16px; border-radius: var(--r-xs); flex-shrink: 0;
+  border: 1.5px solid var(--line); background: var(--bg-soft);
+  transition: all .2s var(--ease-out);
 }
-.uf-cfg-range:focus-visible { box-shadow: 0 0 0 3px rgba(53,130,63,0.22); }
-/* Aides textuelles motif */
-.uf-cfg-hint { font-size: 12px; line-height: 1.45; color: var(--text); margin: -2px 0 2px; }
-.uf-cfg-note { font-size: 11px; line-height: 1.45; font-style: italic; color: var(--ink-300); margin-top: 2px; }
-/* Cartes motifs (remplacent l'ancien slider d'occultation) */
+.uf-cfg-angle-toggle[aria-pressed="true"] { color: var(--ink); font-weight: 600; }
+.uf-cfg-angle-toggle[aria-pressed="true"] .uf-cfg-angle-check {
+  background: var(--accent); border-color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--bg-card);
+}
+.uf-cfg-angle-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r-xs); }
+
+/* Cartes motifs — 3 niveaux d'occultation réels (le niveau dépend du dessin) */
 .uf-cfg-motifs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .uf-cfg-motif {
   display: flex; flex-direction: column; gap: 6px; text-align: left;
@@ -1527,31 +1559,11 @@ section.uf-custom {
   padding: 3px 7px; border-radius: var(--r-pill);
 }
 .uf-cfg-motif-desc { font-size: 11px; line-height: 1.4; color: var(--text); }
-@media (max-width: 560px) {
-  .uf-cfg-motifs { grid-template-columns: 1fr; }
-  .uf-cfg-motif { flex-direction: row; align-items: center; flex-wrap: wrap; }
-  .uf-cfg-motif-swatch { width: 64px; height: 44px; flex-shrink: 0; }
-  .uf-cfg-motif-name { flex: 1 1 auto; }
-  .uf-cfg-motif-desc { flex-basis: 100%; }
-}
-/* Boutons segmentés */
-.uf-cfg-segment { display: flex; flex-wrap: wrap; gap: 8px; }
-.uf-cfg-seg-btn {
-  font-family: var(--sans); font-size: 12.5px; font-weight: 500;
-  padding: 9px 15px; border-radius: var(--r-pill);
-  background: var(--bg-soft); border: 1px solid var(--line); color: var(--ink-700);
-  cursor: pointer; transition: all .2s var(--ease-out); line-height: 1;
-}
-.uf-cfg-seg-btn:hover { border-color: var(--brand-100); color: var(--ink); }
-.uf-cfg-seg-btn[aria-pressed="true"] {
-  background: var(--accent); border-color: var(--accent); color: #fff;
-  box-shadow: 0 4px 12px rgba(53, 130, 63, 0.22);
-}
-.uf-cfg-seg-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-/* Nuancier couleur */
-.uf-cfg-swatches { display: flex; flex-wrap: wrap; gap: 9px; }
+
+/* Nuancier couleur — pastilles plus grandes, espacées */
+.uf-cfg-swatches { display: flex; flex-wrap: wrap; gap: 12px; }
 .uf-cfg-swatch {
-  width: 26px; height: 26px; border-radius: 50%; cursor: pointer; padding: 0;
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer; padding: 0;
   background: var(--sw, #999); border: 1px solid rgba(0,0,0,0.16);
   position: relative; transition: transform .18s var(--ease-out);
 }
@@ -1561,29 +1573,43 @@ section.uf-custom {
 }
 .uf-cfg-swatch:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-/* C. Résumé */
+/* C. Résumé compact */
 .uf-cfg-summary {
-  margin-top: 22px; padding: 22px;
+  margin-top: 24px; padding: 20px 22px;
   background: var(--bg-soft); border: 1px solid var(--line-soft);
   border-radius: var(--r-lg);
 }
 .uf-cfg-summary-title {
   display: block; font-family: var(--sans); font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.14em; color: var(--secondary); margin-bottom: 14px;
+  text-transform: uppercase; letter-spacing: 0.14em; color: var(--secondary); margin-bottom: 12px;
 }
-.uf-cfg-summary-list { list-style: none; margin: 0 0 16px; padding: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
-.uf-cfg-summary-list li {
-  display: flex; justify-content: space-between; gap: 10px;
-  font-size: 13px; color: var(--text); padding-bottom: 8px;
-  border-bottom: 1px solid var(--line-soft);
+.uf-cfg-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.uf-cfg-chip {
+  display: inline-flex; align-items: center;
+  font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink);
+  padding: 6px 12px; border-radius: var(--r-pill);
+  background: var(--bg-card); border: 1px solid var(--line);
 }
-.uf-cfg-summary-list strong { color: var(--ink); font-weight: 600; text-align: right; }
-.uf-cfg-summary-line { font-size: 13.5px; line-height: 1.55; color: var(--text); margin-bottom: 18px; }
+.uf-cfg-summary-line { font-size: 13px; line-height: 1.5; color: var(--text); margin: 0 0 16px; }
 .uf-cfg-cta { width: 100%; justify-content: center; }
-@media (max-width: 480px) {
-  .uf-cfg-summary-list { grid-template-columns: 1fr; }
-  .uf-cfg-seg-btn { flex: 1 1 auto; text-align: center; }
+.uf-cfg-cta-sub {
+  display: block; margin-top: 9px; text-align: center;
+  font-size: 11.5px; line-height: 1.4; color: var(--ink-300);
+}
+
+/* Desktop : les deux champs du Format côte à côte */
+@media (min-width: 720px) {
+  .uf-cfg-step-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+}
+@media (max-width: 380px) {
+  .uf-cfg-segment { gap: 6px; }
+  .uf-cfg-seg-btn { padding: 9px 5px; }
+  .uf-cfg-seg-btn strong { font-size: 12px; }
+  .uf-cfg-motifs { grid-template-columns: 1fr; }
+  .uf-cfg-motif { flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .uf-cfg-motif-swatch { width: 64px; height: 44px; flex-shrink: 0; }
+  .uf-cfg-motif-name { flex: 1 1 auto; }
+  .uf-cfg-motif-desc { flex-basis: 100%; }
 }
 
 /* Bande process */
