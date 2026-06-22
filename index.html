@@ -23,7 +23,15 @@
      par la DSI, à partir du header du site Urbafence actuel.
      Laissez ce conteneur vide, ou collez-y directement le code existant.
      ============================================================ -->
-<div id="dsi-topbar"></div>
+<div id="dsi-topbar">
+  <!-- Placeholder à brancher — sera remplacé/complété par la zone DSI. Remplacez [TÉLÉPHONE] par le vrai numéro. -->
+  <div class="uf-topbar-fallback">
+    <a class="uf-topbar-phone" href="tel:[TÉLÉPHONE]">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 6a2 2 0 0 1 2-2Z"></path></svg>
+      <span>Une question&nbsp;? Appelez-nous&nbsp;: <strong>[TÉLÉPHONE]</strong></span>
+    </a>
+  </div>
+</div>
 
 <!-- ============== HERO ============== -->
 <section class="hero">
@@ -37,7 +45,7 @@
       <div class="hero-copy">
         <span class="eyebrow">Cercle Partenaire</span>
         <h1 class="hero-display">
-          <span class="line line-1">Une bonne collaboration</span>
+          <span class="line line-1">Le Cercle Partenaire Urbafence</span>
           <span class="hero-divider" aria-hidden="true">
             <span class="dot"></span>
             <svg class="line-art" viewBox="0 0 240 14" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -45,19 +53,20 @@
               <path class="path-arrow" d="M 192 1 L 204 4 L 196 12"></path>
             </svg>
           </span>
-          <span class="line line-2">se construit <em>dans le temps.</em></span>
+          <span class="line line-2">la clôture occultante premium, <em>à vos conditions.</em></span>
         </h1>
         <p class="hero-lead">
-          Le Cercle Partenaire réunit les professionnels de la clôture qui souhaitent proposer Urbafence sur leurs projets&nbsp;: conditions dédiées, prix sécurisés, configurateur et support pour avancer plus vite.
+          Des panneaux occultants en tôle perforée, sur mesure, à proposer <strong>en complément</strong> de vos solutions habituelles — avec les conditions partenaires&nbsp;: 15&nbsp;% dès 1&nbsp;500&nbsp;€, devis bloqués 3&nbsp;mois, configurateur dédié et support.
         </p>
         <div class="hero-cta-row">
-          <a href="https://urbafence.com/mon-compte/" class="btn btn-primary">
-            Accéder à mon compte
+          <a href="[LIEN_FORMULAIRE]" class="btn btn-primary">
+            Activer mon accès partenaire
             <span class="arrow">→</span>
           </a>
           <a href="#avantages-rapides" class="btn btn-ghost">Voir les avantages</a>
         </div>
-        <div class="hero-meta">Activation rapide · Conditions partenaires immédiates</div>
+        <div class="hero-meta">Sans engagement à l'inscription · Réponse sous 24&nbsp;h</div>
+        <a class="hero-login-link" href="https://urbafence.com/mon-compte/">J'ai déjà un compte → me connecter</a>
       </div>
 
       <!-- COLONNE DROITE — composition visuelle (2 photos) -->
@@ -464,27 +473,23 @@
             <p class="uf-cfg-note">Motifs indicatifs — le choix final dépend de la gamme et des contraintes du projet.</p>
           </div>
 
-          <a class="btn btn-primary uf-cfg-cta" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
-            Configurer un vrai projet <span class="arrow">→</span>
-          </a>
-          <span class="uf-cfg-cta-sub">Le configurateur complet vous permet de renseigner vos cotes précises.</span>
+          <div class="uf-cfg-cta-row">
+            <a class="btn btn-primary uf-cfg-cta" href="[LIEN_FORMULAIRE]">
+              Activer mon accès partenaire <span class="arrow">→</span>
+            </a>
+            <a class="btn btn-ghost uf-cfg-cta2" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
+              Configurer un vrai projet
+            </a>
+          </div>
+          <span class="uf-cfg-cta-sub">Côté partenaire&nbsp;: conditions dédiées et configurateur réservé. Le configurateur complet permet de renseigner vos cotes précises.</span>
         </div>
       </div>
     </div>
 
-    <!-- Bande process -->
-    <ol class="uf-flow reveal" aria-label="Étapes du projet, du configurateur à la pose">
-      <li class="uf-flow-step">Configurer</li>
-      <li class="uf-flow-step">Chiffrer</li>
-      <li class="uf-flow-step">Valider</li>
-      <li class="uf-flow-step">Mettre en production</li>
-      <li class="uf-flow-step">Poser</li>
-    </ol>
-
-    <!-- Quelques rendus possibles -->
-    <div class="uf-renders reveal">
-      <h3 class="uf-renders-title">Quelques rendus possibles</h3>
-      <p class="uf-renders-sub">Des exemples de motifs perforés. Chaque clôture reste configurée à la demande pour son projet.</p>
+    <!-- Aperçu compact des motifs — rattaché au configurateur -->
+    <div class="uf-renders uf-renders--compact reveal">
+      <h3 class="uf-renders-title">Un aperçu des motifs perforés</h3>
+      <p class="uf-renders-sub">Chaque clôture reste configurée à la demande pour son projet.</p>
       <div class="uf-renders-grid">
 
         <article class="uf-render-card">
@@ -760,137 +765,22 @@
   </div>
 </section>
 
-<!-- ============== CTA (version compacte, après les Réalisations) ============== -->
-<section class="final-cta final-cta--compact" id="activer">
-  <!-- IMG-CTA-BG · Image de fond du CTA (assombrie par l'overlay) · clôture en situation, plan large · format paysage large (≈ 1600×900 px) -->
-  <div class="final-cta-bg-image" style="background-image:url('images/cta-fond.jpg')"></div>
-  <div class="final-cta-overlay"></div>
+<!-- ============== PREUVE / RÉASSURANCE ============== -->
+<section class="uf-proof" id="preuve">
   <div class="container">
-    <span class="final-cta-brand">
-      <span class="uf-cfg-mark uf-cfg-mark--light" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
-          <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
-          <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
-          <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
-        </svg>
-      </span>
-      Urbafence · Cercle Partenaire
-    </span>
-    <h2 class="final-headline-xl">
-      Rejoignez le <em>Cercle</em> Partenaire.
-    </h2>
-    <p>L'activation est rapide et l'accès direct. Vos conditions partenaires sont actives immédiatement.</p>
-    <a href="https://urbafence.com/mon-compte/" class="btn btn-primary">
-      Accéder à mon compte
-      <span class="arrow">→</span>
-    </a>
-    <div class="final-cta-features">
-      <span class="final-cta-feature">Activation rapide</span>
-      <span class="final-cta-feature">Au rythme de vos chantiers</span>
-      <span class="final-cta-feature">Avantages immédiats</span>
+    <div class="uf-proof-grid reveal">
+      <figure class="uf-proof-quote">
+        <div class="uf-proof-mark" aria-hidden="true">“</div>
+        <blockquote>[TÉMOIGNAGE — 1 à 2 phrases d'un partenaire sur ce que le Cercle Partenaire lui apporte au quotidien.]</blockquote>
+        <figcaption>[TÉMOIGNAGE — Nom, métier, ville]</figcaption>
+      </figure>
+      <ul class="uf-proof-stats" aria-label="Chiffres clés">
+        <li><span class="uf-proof-num">[X]</span><span class="uf-proof-label">partenaires actifs</span></li>
+        <li><span class="uf-proof-num">[Y]</span><span class="uf-proof-label">projets posés</span></li>
+        <li><span class="uf-proof-num">[Z]</span><span class="uf-proof-label">ans d'expérience</span></li>
+      </ul>
     </div>
-  </div>
-</section>
-
-<!-- ============== AVANTAGES (cartes flip) ============== -->
-<section class="benefits" id="avantages">
-  <div class="container">
-    <div class="benefits-intro reveal">
-      <span class="eyebrow">Ce que le programme permet</span>
-      <h2>Des conditions concrètes sur vos chantiers.</h2>
-      <p>Cinq éléments qui rendent le travail au quotidien plus simple, plus rapide et plus prévisible.</p>
-    </div>
-
-    <div class="benefits-grid">
-
-      <!-- Carte mise en avant : catalogue personnalisé offert -->
-      <article class="benefit-card benefit-featured reveal">
-        <div class="benefit-featured-text">
-          <span class="eyebrow">Inclus</span>
-          <h3>Votre catalogue personnalisé offert.</h3>
-          <p>
-            Le catalogue Urbafence imprimé et livré chez vous, en cadeau de bienvenue. Une ressource physique à partager avec vos équipes et vos clients, prête à utiliser sur vos rendez-vous projet.
-          </p>
-        </div>
-        <div class="benefit-featured-visual">
-          <div class="catalogue-mockup">
-            <div class="catalogue-mockup-eyebrow">Édition partenaire</div>
-            <div class="catalogue-mockup-title">Catalogue<br>Urbafence</div>
-            <div class="catalogue-mockup-sub">ÉDITION 2026</div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 15 % de remise -->
-      <article class="benefit-card benefit-flip reveal">
-        <div class="benefit-flip-inner">
-          <div class="benefit-flip-face benefit-flip-front">
-            <div class="benefit-icon">%</div>
-            <h3>15&nbsp;% de remise immédiate</h3>
-            <p>Une remise partenaire appliquée automatiquement dès 1&nbsp;500&nbsp;€ de panier.</p>
-            <span class="flip-hint"><span>Survoler →</span></span>
-          </div>
-          <div class="benefit-flip-face benefit-flip-back">
-            <div class="benefit-flip-icon-back">%</div>
-            <h3>Une remise visible sur chaque commande.</h3>
-            <p><strong>15&nbsp;% de remise</strong> sur le catalogue Urbafence, appliquée automatiquement à partir de 1&nbsp;500&nbsp;€ de panier, sans code ni démarche. C'est le tarif que vous voyez.</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Devis prix bloqués 3 mois -->
-      <article class="benefit-card benefit-flip reveal">
-        <div class="benefit-flip-inner">
-          <div class="benefit-flip-face benefit-flip-front">
-            <div class="benefit-icon">↻</div>
-            <h3>Devis avec prix bloqués 3 mois</h3>
-            <p>Vos devis conservent leur tarification pendant trois mois.</p>
-            <span class="flip-hint"><span>Survoler →</span></span>
-          </div>
-          <div class="benefit-flip-face benefit-flip-back">
-            <div class="benefit-flip-icon-back">↻</div>
-            <h3>Vos chantiers, sans renégociation.</h3>
-            <p>Le temps que vos chantiers planifiés se confirment, vos prix restent acquis. Vous travaillez sur une base tarifaire stable pendant <strong>trois mois</strong>.</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Support Partenaires dédié -->
-      <article class="benefit-card benefit-flip reveal">
-        <div class="benefit-flip-inner">
-          <div class="benefit-flip-face benefit-flip-front">
-            <div class="benefit-icon">☎</div>
-            <h3>Support Partenaires dédié</h3>
-            <p>Une ligne réservée, des horaires étendus, le samedi inclus.</p>
-            <span class="flip-hint"><span>Survoler →</span></span>
-          </div>
-          <div class="benefit-flip-face benefit-flip-back">
-            <div class="benefit-flip-icon-back">☎</div>
-            <h3>Moins d'allers-retours.</h3>
-            <p>Vos demandes sont traitées en priorité par une <strong>équipe dédiée</strong>&nbsp;: ligne réservée, horaires étendus et disponibilité le samedi.</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Configurateur partenaires -->
-      <article class="benefit-card benefit-flip reveal">
-        <div class="benefit-flip-inner">
-          <div class="benefit-flip-face benefit-flip-front">
-            <div class="benefit-icon">⚙</div>
-            <h3>Fonctionnalités configurateur partenaires</h3>
-            <p>Des options réservées activées sur le configurateur en ligne.</p>
-            <span class="flip-hint"><span>Survoler →</span></span>
-          </div>
-          <div class="benefit-flip-face benefit-flip-back">
-            <div class="benefit-flip-icon-back">⚙</div>
-            <h3>Du temps gagné jusqu'à la mise en production.</h3>
-            <p>Options réservées, <strong>devis instantanés</strong> et paramètres avancés&nbsp;: le configurateur devient un vrai levier de productivité pour vos équipes.</p>
-          </div>
-        </div>
-      </article>
-
-    </div>
+    <p class="uf-proof-note">[À confirmer] Fabrication française.</p>
   </div>
 </section>
 
@@ -899,7 +789,7 @@
   <div class="process-intro reveal">
     <span class="eyebrow">Les conditions</span>
     <h2>Un cadre qui vit <em>dans la durée.</em></h2>
-    <p>Votre statut partenaire prend effet dès l'inscription et vous accompagne pendant un an.</p>
+    <p>L'inscription est libre et sans engagement. Votre statut partenaire prend effet dès l'inscription et vous accompagne pendant un an&nbsp;; les trois projets par an servent à le <em>conserver</em>, pas à y entrer.</p>
   </div>
 
   <!-- Pile d'étapes pilotée au scroll -->
@@ -968,9 +858,43 @@
           </svg>
         </div>
         <div class="conditions-note-text">
-          <strong>Votre statut partenaire prend effet à votre inscription et vous accompagne pendant un an.</strong> Pour le conserver l'année suivante, nous vous invitons à concrétiser au moins trois projets sur la période, chacun d'un montant supérieur à 1&nbsp;500&nbsp;€.
+          L'inscription au Cercle Partenaire est <strong>libre et sans engagement</strong>&nbsp;: votre statut prend effet immédiatement et vous accompagne pendant un an. Pour le conserver l'année suivante, nous vous invitons à concrétiser <strong>au moins trois projets sur la période, chacun d'un montant supérieur à 1&nbsp;500&nbsp;€</strong>.
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA DE CLÔTURE ============== -->
+<section class="final-cta final-cta--compact" id="activer">
+  <!-- IMG-CTA-BG · Image de fond du CTA (assombrie par l'overlay) · clôture en situation, plan large · format paysage large (≈ 1600×900 px) -->
+  <div class="final-cta-bg-image" style="background-image:url('images/cta-fond.jpg')"></div>
+  <div class="final-cta-overlay"></div>
+  <div class="container">
+    <span class="final-cta-brand">
+      <span class="uf-cfg-mark uf-cfg-mark--light" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+          <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
+          <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
+          <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
+        </svg>
+      </span>
+      Urbafence · Cercle Partenaire
+    </span>
+    <h2 class="final-headline-xl">
+      Rejoignez le <em>Cercle</em> Partenaire.
+    </h2>
+    <p>L'inscription est libre et sans engagement. Activez votre accès et vos conditions partenaires sont prêtes à l'emploi.</p>
+    <a href="[LIEN_FORMULAIRE]" class="btn btn-primary">
+      Activer mon accès partenaire
+      <span class="arrow">→</span>
+    </a>
+    <a class="final-cta-login" href="https://urbafence.com/mon-compte/">J'ai déjà un compte → me connecter</a>
+    <div class="final-cta-features">
+      <span class="final-cta-feature">Sans engagement à l'inscription</span>
+      <span class="final-cta-feature">Au rythme de vos chantiers</span>
+      <span class="final-cta-feature">Réponse sous 24&nbsp;h</span>
     </div>
   </div>
 </section>
