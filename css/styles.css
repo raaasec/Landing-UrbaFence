@@ -2009,3 +2009,42 @@ a:focus-visible, button:focus-visible, .btn:focus-visible,
 input:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
 }
+
+/* ============================================================
+   HAUTEUR ÉCRAN & CONFORT DE SCROLL (sections immersives)
+   - .section-screen : sections "plein écran" (min-height dvh + centrage vertical)
+   - .section-roomy  : sections longues qui respirent (padding généreux)
+   - scroll-snap léger (proximity), desktop uniquement, sections courtes
+   La section #conditions (scroll "pinned" 280vh) n'est PAS concernée.
+   ============================================================ */
+:root { --header-offset: 0px; } /* aucun header fixe actif → 0 ; à ajuster si la DSI en ajoute un */
+
+.section-screen {
+  min-height: 100vh;                                  /* fallback navigateurs anciens */
+  min-height: calc(100dvh - var(--header-offset));    /* hauteur visible réelle (mobile-safe) */
+  display: flex; flex-direction: column; justify-content: center; /* centrage vertical si la section est courte */
+  padding-block: clamp(48px, 7vh, 96px);
+}
+/* Sections longues : on ne bloque pas la hauteur, on aère */
+.section-roomy { padding-block: clamp(64px, 9vh, 120px); }
+
+/* Hero : contenu riche (grand H1) → aligné en haut pour garder les CTA visibles
+   même sur écrans courts, tout en remplissant la hauteur de l'écran. */
+.hero.section-screen { justify-content: flex-start; }
+
+/* Scroll snap léger — desktop uniquement, "proximity" = non bloquant */
+@media (min-width: 900px) {
+  html { scroll-snap-type: y proximity; }
+  .section-snap { scroll-snap-align: start; scroll-margin-top: var(--header-offset); }
+}
+
+/* Mobile : hero plein écran (svh), autres sections respirantes mais non bloquées */
+@media (max-width: 768px) {
+  .section-screen { min-height: auto; padding-block: 56px; }
+  .hero.section-screen { min-height: 100svh; }
+}
+
+/* Préférence "mouvement réduit" : pas de scroll animé ni de snap */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; scroll-snap-type: none; }
+}
