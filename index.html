@@ -290,147 +290,148 @@
 <!-- ============== SUR MESURE DE A À Z ============== -->
 <section class="uf-custom" id="sur-mesure">
   <div class="container">
-    <div class="uf-custom-grid">
+    <!-- Discours -->
+    <div class="uf-custom-intro reveal">
+      <span class="eyebrow">Sur mesure</span>
+      <h2>Pas un stock à adapter. <em>Une clôture à fabriquer pour votre chantier.</em></h2>
+      <p>
+        Chez Urbafence, le projet commence par vos cotes. Vous choisissez les dimensions, la hauteur, le motif, le niveau d'occultation et la couleur. La configuration sert ensuite de base à la mise en production.
+      </p>
+      <p class="uf-custom-claim">Le bon panneau, à la bonne dimension, dans la bonne finition.</p>
+      <p class="uf-custom-note">
+        Une réponse durable pour limiter les vues directes depuis l'extérieur, utile aussi dans les contextes — écoles, cours, collectivités, sites sensibles — où la sécurisation visuelle est un sujet.
+      </p>
+    </div>
 
-      <!-- Colonne gauche — discours -->
-      <div class="uf-custom-text reveal">
-        <span class="eyebrow">Sur mesure</span>
-        <h2>Pas un stock à adapter. <em>Une clôture à fabriquer pour votre chantier.</em></h2>
-        <p>
-          Chez Urbafence, le projet commence par vos cotes. Vous choisissez les dimensions, la hauteur, les angles, le motif, le niveau d'occultation et la couleur. La configuration sert ensuite de base à la mise en production.
-        </p>
-        <p class="uf-custom-claim">Le bon panneau, à la bonne dimension, dans la bonne finition.</p>
-        <p class="uf-custom-note">
-          Une réponse durable pour limiter les vues directes depuis l'extérieur, utile aussi dans les contextes — écoles, cours, collectivités, sites sensibles — où la sécurisation visuelle est un sujet.
-        </p>
+    <!-- Mini-configurateur interactif (démonstratif) -->
+    <div class="uf-configurator reveal" id="ufConfigurator"
+         data-length="6" data-height="1500" data-implantation="muret"
+         data-pattern="privacy" data-color="anthracite">
+
+      <div class="uf-cfg-head">
+        <span class="uf-cfg-brand">
+          <span class="uf-cfg-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
+              <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
+              <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
+              <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
+            </svg>
+          </span>
+          Configurateur Urbafence
+        </span>
+        <span class="uf-cfg-title">Visualisez le sur-mesure Urbafence</span>
+        <p class="uf-cfg-intro">Réglez le format, la pose et le rendu, et voyez le résultat en direct. La configuration finale se fait ensuite projet par projet.</p>
       </div>
 
-      <!-- Colonne droite — mini-configurateur interactif (démonstratif) -->
-      <div class="uf-configurator reveal" id="ufConfigurator"
-           data-length="standard" data-height="standard" data-implantation="muret"
-           data-pattern="privacy" data-color="anthracite" data-angle="false">
+      <div class="uf-cfg-body">
 
-        <div class="uf-cfg-head">
-          <span class="uf-cfg-brand">
-            <span class="uf-cfg-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect>
-                <circle cx="8" cy="8" r="1.3"></circle><circle cx="12" cy="8" r="1.3"></circle><circle cx="16" cy="8" r="1.3"></circle>
-                <circle cx="8" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="16" cy="12" r="1.3"></circle>
-                <circle cx="8" cy="16" r="1.3"></circle><circle cx="12" cy="16" r="1.3"></circle><circle cx="16" cy="16" r="1.3"></circle>
-              </svg>
-            </span>
-            Configurateur Urbafence
-          </span>
-          <span class="uf-cfg-title">Visualisez le sur-mesure Urbafence</span>
-          <p class="uf-cfg-intro">Choisissez un format, une pose et un rendu pour comprendre le principe. La configuration finale se fait ensuite projet par projet.</p>
-        </div>
-
-        <!-- A. Aperçu visuel -->
-        <div class="uf-cfg-preview">
-          <div class="uf-cfg-stage" id="ufStage" aria-hidden="true">
-            <div class="uf-cfg-sky"></div>
-            <div class="uf-cfg-return" id="ufReturn"></div>
-            <div class="uf-cfg-fence" id="ufFence"></div>
-            <div class="uf-cfg-base" id="ufBase"></div>
-            <div class="uf-cfg-ground"></div>
-          </div>
-          <!-- Cote de longueur (illustrative) -->
-          <div class="uf-cfg-cote" aria-hidden="true">
-            <span class="uf-cfg-cote-bar" id="ufCoteBar"><span class="uf-cfg-cote-val" id="ufCoteVal">≈ 6 m</span></span>
-          </div>
-          <span class="uf-cfg-disclaimer">Vue indicative — les dimensions exactes sont définies au projet.</span>
-        </div>
-
-        <!-- B. Parcours en 3 étapes -->
-        <div class="uf-cfg-steps">
-
-          <!-- Étape 1 — Format -->
-          <div class="uf-cfg-step">
-            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">1</span> Format</span>
-            <div class="uf-cfg-step-grid">
-              <div class="uf-cfg-subfield">
-                <span class="uf-cfg-sublabel" id="ufLenLabel">Longueur</span>
-                <div class="uf-cfg-segment" role="group" aria-labelledby="ufLenLabel" data-control="length">
-                  <button type="button" class="uf-cfg-seg-btn" data-value="court" aria-pressed="false"><strong>Court</strong><small>≈ 3 m</small></button>
-                  <button type="button" class="uf-cfg-seg-btn" data-value="standard" aria-pressed="true"><strong>Standard</strong><small>≈ 6 m</small></button>
-                  <button type="button" class="uf-cfg-seg-btn" data-value="long" aria-pressed="false"><strong>Long</strong><small>≈ 10 m</small></button>
-                </div>
-              </div>
-              <div class="uf-cfg-subfield">
-                <span class="uf-cfg-sublabel" id="ufHeightLabel">Hauteur</span>
-                <div class="uf-cfg-segment" role="group" aria-labelledby="ufHeightLabel" data-control="height">
-                  <button type="button" class="uf-cfg-seg-btn" data-value="bas" aria-pressed="false"><strong>Bas</strong><small>1 000 mm</small></button>
-                  <button type="button" class="uf-cfg-seg-btn" data-value="standard" aria-pressed="true"><strong>Standard</strong><small>1 500 mm</small></button>
-                  <button type="button" class="uf-cfg-seg-btn" data-value="haut" aria-pressed="false"><strong>Haut</strong><small>1 800 mm</small></button>
-                </div>
-              </div>
+        <!-- Colonne gauche — aperçu sticky + finition -->
+        <div class="uf-cfg-left">
+          <div class="uf-cfg-preview">
+            <div class="uf-cfg-stage" id="ufStage" aria-hidden="true">
+              <div class="uf-cfg-sky"></div>
+              <div class="uf-cfg-fence" id="ufFence"></div>
+              <div class="uf-cfg-base" id="ufBase"></div>
+              <div class="uf-cfg-ground"></div>
+              <span class="uf-cfg-pose-tag" id="ufPoseTag">muret existant</span>
             </div>
+            <!-- Cote de longueur (illustrative) -->
+            <div class="uf-cfg-cote" aria-hidden="true">
+              <span class="uf-cfg-cote-bar" id="ufCoteBar"><span class="uf-cfg-cote-val" id="ufCoteVal">6 m</span></span>
+            </div>
+            <span class="uf-cfg-disclaimer">Vue indicative — les dimensions exactes sont définies au projet.</span>
           </div>
 
-          <!-- Étape 2 — Pose -->
-          <div class="uf-cfg-step">
-            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">2</span> Pose</span>
-            <div class="uf-cfg-segment uf-cfg-segment--pose" role="group" aria-label="Type de pose" data-control="implantation">
-              <button type="button" class="uf-cfg-seg-btn" data-value="muret" aria-pressed="true">Sur muret</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="beton" aria-pressed="false">Sur longrine béton</button>
-              <button type="button" class="uf-cfg-seg-btn" data-value="platines" aria-pressed="false">Sur platines</button>
-            </div>
-            <button type="button" class="uf-cfg-angle-toggle" id="ufAngle" aria-pressed="false">
-              <span class="uf-cfg-angle-check" aria-hidden="true"></span> Avec retour d'angle
-            </button>
-          </div>
-
-          <!-- Étape 3 — Rendu -->
-          <div class="uf-cfg-step">
-            <span class="uf-cfg-step-head"><span class="uf-cfg-step-num">3</span> Rendu</span>
-
-            <div class="uf-cfg-subfield">
-              <span class="uf-cfg-sublabel" id="ufPatternLabel">Motif</span>
-              <p class="uf-cfg-hint">Le niveau d'occultation dépend du motif choisi.</p>
-              <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
-                <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
-                  <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
-                  <span class="uf-cfg-motif-name">Privacy</span>
-                  <span class="uf-cfg-motif-level">Très occultant</span>
-                  <span class="uf-cfg-motif-desc">Pour limiter fortement les vues.</span>
-                </button>
-                <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
-                  <span class="uf-cfg-motif-swatch uf-motif--balanced" aria-hidden="true"></span>
-                  <span class="uf-cfg-motif-name">Équilibre</span>
-                  <span class="uf-cfg-motif-level">Intermédiaire</span>
-                  <span class="uf-cfg-motif-desc">Pour garder lumière et protection visuelle.</span>
-                </button>
-                <button type="button" class="uf-cfg-motif" data-value="open" aria-pressed="false">
-                  <span class="uf-cfg-motif-swatch uf-motif--open" aria-hidden="true"></span>
-                  <span class="uf-cfg-motif-name">Ajouré</span>
-                  <span class="uf-cfg-motif-level">Plus ouvert</span>
-                  <span class="uf-cfg-motif-desc">Pour un rendu plus léger et graphique.</span>
-                </button>
-              </div>
-              <p class="uf-cfg-note">Motifs indicatifs — le choix final dépend de la gamme et des contraintes du projet.</p>
-            </div>
-
-            <div class="uf-cfg-subfield">
-              <span class="uf-cfg-sublabel" id="ufColorLabel">Couleur <output id="ufColorOut">Anthracite</output></span>
-              <p class="uf-cfg-hint">Exemples de finitions.</p>
-              <div class="uf-cfg-swatches" role="group" aria-labelledby="ufColorLabel" data-control="color" id="ufSwatches"></div>
-              <p class="uf-cfg-note">D'autres teintes sont disponibles selon le projet.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- C. Résumé compact + CTA -->
-        <div class="uf-cfg-summary" aria-live="polite">
-          <span class="uf-cfg-summary-title">Configuration indicative</span>
-          <div class="uf-cfg-chips">
-            <span class="uf-cfg-chip" id="ufChipLen">Standard</span>
+          <!-- Résumé compact -->
+          <div class="uf-cfg-chips" aria-live="polite">
+            <span class="uf-cfg-chip" id="ufChipLen">6 m</span>
+            <span class="uf-cfg-chip" id="ufChipHeight">1 500 mm</span>
             <span class="uf-cfg-chip" id="ufChipImpl">Sur muret</span>
             <span class="uf-cfg-chip" id="ufChipPattern">Privacy</span>
-            <span class="uf-cfg-chip" id="ufChipColor">Anthracite</span>
+            <span class="uf-cfg-chip uf-cfg-chip--color" id="ufChipColor">Anthracite</span>
           </div>
-          <p class="uf-cfg-summary-line">Une clôture configurée selon le chantier, puis transmise en production.</p>
+
+          <!-- Finition (couleurs au plus près de l'aperçu) -->
+          <div class="uf-cfg-finish">
+            <span class="uf-cfg-sublabel" id="ufColorLabel">Finition <output id="ufColorOut">Anthracite</output></span>
+            <div class="uf-cfg-swatches" role="group" aria-labelledby="ufColorLabel" data-control="color" id="ufSwatches"></div>
+            <p class="uf-cfg-note">Exemples de teintes — autres finitions possibles selon projet.</p>
+          </div>
+        </div>
+
+        <!-- Colonne droite — contrôles -->
+        <div class="uf-cfg-right">
+
+          <div class="uf-cfg-field">
+            <label class="uf-cfg-sublabel" for="ufLength">Longueur <output id="ufLengthOut" for="ufLength">6 m</output></label>
+            <input class="uf-cfg-range" type="range" id="ufLength" min="2" max="12" step="1" value="6">
+          </div>
+
+          <div class="uf-cfg-field">
+            <label class="uf-cfg-sublabel" for="ufHeight">Hauteur <output id="ufHeightOut" for="ufHeight">1 500 mm</output></label>
+            <input class="uf-cfg-range" type="range" id="ufHeight" min="1000" max="1800" step="100" value="1500">
+          </div>
+
+          <div class="uf-cfg-field">
+            <span class="uf-cfg-sublabel" id="ufImplLabel">Pose</span>
+            <div class="uf-cfg-poses" role="group" aria-labelledby="ufImplLabel" data-control="implantation">
+              <button type="button" class="uf-cfg-pose" data-value="muret" aria-pressed="true">
+                <span class="uf-cfg-pose-ico" aria-hidden="true">
+                  <svg viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <rect x="7" y="3" width="22" height="12" rx="1"></rect>
+                    <rect x="4" y="17" width="28" height="8" rx="1" fill="currentColor" fill-opacity="0.16" stroke="none"></rect>
+                    <path d="M4 21h28 M12 17v8 M20 17v8 M28 17v8"></path>
+                  </svg>
+                </span>
+                <span class="uf-cfg-pose-name">Sur muret</span>
+              </button>
+              <button type="button" class="uf-cfg-pose" data-value="beton" aria-pressed="false">
+                <span class="uf-cfg-pose-ico" aria-hidden="true">
+                  <svg viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <rect x="7" y="3" width="22" height="14" rx="1"></rect>
+                    <rect x="3" y="20" width="30" height="4" rx="1" fill="currentColor" fill-opacity="0.28" stroke="none"></rect>
+                  </svg>
+                </span>
+                <span class="uf-cfg-pose-name">Sur longrine béton</span>
+              </button>
+              <button type="button" class="uf-cfg-pose" data-value="platines" aria-pressed="false">
+                <span class="uf-cfg-pose-ico" aria-hidden="true">
+                  <svg viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                    <rect x="9" y="3" width="18" height="15" rx="1"></rect>
+                    <path d="M11 18v5 M25 18v5"></path>
+                    <rect x="6" y="23" width="10" height="3" rx="1" fill="currentColor" stroke="none"></rect>
+                    <rect x="20" y="23" width="10" height="3" rx="1" fill="currentColor" stroke="none"></rect>
+                  </svg>
+                </span>
+                <span class="uf-cfg-pose-name">Sur platines</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="uf-cfg-field">
+            <span class="uf-cfg-sublabel" id="ufPatternLabel">Motif</span>
+            <p class="uf-cfg-hint">Le niveau d'occultation dépend du motif choisi.</p>
+            <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
+              <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
+                <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Privacy</span>
+                <span class="uf-cfg-motif-level">Très occultant</span>
+              </button>
+              <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
+                <span class="uf-cfg-motif-swatch uf-motif--balanced" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Équilibre</span>
+                <span class="uf-cfg-motif-level">Intermédiaire</span>
+              </button>
+              <button type="button" class="uf-cfg-motif" data-value="open" aria-pressed="false">
+                <span class="uf-cfg-motif-swatch uf-motif--open" aria-hidden="true"></span>
+                <span class="uf-cfg-motif-name">Ajouré</span>
+                <span class="uf-cfg-motif-level">Plus ouvert</span>
+              </button>
+            </div>
+            <p class="uf-cfg-note">Motifs indicatifs — le choix final dépend de la gamme et des contraintes du projet.</p>
+          </div>
+
           <a class="btn btn-primary uf-cfg-cta" href="https://urbafence.com/configurateur/" target="_blank" rel="noopener">
             Configurer un vrai projet <span class="arrow">→</span>
           </a>

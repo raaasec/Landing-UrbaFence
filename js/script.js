@@ -135,44 +135,47 @@ function initUfConfigurator() {
     { id: 'vert',       name: 'Vert Urbafence',  hex: '#35823F' },
     { id: 'bronze',     name: 'Bronze',          hex: '#8A6A43' }
   ];
-  // Choix prédéfinis (label + valeur affichée) plutôt que des sliders
-  const LENGTHS = {
-    court:    { label: 'Court',    cote: '≈ 3 m',  w: 58 },
-    standard: { label: 'Standard', cote: '≈ 6 m',  w: 78 },
-    long:     { label: 'Long',     cote: '≈ 10 m', w: 100 }
+  const IMPL = {
+    muret:    { name: 'Sur muret',          tag: 'muret existant' },
+    beton:    { name: 'Sur longrine béton', tag: 'longrine béton' },
+    platines: { name: 'Sur platines',       tag: 'platines' }
   };
-  const HEIGHTS = {
-    bas:      { label: 'Bas',      mm: 1000, h: 100 },
-    standard: { label: 'Standard', mm: 1500, h: 138 },
-    haut:     { label: 'Haut',     mm: 1800, h: 168 }
-  };
-  const IMPL = { muret: 'Sur muret', beton: 'Sur longrine béton', platines: 'Sur platines' };
   // 3 motifs = 3 niveaux d'occultation réels (le niveau dépend du dessin, pas d'un slider)
   const PATTERNS = {
-    privacy:  { name: 'Privacy',  level: 'Très occultant' },
+    privacy:  { name: 'Privacy',   level: 'Très occultant' },
     balanced: { name: 'Équilibre', level: 'Intermédiaire' },
-    open:     { name: 'Ajouré',   level: 'Plus ouvert' }
+    open:     { name: 'Ajouré',    level: 'Plus ouvert' }
   };
 
-  const fence    = root.querySelector('#ufFence');
-  const swatches = root.querySelector('#ufSwatches');
-  const angleBtn = root.querySelector('#ufAngle');
+  const fence       = root.querySelector('#ufFence');
+  const swatches    = root.querySelector('#ufSwatches');
+  const lengthInput = root.querySelector('#ufLength');
+  const heightInput = root.querySelector('#ufHeight');
 
+  // État simple, valeurs numériques pour les dimensions
   const state = {
-    length:       root.dataset.length || 'standard',
-    height:       root.dataset.height || 'standard',
+    length:       +root.dataset.length || 6,        // m
+    height:       +root.dataset.height || 1500,      // mm
     implantation: root.dataset.implantation || 'muret',
     pattern:      root.dataset.pattern || 'privacy',
-    color:        root.dataset.color || 'anthracite',
-    angle:        root.dataset.angle === 'true'
+    color:        root.dataset.color || 'anthracite'
   };
 
   const set = (sel, txt) => { const el = root.querySelector(sel); if (el) el.textContent = txt; };
+  const fmtMm = (v) => v.toLocaleString('fr-FR') + ' mm';
   const colorById = (id) => COLORS.find(c => c.id === id) || COLORS[0];
   const luminance = (hex) => {
     const n = parseInt(hex.slice(1), 16);
     return (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
   };
+  // Remplit la piste du slider jusqu'au curseur
+  const rangeFill = (input) => {
+    if (!input) return;
+    const pct = (input.value - input.min) / (input.max - input.min) * 100;
+    input.style.setProperty('--uf-fill', pct + '%');
+  };
+  // Nombre de panneaux selon la longueur (taille de panneau stable)
+  const panelsFor = (m) => (m <= 4 ? 2 : m <= 8 ? 3 : 4);
 
   // Génère les pastilles couleur
   if (swatches) COLORS.forEach(c => {
@@ -187,62 +190,74 @@ function initUfConfigurator() {
     swatches.appendChild(btn);
   });
 
-  // Aperçu à largeur STABLE : toujours 3 panneaux lisibles (la longueur passe par la cote)
+  // (Re)construit la clôture avec N panneaux — la taille reste lisible, jamais minuscule
+  let builtPanels = -1;
   function buildFence() {
     if (!fence) return;
-    const PANELS = 3;
+    const panels = panelsFor(state.length);
+    if (panels === builtPanels) return;
+    builtPanels = panels;
     let html = '<span class="uf-cfg-post"></span>';
-    for (let i = 0; i < PANELS; i++) html += '<div class="uf-cfg-panel"></div><span class="uf-cfg-post"></span>';
+    for (let i = 0; i < panels; i++) html += '<div class="uf-cfg-panel"></div><span class="uf-cfg-post"></span>';
     fence.innerHTML = html;
   }
 
   // Applique l'état à l'aperçu (variables CSS) + au résumé court
   function render() {
-    const len = LENGTHS[state.length] || LENGTHS.standard;
-    const hgt = HEIGHTS[state.height] || HEIGHTS.standard;
     const col = colorById(state.color);
     const pat = PATTERNS[state.pattern] || PATTERNS.privacy;
+    const impl = IMPL[state.implantation] || IMPL.muret;
 
     root.dataset.implantation = state.implantation;
     root.dataset.pattern = state.pattern;
-    root.dataset.angle = String(state.angle);
 
-    // Hauteur visuelle (panneaux jamais minuscules) + longueur via la cote
-    root.style.setProperty('--uf-panel-h', hgt.h + 'px');
-    root.style.setProperty('--uf-len-w', len.w + '%');
+    // Hauteur visuelle proportionnée : 1000→1800 mm => 104→172 px
+    const h = 104 + (state.height - 1000) / 800 * 68;
+    root.style.setProperty('--uf-panel-h', h.toFixed(0) + 'px');
+
+    // Longueur illustrative : 2→12 m => largeur 52%→100% (panneaux jamais rapetissés)
+    const lenW = 52 + (state.length - 2) / 10 * 48;
+    root.style.setProperty('--uf-len-w', lenW.toFixed(0) + '%');
 
     root.style.setProperty('--uf-panel-color', col.hex);
     // Trous lisibles selon la teinte (simple contraste, aucune opacité réglable)
     root.style.setProperty('--uf-hole',
       luminance(col.hex) > 0.6 ? 'rgba(28,31,33,0.55)' : 'rgba(245,242,236,0.82)');
 
-    // Couleur affichée + cote
+    buildFence();
+
+    // Valeurs affichées
+    set('#ufLengthOut', state.length + ' m');
+    set('#ufHeightOut', fmtMm(state.height));
     set('#ufColorOut', col.name);
-    set('#ufCoteVal', len.cote);
+    set('#ufCoteVal', state.length + ' m');
+    set('#ufPoseTag', impl.tag);
 
     // Résumé compact en chips
-    set('#ufChipLen', len.label);
-    set('#ufChipImpl', (IMPL[state.implantation] || 'Sur muret') + (state.angle ? ' + angle' : ''));
+    set('#ufChipLen', state.length + ' m');
+    set('#ufChipHeight', fmtMm(state.height));
+    set('#ufChipImpl', impl.name);
     set('#ufChipPattern', pat.name);
     set('#ufChipColor', col.name);
+    const chipColor = root.querySelector('#ufChipColor');
+    if (chipColor) chipColor.style.setProperty('--sw', col.hex);
   }
 
-  // Boutons segmentés (longueur, hauteur, pose)
-  root.querySelectorAll('.uf-cfg-segment').forEach(group => {
-    const key = group.dataset.control;
-    group.addEventListener('click', (e) => {
-      const btn = e.target.closest('.uf-cfg-seg-btn');
-      if (!btn || !key) return;
-      group.querySelectorAll('.uf-cfg-seg-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-      state[key] = btn.dataset.value;
-      render();
-    });
+  // Sliders longueur / hauteur
+  if (lengthInput) lengthInput.addEventListener('input', () => {
+    state.length = +lengthInput.value; rangeFill(lengthInput); render();
+  });
+  if (heightInput) heightInput.addEventListener('input', () => {
+    state.height = +heightInput.value; rangeFill(heightInput); render();
   });
 
-  // Retour d'angle (option secondaire)
-  if (angleBtn) angleBtn.addEventListener('click', () => {
-    state.angle = !state.angle;
-    angleBtn.setAttribute('aria-pressed', String(state.angle));
+  // Boutons de pose (cartes)
+  const poseGroup = root.querySelector('.uf-cfg-poses');
+  if (poseGroup) poseGroup.addEventListener('click', (e) => {
+    const btn = e.target.closest('.uf-cfg-pose');
+    if (!btn) return;
+    poseGroup.querySelectorAll('.uf-cfg-pose').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    state.implantation = btn.dataset.value;
     render();
   });
 
@@ -265,7 +280,14 @@ function initUfConfigurator() {
     render();
   });
 
-  buildFence();
+  // Synchronise l'état actif des cartes avec l'état initial (robustesse si data-* diffère du HTML)
+  const syncPressed = (selector, val) =>
+    root.querySelectorAll(selector).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === val)));
+  syncPressed('.uf-cfg-pose', state.implantation);
+  syncPressed('.uf-cfg-motif', state.pattern);
+
+  rangeFill(lengthInput);
+  rangeFill(heightInput);
   render();
 }
 
