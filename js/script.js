@@ -142,9 +142,9 @@ function initUfConfigurator() {
   };
   // 3 motifs = 3 niveaux d'occultation réels (le niveau dépend du dessin, pas d'un slider)
   const PATTERNS = {
-    privacy:  { name: 'Intimité',  level: 'Très occultant' },
-    balanced: { name: 'Équilibre', level: 'Intermédiaire' },
-    open:     { name: 'Ajouré',    level: 'Plus ouvert' }
+    privacy:  { name: 'Pakoris',      level: 'Très occultant' },
+    balanced: { name: 'Arnem Catura', level: 'Semi-occultant' },
+    open:     { name: 'Kaffia Palim', level: 'Plus ouvert' }
   };
 
   const fence       = root.querySelector('#ufFence');

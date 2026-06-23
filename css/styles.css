@@ -1431,7 +1431,7 @@ section.uf-custom {
 .uf-cfg-fence {
   position: absolute; left: 50%; transform: translateX(-50%); bottom: 20px;
   width: var(--uf-len-w, 78%); height: var(--uf-panel-h); z-index: 2;
-  display: flex; align-items: flex-end; justify-content: center; gap: 7px;
+  display: flex; align-items: flex-end; justify-content: center; gap: 2px;
   transition: height .22s var(--ease-out), bottom .22s var(--ease-out), width .22s var(--ease-out);
 }
 .uf-cfg-post {
@@ -1442,6 +1442,7 @@ section.uf-custom {
   transition: height .22s var(--ease-out), margin-bottom .22s var(--ease-out);
 }
 .uf-cfg-panel {
+  position: relative; overflow: hidden;
   flex: 1 1 0; min-width: 34px; align-self: stretch; height: 100%;
   border-radius: 2px; background-color: var(--uf-panel-color);
   background-position: center; background-repeat: repeat;
@@ -1473,19 +1474,22 @@ section.uf-custom {
 }
 .uf-configurator[data-implantation="beton"] .uf-cfg-fence { bottom: 14px; }
 
-/* Sur platines : pas de socle, poteaux jusqu'au sol + platines visibles */
+/* Sur platines : pas de socle, poteaux descendant jusqu'au sol + platines de fixation visibles */
 .uf-configurator[data-implantation="platines"] .uf-cfg-base { height: 0; }
-.uf-configurator[data-implantation="platines"] .uf-cfg-fence { bottom: 13px; }
+.uf-configurator[data-implantation="platines"] .uf-cfg-fence { bottom: 18px; }
 .uf-configurator[data-implantation="platines"] .uf-cfg-post {
-  height: calc(100% + 13px); margin-bottom: -9px;
+  height: calc(100% + 18px); margin-bottom: -18px;
 }
+/* Platine : plaque acier nettement plus large que le poteau, posée au sol, avec 2 boulons */
 .uf-configurator[data-implantation="platines"] .uf-cfg-post::after {
-  content: ''; position: absolute; bottom: -9px; left: -6px; right: -6px; height: 6px;
+  content: ''; position: absolute; bottom: 2px; left: -7px; right: -7px; height: 8px;
   background:
-    radial-gradient(circle at 28% 50%, rgba(255,255,255,0.65) 0.8px, transparent 1.3px),
-    radial-gradient(circle at 72% 50%, rgba(255,255,255,0.65) 0.8px, transparent 1.3px),
-    linear-gradient(180deg, #3a3e40, #26292a);
-  border-radius: 1px; box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    radial-gradient(circle at 24% 36%, rgba(255,255,255,0.9) 1px, transparent 1.7px),
+    radial-gradient(circle at 76% 36%, rgba(255,255,255,0.9) 1px, transparent 1.7px),
+    linear-gradient(180deg, #b3b8b7 0%, #8b9190 42%, #616665 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.55);
+  z-index: 3;
 }
 
 /* Étiquette de pose dans l'aperçu */
@@ -1501,32 +1505,30 @@ section.uf-custom {
   display: block; margin-top: 10px; text-align: center;
   font-size: 11px; font-style: italic; color: var(--ink-300);
 }
-/* Cote de longueur illustrative (alignée sur la largeur de la clôture) */
-/* Motifs de perforation — 3 dessins réellement différents, ronds et premium */
-.uf-configurator[data-pattern="privacy"] .uf-cfg-panel,
-.uf-motif--privacy {
-  /* Très occultant : micro-perforations rondes espacées, beaucoup de tôle pleine */
-  background-image: radial-gradient(circle, var(--uf-hole) 1.3px, transparent 1.9px);
-  background-size: 11px 11px;
+/* ===== Motifs réels Urbafence dans l'aperçu =====
+   Un calque image se superpose au panneau coloré en mix-blend-mode screen :
+   les zones SOMBRES du motif laissent voir la couleur choisie (la tôle),
+   les zones CLAIRES deviennent les perforations (lumière qui traverse).
+   → la sélection de couleur continue de teinter le panneau. */
+.uf-cfg-panel::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-position: center; background-size: cover;
+  mix-blend-mode: screen;
 }
-.uf-configurator[data-pattern="balanced"] .uf-cfg-panel,
-.uf-motif--balanced {
-  /* Intermédiaire : perforations moyennes en quinconce, rythme harmonieux */
-  background-image:
-    radial-gradient(circle, var(--uf-hole) 2.1px, transparent 2.8px),
-    radial-gradient(circle, var(--uf-hole) 2.1px, transparent 2.8px);
-  background-size: 14px 14px;
-  background-position: 0 0, 7px 7px;
+.uf-configurator[data-pattern="privacy"] .uf-cfg-panel::before {
+  background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20095-PAKORIS-par-Dampere.jpg?x44392");
 }
-.uf-configurator[data-pattern="open"] .uf-cfg-panel,
-.uf-motif--open {
-  /* Plus ouvert : grandes perforations rondes en quinconce (effet galets/moucharabieh) */
-  background-image:
-    radial-gradient(circle, var(--uf-hole) 3.6px, transparent 4.4px),
-    radial-gradient(circle, var(--uf-hole) 2.3px, transparent 3px);
-  background-size: 22px 22px, 22px 22px;
-  background-position: 0 0, 11px 11px;
+.uf-configurator[data-pattern="balanced"] .uf-cfg-panel::before {
+  background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20030-ARNEM-CATURA-par-Dampere.jpg?x44392");
 }
+.uf-configurator[data-pattern="open"] .uf-cfg-panel::before {
+  background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20106-KAFFIA-PALIM-par-Dampere.jpg?x44392");
+}
+
+/* Vignettes des boutons de sélection = vraies images motifs */
+.uf-motif--privacy  { background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20095-PAKORIS-par-Dampere.jpg?x44392"); background-size: cover; background-position: center; }
+.uf-motif--balanced { background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20030-ARNEM-CATURA-par-Dampere.jpg?x44392"); background-size: cover; background-position: center; }
+.uf-motif--open     { background-image: url("https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20106-KAFFIA-PALIM-par-Dampere.jpg?x44392"); background-size: cover; background-position: center; }
 
 /* B. Contrôles (colonne droite) */
 .uf-cfg-field { display: flex; flex-direction: column; gap: 9px; }
