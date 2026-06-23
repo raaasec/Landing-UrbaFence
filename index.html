@@ -721,16 +721,20 @@
 
 <!-- ============== CONDITIONS (étapes au scroll) ============== -->
 <section class="process" id="conditions">
-  <div class="process-intro reveal">
-    <span class="eyebrow">Les conditions</span>
-    <h2>Un cadre qui vit <em>dans la durée.</em></h2>
-    <p>Un statut valable 1 an, reconductible avec 3 commandes sur l'année.</p>
-  </div>
 
-  <!-- Pile d'étapes pilotée au scroll -->
+  <!-- Titre + cartes pinnés ensemble : le pin démarre dès l'entrée de section -->
   <div class="process-scroll" id="processScroll">
     <div class="process-pin">
       <div class="container process-pin-inner">
+
+        <!-- Intro maintenue dans la zone sticky -->
+        <div class="process-intro">
+          <span class="eyebrow">Les conditions</span>
+          <h2>Un cadre qui vit <em>dans la durée.</em></h2>
+          <p>Un statut valable 1 an, reconductible avec 3 commandes sur l'année.</p>
+        </div>
+
+        <div class="process-cols">
 
         <!-- GAUCHE — barre de progression -->
         <div class="steps-progress" id="stepsProgress">
@@ -806,6 +810,8 @@
           </article>
 
         </div>
+
+        </div><!-- /process-cols -->
 
       </div>
     </div>

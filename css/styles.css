@@ -979,22 +979,25 @@ section.benefits { padding: 120px 0; background: var(--bg-card); }
 /* ============================================================
    PROCESS / CONDITIONS — pile de cartes au scroll
    ============================================================ */
-section.process { background: var(--bg-soft); padding-top: 80px; padding-bottom: 0; }
-.process-intro { text-align: center; margin-bottom: 24px; max-width: 720px; margin-left: auto; margin-right: auto; padding: 0 32px; }
+section.process { background: var(--bg-soft); padding-top: 0; padding-bottom: 0; }
+.process-intro { text-align: center; margin: 0 auto; max-width: 720px; }
 .process-intro h2 {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(30px, 3.8vw, 44px); line-height: 1.1;
-  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;
+  font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08;
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px;
 }
 .process-intro h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
-.process-intro p { font-size: 16px; color: var(--text); max-width: 540px; margin: 0 auto; }
+.process-intro p { font-size: 15.5px; color: var(--text); max-width: 540px; margin: 0 auto; }
 .process-scroll { position: relative; height: 200vh; }
 .process-pin {
   position: sticky; top: 0; height: 100vh;
-  display: flex; align-items: flex-start;
-  padding-top: clamp(40px, 8vh, 80px); overflow: hidden;
+  display: flex; align-items: center; overflow: hidden;
 }
+/* Empile l'intro (toujours visible) au-dessus de la zone progression+cartes */
 .process-pin-inner {
+  display: flex; flex-direction: column; gap: clamp(20px, 4vh, 40px); width: 100%;
+}
+.process-cols {
   display: grid;
   grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
   gap: clamp(40px, 6vw, 80px); align-items: center; width: 100%;
@@ -1870,8 +1873,8 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(64px, 8vw, 110p
 /* Process : sur mobile on désactive le pin, affichage vertical */
 @media (max-width: 760px) {
   .process-scroll { height: auto; }
-  .process-pin { position: relative; top: auto; height: auto; padding: 16px 0 0; overflow: visible; }
-  .process-pin-inner { grid-template-columns: 1fr; gap: 32px; }
+  .process-pin { position: relative; top: auto; height: auto; padding: 48px 0; overflow: visible; align-items: stretch; }
+  .process-cols { grid-template-columns: 1fr; gap: 32px; }
   .steps-progress {
     flex-direction: row; gap: 0; padding-left: 0; padding-top: 28px;
     justify-content: space-between; max-width: 380px; margin: 0 auto; width: 100%;
