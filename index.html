@@ -23,15 +23,7 @@
      par la DSI, à partir du header du site Urbafence actuel.
      Laissez ce conteneur vide, ou collez-y directement le code existant.
      ============================================================ -->
-<div id="dsi-topbar">
-  <!-- Placeholder à brancher — sera remplacé/complété par la zone DSI. Remplacez [TÉLÉPHONE] par le vrai numéro. -->
-  <div class="uf-topbar-fallback">
-    <a class="uf-topbar-phone" href="tel:[TÉLÉPHONE]">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 6a2 2 0 0 1 2-2Z"></path></svg>
-      <span>Une question&nbsp;? Appelez-nous&nbsp;: <strong>[TÉLÉPHONE]</strong></span>
-    </a>
-  </div>
-</div>
+<div id="dsi-topbar"></div>
 
 <!-- ============== HERO ============== -->
 <section class="hero section-screen section-snap">
@@ -45,7 +37,7 @@
       <div class="hero-copy">
         <span class="eyebrow">Cercle Partenaire</span>
         <h1 class="hero-display">
-          <span class="line line-1">Rejoignez le Cercle</span>
+          <span class="line line-1">Une collaboration</span>
           <span class="hero-divider" aria-hidden="true">
             <span class="dot"></span>
             <svg class="line-art" viewBox="0 0 240 14" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -53,7 +45,7 @@
               <path class="path-arrow" d="M 192 1 L 204 4 L 196 12"></path>
             </svg>
           </span>
-          <span class="line line-2">Partenaire <em>Urbafence.</em></span>
+          <span class="line line-2">se construit <em>dans le temps.</em></span>
         </h1>
         <p class="hero-lead">
           Des conditions dédiées pour les professionnels qui travaillent régulièrement avec Urbafence.
@@ -66,7 +58,6 @@
           <a href="#conditions" class="btn btn-ghost">Voir les conditions</a>
         </div>
         <div class="hero-meta">Statut valable 1 an · 3 projets pour prolonger vos avantages</div>
-        <a class="hero-login-link" href="https://urbafence.com/mon-compte/">J'ai déjà un compte → me connecter</a>
       </div>
 
       <!-- COLONNE DROITE — composition visuelle (2 photos) -->
@@ -98,12 +89,12 @@
 </section>
 
 <!-- ============== QUI EST URBAFENCE ? — contexte ============== -->
-<section class="uf-context section-screen section-snap" id="urbafence">
+<section class="uf-context section-screen" id="urbafence">
   <div class="container">
     <div class="uf-context-head reveal">
       <div class="uf-context-intro">
         <span class="eyebrow">Urbafence, concrètement</span>
-        <h2>Une clôture occultante en tôle perforée, <em>fabriquée sur mesure.</em></h2>
+        <h2>Clôtures occultantes en tôle perforée, <em>fabriquées sur-mesure.</em></h2>
         <p class="uf-context-lead">
           Urbafence, marque de Dampere&nbsp;: une solution complémentaire pour les projets où l'intimité, l'esthétique et la sécurité visuelle comptent autant que la délimitation.
         </p>
@@ -111,7 +102,7 @@
           Vous gardez vos solutions habituelles. Urbafence ajoute une réponse premium à votre gamme.
         </p>
         <ul class="uf-context-tags" aria-label="Usages principaux">
-          <li>Privacy</li>
+          <li>Intimité</li>
           <li>Sécurité visuelle</li>
           <li>Sur mesure</li>
           <li>Tôle perforée</li>
@@ -221,7 +212,7 @@
 </section>
 
 <!-- ============== LEVIERS — les 6 avantages ============== -->
-<section class="dual-angles section-roomy" id="avantages-rapides">
+<section class="dual-angles section-screen section-snap" id="avantages-rapides">
   <div class="container">
     <div class="dual-angles-intro reveal">
       <span class="eyebrow">Cercle Partenaire</span>
@@ -382,7 +373,7 @@
             <span class="uf-cfg-chip" id="ufChipLen">6 m</span>
             <span class="uf-cfg-chip" id="ufChipHeight">1 500 mm</span>
             <span class="uf-cfg-chip" id="ufChipImpl">Sur muret</span>
-            <span class="uf-cfg-chip" id="ufChipPattern">Privacy</span>
+            <span class="uf-cfg-chip" id="ufChipPattern">Intimité</span>
             <span class="uf-cfg-chip uf-cfg-chip--color" id="ufChipColor">Anthracite</span>
           </div>
 
@@ -449,7 +440,7 @@
             <div class="uf-cfg-motifs" role="group" aria-labelledby="ufPatternLabel" data-control="pattern">
               <button type="button" class="uf-cfg-motif" data-value="privacy" aria-pressed="true">
                 <span class="uf-cfg-motif-swatch uf-motif--privacy" aria-hidden="true"></span>
-                <span class="uf-cfg-motif-name">Privacy</span>
+                <span class="uf-cfg-motif-name">Intimité</span>
                 <span class="uf-cfg-motif-level">Très occultant</span>
               </button>
               <button type="button" class="uf-cfg-motif" data-value="balanced" aria-pressed="false">
@@ -524,7 +515,7 @@
           <div class="uf-render-info">
             <div class="uf-render-name">Octopus</div>
             <div class="uf-render-meta">12&nbsp;% de vide · très occultant</div>
-            <span class="uf-render-usage">Privacy / intimité</span>
+            <span class="uf-render-usage">Intimité</span>
           </div>
         </article>
 
@@ -619,7 +610,7 @@
 </section>
 
 <!-- ============== POSITIONNEMENT ============== -->
-<section class="positioning" id="cadre">
+<section class="positioning section-screen section-snap" id="cadre">
   <div class="container">
     <div class="positioning-grid">
       <div class="positioning-visual reveal">
@@ -643,7 +634,7 @@
 </section>
 
 <!-- ============== RÉALISATIONS (mosaïque) ============== -->
-<section class="realisations section-roomy" id="realisations">
+<section class="realisations section-screen" id="realisations">
   <div class="container">
     <div class="realisations-head reveal">
       <div>
@@ -697,9 +688,9 @@
         <img src="images/rea-brisevue.jpg"
              alt="Brise-vue décoratif ajouré Urbafence" loading="lazy"
              onerror="this.onerror=null;this.src='https://placehold.co/600x800/9BC391/1F4E26?text=A+ajouter'">
-        <span class="real-card-ref">Type · Privacy</span>
+        <span class="real-card-ref">Type · Intimité</span>
         <div class="real-card-body">
-          <span class="real-card-tag">Brise-vue privacy / intimité</span>
+          <span class="real-card-tag">Brise-vue intimité</span>
           <div class="real-card-title">Brise-vue occultant ajouré</div>
         </div>
       </div>
@@ -752,25 +743,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============== PREUVE / RÉASSURANCE ============== -->
-<section class="uf-proof" id="preuve">
-  <div class="container">
-    <div class="uf-proof-grid reveal">
-      <figure class="uf-proof-quote">
-        <div class="uf-proof-mark" aria-hidden="true">“</div>
-        <blockquote>[TÉMOIGNAGE — 1 à 2 phrases d'un partenaire sur ce que le Cercle Partenaire lui apporte au quotidien.]</blockquote>
-        <figcaption>[TÉMOIGNAGE — Nom, métier, ville]</figcaption>
-      </figure>
-      <ul class="uf-proof-stats" aria-label="Chiffres clés">
-        <li><span class="uf-proof-num">[X]</span><span class="uf-proof-label">partenaires actifs</span></li>
-        <li><span class="uf-proof-num">[Y]</span><span class="uf-proof-label">projets posés</span></li>
-        <li><span class="uf-proof-num">[Z]</span><span class="uf-proof-label">ans d'expérience</span></li>
-      </ul>
-    </div>
-    <p class="uf-proof-note">[À confirmer] Fabrication française.</p>
   </div>
 </section>
 
@@ -880,7 +852,6 @@
       Activer mon accès partenaire
       <span class="arrow">→</span>
     </a>
-    <a class="final-cta-login" href="https://urbafence.com/mon-compte/">J'ai déjà un compte → me connecter</a>
     <div class="final-cta-features">
       <span class="final-cta-feature">Statut valable 1 an</span>
       <span class="final-cta-feature">3 projets pour prolonger vos avantages</span>

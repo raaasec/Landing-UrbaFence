@@ -142,7 +142,7 @@ function initUfConfigurator() {
   };
   // 3 motifs = 3 niveaux d'occultation réels (le niveau dépend du dessin, pas d'un slider)
   const PATTERNS = {
-    privacy:  { name: 'Privacy',   level: 'Très occultant' },
+    privacy:  { name: 'Intimité',  level: 'Très occultant' },
     balanced: { name: 'Équilibre', level: 'Intermédiaire' },
     open:     { name: 'Ajouré',    level: 'Plus ouvert' }
   };
