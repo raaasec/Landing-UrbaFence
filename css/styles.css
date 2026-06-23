@@ -173,7 +173,7 @@ body {
   position: relative; top: -1px;
 }
 /* Titres de section : un peu plus de présence (line-height resserré) */
-.uf-context-head h2, .dual-angles-intro h2, .uf-custom-intro h2,
+.dual-angles-intro h2, .uf-custom-intro h2,
 .uf-patterns-head h2, .uf-timeline-head h2, .positioning-text h2,
 .realisations-head h2, .process-intro h2 {
   line-height: 1.06; letter-spacing: -0.025em;
@@ -843,6 +843,10 @@ section.positioning { padding: clamp(48px, 6vw, 72px) 0; background: var(--bg-ca
 .positioning-point-ico svg { width: 19px; height: 19px; stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .positioning-point strong { display: block; font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
 .positioning-point > div span { font-size: 13.5px; line-height: 1.5; color: var(--text); }
+.positioning-foot {
+  margin: 22px 0 0; padding-left: 14px; border-left: 3px solid var(--accent);
+  font-size: 14px; line-height: 1.55; color: var(--ink-700);
+}
 
 /* ============================================================
    AVANTAGES (cartes flip)
@@ -1115,21 +1119,6 @@ section.process { background: var(--bg-soft); padding-top: 80px; padding-bottom:
 .steps-stack[data-phase="3"] .step-card[data-step="2"] { transform: translateY(-36px) scale(.92); opacity: 0.42; }
 .steps-stack[data-phase="3"] .step-card[data-step="2"]::after { opacity: 1; }
 .steps-stack[data-phase="3"] .step-card[data-step="3"] { transform: translateY(0) scale(1); opacity: 1; }
-.process-after { padding: 80px 0 120px; background: var(--bg-soft); }
-.conditions-note {
-  max-width: 880px; margin: 0 auto; padding: 28px 32px;
-  background: var(--bg-card); border: 1px solid var(--line-soft);
-  border-left: 3px solid var(--accent); border-radius: 12px;
-  display: flex; gap: 20px; align-items: flex-start;
-}
-.conditions-note-icon {
-  flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-  background: var(--accent-soft);
-  display: flex; align-items: center; justify-content: center; color: var(--accent);
-}
-.conditions-note-icon svg { width: 18px; height: 18px; }
-.conditions-note-text { font-size: 14px; line-height: 1.6; color: var(--text); }
-.conditions-note-text strong { color: var(--ink); font-weight: 700; }
 
 /* ============================================================
    CTA FINAL
@@ -1216,223 +1205,143 @@ section.final-cta.final-cta--compact {
    ============================================================ */
 section.uf-context {
   background: var(--bg-card);
-  padding: clamp(56px, 7vw, 96px) 0 clamp(48px, 6vw, 80px);
+  padding: clamp(40px, 5vw, 72px) 0;
   position: relative;
-  /* Section riche : on démarre le contenu en haut pour éviter tout rognage
-     quand il dépasse la hauteur d'écran (override du centrage de .section-screen). */
-  justify-content: flex-start;
+  justify-content: center;
 }
-.uf-context-head {
+/* Grille principale : discours+comparaison à gauche, image+sécurité à droite */
+.uf-context-grid {
   display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(32px, 4vw, 56px); align-items: center;
+  gap: clamp(28px, 4vw, 56px); align-items: start;
 }
-.uf-context-head h2 {
+.uf-context-h2 {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(30px, 3.8vw, 44px); line-height: 1.1;
-  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 20px;
+  font-size: clamp(28px, 3.2vw, 40px); line-height: 1.06;
+  letter-spacing: -0.025em; color: var(--ink); margin: 0 0 14px;
 }
-.uf-context-head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
-.uf-context-lead { font-size: var(--t-lead); line-height: 1.6; color: var(--ink-700); margin-bottom: 16px; }
+.uf-context-h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+.uf-context-lead { font-size: 15.5px; line-height: 1.55; color: var(--ink-700); margin: 0 0 16px; max-width: 520px; }
 /* Tags d'usage */
-.uf-context-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; }
+.uf-context-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; padding: 0; }
 .uf-context-tags li {
   display: inline-flex; align-items: center; gap: 7px;
-  font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--brand-700);
+  font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--brand-700);
   background: var(--brand-50); border: 1px solid var(--brand-100);
-  padding: 7px 13px; border-radius: var(--r-pill);
+  padding: 6px 12px; border-radius: var(--r-pill);
 }
 .uf-context-tags li::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
 }
-/* Composition visuelle (image principale + incrustation) */
-.uf-context-visual { position: relative; }
-.uf-context-img-main {
-  display: block; width: 100%; height: clamp(230px, 26vw, 320px);
-  object-fit: cover; border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-}
-.uf-context-img-inset {
-  position: absolute; left: -18px; bottom: -18px;
-  width: 42%; max-width: 178px; aspect-ratio: 1 / 1; object-fit: cover;
-  border-radius: var(--r-md); border: 4px solid var(--bg-page); box-shadow: var(--shadow-md);
-}
-@media (max-width: 880px) {
-  .uf-context-head { grid-template-columns: 1fr; gap: 30px; }
-  .uf-context-visual { max-width: 560px; }
-  .uf-context-img-inset { left: auto; right: 16px; bottom: -16px; }
-}
 
-/* Schéma : vos solutions + Urbafence */
-.uf-equation {
-  display: grid;
-  /* base discrète plus étroite, marque Urbafence dominante */
-  grid-template-columns: minmax(0, 0.72fr) auto minmax(0, 1.55fr);
-  gap: clamp(12px, 2vw, 26px); align-items: center;
-  margin: clamp(20px, 3vw, 32px) 0 12px;
+/* Comparaison : solutions actuelles + Urbafence */
+.uf-compare {
+  display: grid; grid-template-columns: minmax(0, 0.82fr) auto minmax(0, 1.18fr);
+  gap: 12px; align-items: stretch; margin-top: 4px;
 }
-.uf-eq-block { border-radius: var(--r-lg); position: relative; }
-
-/* Carte « solutions habituelles » — discrète */
-.uf-eq-base {
-  background: var(--bg-page); border: 1px solid var(--line-soft);
-  padding: 18px 20px; align-self: center; box-shadow: none;
+.uf-compare-side {
+  border-radius: var(--r-md); padding: 14px 16px; position: relative;
+  display: flex; flex-direction: column; gap: 8px;
 }
-.uf-eq-base .uf-eq-label { font-size: 10px; color: var(--ink-400); margin-bottom: 11px; }
-.uf-eq-base .uf-eq-list { gap: 6px; }
-.uf-eq-base .uf-eq-list li { font-size: 13.5px; color: var(--ink-500); padding-left: 15px; }
-.uf-eq-base .uf-eq-list li::before {
-  content: ''; position: absolute; left: 0; top: 0.6em;
-  width: 5px; height: 5px; border-radius: 2px; background: var(--ink-200);
-}
-
-/* Carte « Urbafence » — valorisée */
-.uf-eq-brand {
+.uf-compare-base { background: var(--bg-page); border: 1px solid var(--line-soft); }
+.uf-compare-brand {
   background: linear-gradient(150deg, #ffffff 0%, var(--brand-50) 55%, rgba(155, 195, 145, 0.34) 100%);
-  border: 1px solid var(--brand-100);
-  padding: clamp(24px, 3vw, 34px) clamp(26px, 3vw, 38px);
-  box-shadow: 0 18px 42px rgba(31, 78, 38, 0.09), 0 3px 10px rgba(28, 31, 33, 0.04);
-  overflow: hidden;
+  border: 1px solid var(--brand-100); overflow: hidden;
+  box-shadow: 0 12px 28px rgba(31, 78, 38, 0.08);
 }
-.uf-eq-perf {
-  position: absolute; top: -20px; right: -20px;
-  width: 150px; height: 150px; opacity: 0.5; pointer-events: none;
-  background-image: radial-gradient(circle, var(--accent) 1.7px, transparent 2.2px);
-  background-size: 15px 15px;
-  -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 70%);
-  mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 70%);
-}
-.uf-eq-brand-head {
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  margin-bottom: 6px; position: relative; z-index: 1;
-}
-.uf-eq-logo { height: 34px; width: auto; display: block; }
-.uf-eq-logo-fallback {
-  font-family: var(--serif); font-size: 26px; font-weight: 500;
-  color: var(--ink); letter-spacing: -0.01em;
-}
-.uf-eq-badge {
-  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: #fff; background: var(--accent);
-  padding: 5px 11px; border-radius: var(--r-pill);
-  box-shadow: 0 4px 10px rgba(53, 130, 63, 0.28);
-}
-.uf-eq-sub {
-  font-family: var(--serif); font-style: italic;
-  font-size: clamp(16px, 1.8vw, 19px); color: var(--brand-700);
-  margin: 0 0 18px; position: relative; z-index: 1;
-}
-.uf-eq-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; position: relative; z-index: 1; }
-.uf-eq-list li {
-  font-family: var(--sans); font-size: 15px; color: var(--ink-700);
-  padding-left: 22px; position: relative; line-height: 1.45;
-}
-.uf-eq-list--brand { columns: 2; column-gap: 26px; }
-.uf-eq-list--brand li { break-inside: avoid; margin-bottom: 2px; }
-.uf-eq-label {
-  display: block; font-family: var(--sans);
-  font-size: 11px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--secondary); margin-bottom: 14px;
-}
-.uf-eq-list--brand li::before {
-  content: ''; position: absolute; left: 0; top: 0.32em;
-  width: 14px; height: 14px; border-radius: 50%;
-  background: rgba(53, 130, 63, 0.14);
-}
-.uf-eq-list--brand li::after {
-  content: ''; position: absolute; left: 4px; top: 0.62em;
-  width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
-}
-.uf-eq-plus {
-  align-self: center; flex-shrink: 0;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--bg-card); border: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: center;
-}
-.uf-eq-plus svg {
-  width: 18px; height: 18px;
-  stroke: var(--accent); stroke-width: 2; stroke-linecap: round; fill: none;
-}
-.uf-eq-foot {
-  max-width: 760px; font-size: 15px; line-height: 1.6;
-  color: var(--ink-700); margin: 0 0 8px;
-}
-.uf-eq-foot::before {
-  content: ''; display: inline-block; vertical-align: middle;
-  width: 22px; height: 2px; background: var(--accent); margin-right: 12px; border-radius: 2px;
-}
-
-/* 3 piliers */
-.uf-pillars {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-}
-.uf-pillar {
-  background: var(--bg-soft); border: 1px solid var(--line-soft);
-  border-radius: var(--r-md); padding: 20px 22px;
-  transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .uf-pillar:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-}
-.uf-pillar-icon {
-  display: flex; align-items: center; justify-content: center;
-  width: 44px; height: 44px; border-radius: 12px;
-  background: rgba(53, 130, 63, 0.08); margin-bottom: 12px;
-}
-.uf-pillar-icon svg {
-  width: 22px; height: 22px;
-  stroke: var(--accent); stroke-width: 1.5; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
-}
-.uf-pillar-title {
-  font-family: var(--serif); font-weight: 400; font-size: 21px;
-  color: var(--ink); letter-spacing: -0.01em; margin-bottom: 10px;
-}
-.uf-pillar-body { font-size: 14.5px; line-height: 1.6; color: var(--text); }
-
-/* Carte sécurité / occultation — introduit les piliers (fond doux, lumineux) */
-.uf-security {
-  margin: clamp(16px, 2.5vw, 26px) 0 12px; display: flex; gap: 22px; align-items: flex-start;
-  background: linear-gradient(135deg, var(--brand-50) 0%, var(--bg-cream) 100%);
-  color: var(--ink-700); border: 1px solid var(--brand-100);
-  border-radius: var(--r-lg); padding: 30px clamp(26px, 3vw, 40px);
-  position: relative; overflow: hidden;
-}
-.uf-security::after {
-  content: ''; position: absolute; top: -30px; right: -30px;
-  width: 190px; height: 190px; pointer-events: none; opacity: 0.16;
-  background-image: radial-gradient(circle, var(--accent) 1.6px, transparent 2.1px);
-  background-size: 15px 15px;
+.uf-compare-perf {
+  position: absolute; top: -16px; right: -16px; width: 110px; height: 110px;
+  opacity: 0.5; pointer-events: none;
+  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 2px);
+  background-size: 13px 13px;
   -webkit-mask-image: radial-gradient(circle at 100% 0%, #000, transparent 70%);
   mask-image: radial-gradient(circle at 100% 0%, #000, transparent 70%);
 }
+.uf-compare-label {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary);
+}
+.uf-compare-label--brand { color: var(--brand-700); position: relative; z-index: 1; }
+.uf-compare-sub { font-size: 12px; color: var(--ink-400); margin-top: auto; }
+.uf-compare-sub--brand {
+  font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--brand-700);
+  margin-top: 0; position: relative; z-index: 1;
+}
+.uf-compare-chips { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
+.uf-chip {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  color: var(--ink-500); background: var(--bg-card); border: 1px solid var(--line-soft);
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.uf-chip--brand { color: var(--brand-700); background: #fff; border-color: var(--brand-100); }
+.uf-compare-plus {
+  align-self: center; flex-shrink: 0;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 18px; color: var(--accent); line-height: 1;
+}
+.uf-compare-foot {
+  margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-700);
+}
+.uf-compare-foot::before {
+  content: ''; display: inline-block; vertical-align: middle;
+  width: 20px; height: 2px; background: var(--accent); margin-right: 10px; border-radius: 2px;
+}
+
+/* Colonne droite : image + carte sécurité */
+.uf-context-visual { position: relative; }
+.uf-context-img-main {
+  display: block; width: 100%; height: clamp(200px, 24vw, 300px);
+  object-fit: cover; object-position: center;
+  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+}
+
+/* Carte sécurité compacte — mise en avant légère, taille proche des piliers */
+.uf-security {
+  margin: 14px 0 0; display: flex; gap: 14px; align-items: flex-start;
+  background: linear-gradient(135deg, var(--brand-50) 0%, var(--bg-cream) 100%);
+  border: 1px solid var(--brand-100); border-radius: var(--r-md);
+  padding: 16px 18px; position: relative; overflow: hidden;
+}
 .uf-security-icon {
-  flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px;
   background: #fff; border: 1px solid var(--brand-100);
-  display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
 }
 .uf-security-icon svg {
-  width: 24px; height: 24px;
+  width: 20px; height: 20px;
   stroke: var(--accent); stroke-width: 1.5; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
-.uf-security-text { position: relative; z-index: 1; }
 .uf-security-text h3 {
-  font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.4vw, 26px);
-  color: var(--ink); letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.2;
+  font-family: var(--serif); font-weight: 400; font-size: 18px;
+  color: var(--ink); letter-spacing: -0.01em; margin: 0 0 4px; line-height: 1.2;
 }
-.uf-security-text p { font-size: 15px; line-height: 1.65; color: var(--ink-700); max-width: 760px; }
+.uf-security-text p { font-size: 13px; line-height: 1.5; color: var(--ink-700); margin: 0; }
+
+/* 3 mini-piliers sur une ligne (pleine largeur, sous la grille) */
+.uf-pillars {
+  list-style: none; margin: clamp(20px, 3vw, 32px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.uf-pillar {
+  background: var(--bg-soft); border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--brand-100);
+  border-radius: var(--r-md); padding: 14px 16px;
+}
+.uf-pillar strong {
+  display: block; font-family: var(--sans); font-size: 14px; font-weight: 600;
+  color: var(--ink); margin-bottom: 3px;
+}
+.uf-pillar span { font-size: 12.5px; line-height: 1.45; color: var(--text); }
 
 @media (max-width: 880px) {
-  .uf-equation { grid-template-columns: 1fr; justify-items: stretch; }
-  .uf-eq-base { max-width: 420px; margin: 0 auto; width: 100%; }
-  .uf-eq-plus { transform: rotate(90deg); margin: -2px auto; }
-  .uf-eq-brand { max-width: 560px; margin: 0 auto; width: 100%; }
-  .uf-pillars { grid-template-columns: 1fr; gap: 14px; }
-  .uf-security { flex-direction: column; gap: 16px; padding: 28px 24px; }
+  .uf-context-grid { grid-template-columns: 1fr; gap: 28px; }
+  .uf-pillars { grid-template-columns: 1fr; gap: 12px; }
 }
-@media (max-width: 480px) {
-  .uf-eq-list--brand { columns: 1; }
+@media (max-width: 560px) {
+  .uf-compare { grid-template-columns: 1fr; }
+  .uf-compare-plus { transform: rotate(90deg); justify-self: center; }
 }
 
 /* ============================================================
@@ -1982,8 +1891,6 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(64px, 8vw, 110p
   .step-card h3 { font-size: 24px; margin-bottom: 14px; }
   .step-card p { font-size: 14.5px; }
   .step-card-foot { margin-top: 20px; font-size: 11.5px; }
-  .process-after { padding: 48px 0 80px; }
-  .conditions-note { padding: 22px 24px; flex-direction: column; gap: 14px; }
 }
 
 @media (max-width: 520px) {

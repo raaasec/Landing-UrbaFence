@@ -94,12 +94,14 @@
 <!-- ============== QUI EST URBAFENCE ? — contexte ============== -->
 <section class="uf-context section-screen" id="urbafence">
   <div class="container">
-    <div class="uf-context-head reveal">
-      <div class="uf-context-intro">
+    <div class="uf-context-grid reveal">
+
+      <!-- COLONNE GAUCHE — discours + comparaison -->
+      <div class="uf-context-col-left">
         <span class="eyebrow">Urbafence, concrètement</span>
-        <h2>Clôtures occultantes en tôle perforée, <em>fabriquées sur-mesure.</em></h2>
+        <h2 class="uf-context-h2">Clôtures occultantes en tôle perforée, <em>sur mesure.</em></h2>
         <p class="uf-context-lead">
-          Marque de Dampere&nbsp;: l'occultation sur mesure, pour les projets où l'intimité et la sécurité visuelle comptent autant que la délimitation.
+          Marque de Dampere&nbsp;: l'occultation sur mesure, quand l'intimité et la sécurité visuelle comptent autant que la délimitation.
         </p>
         <ul class="uf-context-tags" aria-label="Usages principaux">
           <li>Intimité</li>
@@ -107,103 +109,77 @@
           <li>Sur mesure</li>
           <li>Tôle perforée</li>
         </ul>
-      </div>
-      <div class="uf-context-visual" aria-hidden="false">
-        <img class="uf-context-img-main"
-             src="images/rea-muret.jpg"
-             alt="Clôture Urbafence en tôle perforée posée sur muret" loading="lazy"
-             onerror="this.onerror=null;this.src='https://placehold.co/900x1000/EAF3E7/35823F?text=A+ajouter'">
-        <img class="uf-context-img-inset"
-             src="images/hero-detail.jpg"
-             alt="Détail d'un panneau occultant en tôle perforée" loading="lazy"
-             onerror="this.onerror=null;this.src='https://placehold.co/420x420/1F2324/EAF3E7?text=Detail'">
-      </div>
-    </div>
 
-    <!-- Schéma : vos solutions (discret) + Urbafence (valorisé) -->
-    <div class="uf-equation reveal">
-      <div class="uf-eq-block uf-eq-base">
-        <span class="uf-eq-label">Vos solutions actuelles</span>
-        <ul class="uf-eq-list">
-          <li>Grillage</li>
-          <li>Barreaudage</li>
-          <li>Panneau rigide</li>
-        </ul>
-      </div>
+        <!-- Comparaison : solutions actuelles + Urbafence -->
+        <div class="uf-compare">
+          <div class="uf-compare-side uf-compare-base">
+            <span class="uf-compare-label">Solutions actuelles</span>
+            <div class="uf-compare-chips">
+              <span class="uf-chip">Grillage</span>
+              <span class="uf-chip">Barreaudage</span>
+              <span class="uf-chip">Panneau rigide</span>
+            </div>
+            <span class="uf-compare-sub">Délimiter</span>
+          </div>
 
-      <div class="uf-eq-plus" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5 L12 19 M5 12 L19 12"></path></svg>
-      </div>
+          <div class="uf-compare-plus" aria-hidden="true">+</div>
 
-      <div class="uf-eq-block uf-eq-brand">
-        <!-- Mini pattern de tôle perforée (décoratif) -->
-        <span class="uf-eq-perf" aria-hidden="true"></span>
-        <div class="uf-eq-brand-head">
-          <img class="uf-eq-logo" src="images/logo-urbafence.svg" alt="Urbafence"
-               width="160" height="35"
-               onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-eq-logo-fallback&quot;>Urbafence</span>'">
-          <span class="uf-eq-badge">Solution premium</span>
+          <div class="uf-compare-side uf-compare-brand">
+            <span class="uf-compare-perf" aria-hidden="true"></span>
+            <span class="uf-compare-label uf-compare-label--brand">Urbafence</span>
+            <span class="uf-compare-sub uf-compare-sub--brand">Occulter sur mesure</span>
+            <div class="uf-compare-chips">
+              <span class="uf-chip uf-chip--brand">Tôle perforée</span>
+              <span class="uf-chip uf-chip--brand">Intimité</span>
+              <span class="uf-chip uf-chip--brand">Sur mesure</span>
+            </div>
+          </div>
         </div>
-        <p class="uf-eq-sub">Occultation sur mesure</p>
-        <ul class="uf-eq-list uf-eq-list--brand">
-          <li>Tôle perforée</li>
-          <li>Intimité</li>
-          <li>Design</li>
-        </ul>
+        <p class="uf-compare-foot">Délimiter reste votre métier. Occulter devient une option premium.</p>
       </div>
+
+      <!-- COLONNE DROITE — image + carte sécurité -->
+      <div class="uf-context-col-right">
+        <div class="uf-context-visual">
+          <!-- IMG-CONTEXT · À remplacer plus tard par une cour d'école avec clôture Urbafence.
+               Future image : src="images/cour-ecole.jpg" · alt="Clôture Urbafence installée autour d'une cour d'école"
+               Format paysage conseillé (≈ 1200×800). Garder object-fit: cover. -->
+          <img class="uf-context-img-main"
+               src="images/rea-muret.jpg"
+               alt="Clôture occultante Urbafence en tôle perforée" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/1200x800/EAF3E7/35823F?text=Cour+d%27ecole+(a+venir)'">
+        </div>
+
+        <!-- Carte sécurité compacte (mise en avant légère) -->
+        <div class="uf-security">
+          <span class="uf-security-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
+              <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
+            </svg>
+          </span>
+          <div class="uf-security-text">
+            <h3>Sécurité visuelle</h3>
+            <p>Écoles, cours, collectivités, locaux techniques&nbsp;: limiter les vues directes et mieux maîtriser les abords.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <p class="uf-eq-foot reveal">
-      Une solution en plus, pas un remplacement.
-    </p>
-
-    <!-- Carte sécurité / occultation — introduit les 3 piliers -->
-    <div class="uf-security reveal">
-      <div class="uf-security-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
-          <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
-        </svg>
-      </div>
-      <div class="uf-security-text">
-        <h3>Quand l'occultation devient un sujet de sécurité visuelle</h3>
-        <p>Écoles, cours, collectivités, locaux techniques&nbsp;: limiter les vues directes devient un vrai enjeu. Une réponse durable, esthétique et sur mesure.</p>
-      </div>
-    </div>
-
-    <!-- 3 piliers -->
+    <!-- 3 mini-piliers sur une ligne -->
     <ul class="uf-pillars reveal">
       <li class="uf-pillar">
-        <span class="uf-pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-            <path d="M8 4 L8 20 M12 4 L12 20 M16 4 L16 20"></path>
-            <circle cx="10" cy="9" r="0.6"></circle><circle cx="14" cy="13" r="0.6"></circle>
-          </svg>
-        </span>
-        <h3 class="uf-pillar-title">Préserver l'intimité</h3>
-        <p class="uf-pillar-body">Limiter les vues directes avec une clôture occultante et architecturale.</p>
+        <strong>Préserver l'intimité</strong>
+        <span>Limiter les vues directes.</span>
       </li>
       <li class="uf-pillar">
-        <span class="uf-pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 4 L18 4 L18 20 L6 20 Z"></path>
-            <path d="M9 8 L15 8 M9 12 L15 12 M9 16 L13 16"></path>
-          </svg>
-        </span>
-        <h3 class="uf-pillar-title">Fabriquer à la demande</h3>
-        <p class="uf-pillar-body">Dimensions, motif, pose et couleur adaptés au projet.</p>
+        <strong>Fabriquer à la demande</strong>
+        <span>Dimensions, motif, pose, couleur.</span>
       </li>
       <li class="uf-pillar">
-        <span class="uf-pillar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 12 a8 8 0 0 1 16 0"></path>
-            <path d="M12 4 L12 12 L17 15"></path>
-            <circle cx="12" cy="20" r="1"></circle>
-          </svg>
-        </span>
-        <h3 class="uf-pillar-title">Compléter votre gamme</h3>
-        <p class="uf-pillar-body">Une solution premium à proposer en plus de vos clôtures habituelles.</p>
+        <strong>Compléter votre gamme</strong>
+        <span>Une option premium en plus.</span>
       </li>
     </ul>
   </div>
@@ -600,9 +576,9 @@
 
     <!-- Visuel d'ambiance qui habille la fin de la frise -->
     <div class="uf-timeline-visual reveal" aria-hidden="true">
-      <!-- IMG-TIMELINE · Clôture Urbafence posée, en situation (ambiance chantier terminé) · format paysage large (≈ 1600×600 px) -->
-      <img src="images/positionnement.jpg" alt="" loading="lazy"
-           onerror="this.onerror=null;this.src='https://placehold.co/1600x600/EAF3E7/35823F?text=Visuel+chantier'">
+      <!-- IMG-TIMELINE · Réalisation Urbafence en plan large (paysage) — distincte de la section Origine -->
+      <img src="images/rea-decor.jpg" alt="" loading="lazy"
+           onerror="this.onerror=null;this.src='https://placehold.co/1600x600/EAF3E7/35823F?text=Realisation+Urbafence'">
     </div>
 
     <p class="uf-timeline-note reveal">
@@ -622,10 +598,10 @@
              onerror="this.onerror=null;this.src='https://placehold.co/1000x1200/EAF3E7/35823F?text=A+ajouter'">
       </div>
       <div class="positioning-text reveal">
-        <span class="eyebrow">L'origine du programme</span>
-        <h2>Construire dans la durée, <em>pas seulement vendre.</em></h2>
+        <span class="eyebrow">L'origine du Cercle</span>
+        <h2>Un programme pensé pour les pros qui <em>avancent avec nous.</em></h2>
         <p>
-          Le <strong>Cercle Partenaire</strong> n'est pas qu'une remise&nbsp;: c'est un cadre pour construire une collaboration régulière avec les professionnels de la clôture.
+          Le <strong>Cercle Partenaire</strong> est né d'un constat simple&nbsp;: les professionnels qui proposent régulièrement Urbafence ont besoin d'un cadre clair, stable et plus fluide.
         </p>
         <ul class="positioning-points">
           <li class="positioning-point">
@@ -636,8 +612,8 @@
               </svg>
             </span>
             <div>
-              <strong>Conditions dédiées</strong>
-              <span>Remise et prix bloqués pendant la validation, sur des conditions qui restent stables d'un projet à l'autre.</span>
+              <strong>Des conditions visibles</strong>
+              <span>Remise partenaire, prix bloqués et avantages appliqués sans démarche complexe.</span>
             </div>
           </li>
           <li class="positioning-point">
@@ -650,8 +626,8 @@
               </svg>
             </span>
             <div>
-              <strong>Outils partenaires</strong>
-              <span>Configurateur réservé et catalogue personnalisé pour chiffrer et présenter vos projets plus vite.</span>
+              <strong>Des outils pour vendre plus simplement</strong>
+              <span>Catalogue, configurateur et supports pour présenter l'occultation sur mesure à vos clients.</span>
             </div>
           </li>
           <li class="positioning-point">
@@ -664,11 +640,12 @@
               </svg>
             </span>
             <div>
-              <strong>Relation suivie</strong>
-              <span>Un interlocuteur dédié et un suivi projet après projet, avec un traitement prioritaire de vos demandes. <em>[à confirmer]</em></span>
+              <strong>Une relation plus directe</strong>
+              <span>Un accompagnement pensé pour gagner du temps, projet après projet.</span>
             </div>
           </li>
         </ul>
+        <p class="positioning-foot">L'objectif&nbsp;: vous aider à intégrer Urbafence comme une solution complémentaire régulière, sans changer vos habitudes de travail.</p>
       </div>
     </div>
   </div>
@@ -853,23 +830,6 @@
 
         </div>
 
-      </div>
-    </div>
-  </div>
-
-  <!-- Note finale, hors zone "pinned" -->
-  <div class="process-after">
-    <div class="container">
-      <div class="conditions-note reveal">
-        <div class="conditions-note-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-        </div>
-        <div class="conditions-note-text">
-          Conditions précisées selon les modalités de commande.
-        </div>
       </div>
     </div>
   </div>
