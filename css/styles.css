@@ -2024,3 +2024,105 @@ input:focus-visible, [tabindex]:focus-visible {
 @media (max-width: 520px) {
   .hero-display { font-size: clamp(28px, 8vw, 42px); }
 }
+
+/* =====================================================================
+   PASSE RESPONSIVE A → Z  ·  « DESKTOP LOCKED »
+   ---------------------------------------------------------------------
+   Le rendu desktop (≥ 1201px) reste la RÉFÉRENCE et n'est pas modifié :
+   tout ce qui suit est borné par des `max-width` (ou des plages fermées).
+   Stratégie de breakpoints, complétant les media queries déjà présentes :
+     1200px  laptop / petit desktop
+      992px  tablette paysage
+      768px  tablette portrait / mobile large
+      600px  mobile standard
+      480px  petits mobiles
+      380px  très petits écrans
+   Bloc placé en fin de feuille : il prime en cas de conflit.
+   ===================================================================== */
+
+/* ---- Bases responsive globales (neutres pour le rendu desktop) ---- */
+picture, video { display: block; max-width: 100%; }
+svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
+
+/* ---- Correctif ciblé : trou hero entre 881px et 1020px ----
+   Le hero passe en 1 colonne dès 1020px, mais la photo ne recevait sa
+   largeur maîtrisée qu'à partir de 880px → image démesurée sur la plage.
+   On ne touche ni au desktop (≥1021) ni au mobile (≤880, déjà géré). */
+@media (min-width: 881px) and (max-width: 1020px) {
+  .hero-visual { max-width: 440px; margin-inline: auto; width: 100%; }
+}
+
+/* ============ 1200px · LAPTOP / PETIT DESKTOP ============ */
+@media (max-width: 1200px) {
+  .container { padding-left: 28px; padding-right: 28px; }
+}
+
+/* ============ 992px · TABLETTE PAYSAGE ============
+   Les gaps fixes généreux étranglent les colonnes : on les resserre,
+   sans rien changer au-delà de 992px. */
+@media (max-width: 992px) {
+  .positioning-grid { gap: 48px; }
+  .realisations-head { gap: 32px; }
+  .uf-context-grid { gap: clamp(24px, 3vw, 40px); }
+  .tppme-grid { gap: 16px; }
+  /* Aperçu configurateur encore en 2 colonnes : on raccourcit le sticky. */
+  .uf-cfg-left { top: 24px; }
+}
+
+/* ============ 768px · TABLETTE PORTRAIT / MOBILE LARGE ============ */
+@media (max-width: 768px) {
+  /* Rythme vertical : on aère un peu moins haut, jamais bloquant. */
+  section.dual-angles { padding: 56px 0 88px; }
+
+  /* En-tête de section : retours plus compacts. */
+  .eyebrow, [data-eyebrow] { margin-bottom: 16px; }
+
+  /* — Confort tactile du configurateur (cibles ≥ 44px) — */
+  .uf-cfg-swatch { width: 40px; height: 40px; }
+  .uf-cfg-swatches { gap: 14px; }
+  .uf-cfg-pose { min-height: 76px; padding: 14px 8px; }
+  /* Zone de préhension du slider élargie (la piste reste fine). */
+  .uf-cfg-range { height: 6px; padding: 14px 0; background-clip: content-box; }
+  .uf-cfg-range::-webkit-slider-thumb { width: 24px; height: 24px; }
+  .uf-cfg-range::-moz-range-thumb { width: 24px; height: 24px; }
+
+  /* Légère réduction des très grandes images plein cadre. */
+  .uf-context-img-main { min-height: clamp(240px, 46vw, 360px); }
+}
+
+/* ============ 600px · MOBILE STANDARD ============ */
+@media (max-width: 600px) {
+  /* Cartes d'usage : ratio un peu plus contenu pour éviter les blocs trop hauts. */
+  .realisations-grid { grid-auto-rows: 220px; }
+  /* Renforce le dégradé de lisibilité du texte en overlay. */
+  .real-card::after {
+    background: linear-gradient(180deg, rgba(28,31,33,0) 28%, rgba(28,31,33,0.78) 100%);
+  }
+  /* Comparaison empilée : le « + » reste centré et lisible. */
+  .uf-compare-foot { font-size: 13px; }
+}
+
+/* ============ 480px · PETITS MOBILES ============ */
+@media (max-width: 480px) {
+  /* CTA confortables au doigt : pleine largeur. */
+  .final-cta .btn-primary { width: 100%; justify-content: center; }
+  .uf-cfg-cta2 { width: 100%; }
+  /* Chips résumé configurateur : on évite le débordement serré. */
+  .uf-cfg-chips { gap: 6px; }
+  .uf-cfg-chip { font-size: 11px; padding: 5px 9px; }
+  /* Motifs perforés : une seule colonne, vignettes plus lisibles. */
+  .uf-renders-grid { grid-template-columns: 1fr; }
+  /* Features du CTA final empilées et centrées. */
+  .final-cta-features { gap: 10px; }
+}
+
+/* ============ 380px · TRÈS PETITS ÉCRANS ============ */
+@media (max-width: 380px) {
+  /* Pose en 1 colonne : libellés (« Sur longrine béton ») enfin à l'aise. */
+  .uf-cfg-poses { grid-template-columns: 1fr; }
+  .uf-cfg-pose { flex-direction: row; justify-content: flex-start; gap: 12px; min-height: 56px; }
+  .uf-cfg-pose-ico { width: 30px; height: 24px; }
+  /* Motifs configurateur empilés (vignette pleine largeur, plus lisible). */
+  .uf-cfg-motifs { grid-template-columns: 1fr; }
+  .uf-cfg-motif-swatch { height: 56px; }
+}
