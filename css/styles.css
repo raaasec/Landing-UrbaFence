@@ -160,10 +160,23 @@ body {
 .eyebrow, [data-eyebrow] {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 11px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.25em;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
   color: var(--accent);
-  margin-bottom: 24px;
+  margin-bottom: 22px;
+}
+/* Petit trait d'accent devant chaque eyebrow (harmonisation des en-têtes) */
+.eyebrow::before, [data-eyebrow]::before {
+  content: ''; display: inline-block; vertical-align: middle;
+  width: 24px; height: 2px; border-radius: 2px;
+  background: var(--accent); margin-right: 10px;
+  position: relative; top: -1px;
+}
+/* Titres de section : un peu plus de présence (line-height resserré) */
+.uf-context-head h2, .dual-angles-intro h2, .uf-custom-intro h2,
+.uf-patterns-head h2, .uf-timeline-head h2, .positioning-text h2,
+.realisations-head h2, .process-intro h2 {
+  line-height: 1.06; letter-spacing: -0.025em;
 }
 
 h1, .h1 {
@@ -564,14 +577,14 @@ section.dual-angles {
   transition: stroke .4s var(--ease);
 }
 @media (hover: hover) and (pointer: fine) {
-  .tppme-item:hover {
+  .tppme-item:not(.tppme-item--accent):hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 24px rgba(42, 46, 48, 0.08);
     border-left-color: var(--accent);
     background: #fff;
   }
-  .tppme-item:hover .tppme-item-icon { background: var(--accent); transform: rotate(-4deg); }
-  .tppme-item:hover .tppme-item-icon svg { stroke: #fff; }
+  .tppme-item:not(.tppme-item--accent):hover .tppme-item-icon { background: var(--accent); transform: rotate(-4deg); }
+  .tppme-item:not(.tppme-item--accent):hover .tppme-item-icon svg { stroke: #fff; }
 }
 
 /* ===== SECTION MOTIFS ===== */
@@ -961,7 +974,7 @@ section.process { background: var(--bg-soft); padding-top: 80px; padding-bottom:
 }
 .process-intro h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
 .process-intro p { font-size: 16px; color: var(--text); max-width: 540px; margin: 0 auto; }
-.process-scroll { position: relative; height: 280vh; }
+.process-scroll { position: relative; height: 200vh; }
 .process-pin {
   position: sticky; top: 0; height: 100vh;
   display: flex; align-items: flex-start;
@@ -1443,13 +1456,6 @@ section.uf-custom {
 .uf-custom-intro h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
 .uf-custom-intro p { font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 18px; }
 .uf-custom-intro .eyebrow { display: inline-block; margin-bottom: 14px; }
-.uf-custom-claim {
-  display: inline-block; text-align: left;
-  font-family: var(--serif) !important; font-style: italic;
-  font-size: clamp(19px, 2vw, 24px) !important; line-height: 1.3 !important;
-  color: var(--ink) !important;
-  padding-left: 18px; border-left: 3px solid var(--accent);
-}
 .uf-custom-note { font-size: 14.5px !important; color: var(--secondary) !important; }
 
 /* Configurateur résumé */
@@ -1479,9 +1485,6 @@ section.uf-custom {
   display: block; margin-top: 10px;
   font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.9vw, 22px);
   line-height: 1.2; color: var(--ink); letter-spacing: -0.01em;
-}
-.uf-cfg-intro {
-  margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--text);
 }
 
 /* Corps : 2 colonnes (aperçu sticky à gauche, contrôles à droite) */
@@ -1580,27 +1583,6 @@ section.uf-custom {
   font-size: 11px; font-style: italic; color: var(--ink-300);
 }
 /* Cote de longueur illustrative (alignée sur la largeur de la clôture) */
-.uf-cfg-cote { margin-top: 12px; display: flex; justify-content: center; }
-.uf-cfg-cote-bar {
-  position: relative; height: 18px;
-  width: var(--uf-len-w, 78%); max-width: 100%;
-  display: flex; align-items: center; justify-content: center;
-  transition: width .22s var(--ease-out);
-}
-.uf-cfg-cote-bar::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
-  background: var(--ink-200);
-}
-.uf-cfg-cote-bar::after {
-  content: ''; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
-  height: 9px; border-left: 1px solid var(--ink-300); border-right: 1px solid var(--ink-300);
-}
-.uf-cfg-cote-val {
-  position: relative; z-index: 1; background: var(--bg-card);
-  padding: 0 8px; font-size: 11px; font-weight: 600; color: var(--ink-500);
-  letter-spacing: 0.02em;
-}
-
 /* Motifs de perforation — 3 dessins réellement différents, ronds et premium */
 .uf-configurator[data-pattern="privacy"] .uf-cfg-panel,
 .uf-motif--privacy {
@@ -1870,8 +1852,30 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(64px, 8vw, 110p
   color: var(--ink); letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2;
 }
 .uf-timeline-text { font-size: 14px; line-height: 1.55; color: var(--text); }
+/* Visuel d'ambiance en fin de frise — léger flou + fondu doux */
+.uf-timeline-visual {
+  margin: clamp(28px, 4vw, 44px) 0 0; border-radius: var(--r-lg);
+  overflow: hidden; position: relative; height: clamp(120px, 16vw, 190px);
+  box-shadow: var(--shadow-md);
+}
+.uf-timeline-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(28,31,33,0.12) 100%);
+}
+.uf-timeline-visual img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: blur(2px) saturate(0.96); transform: scale(1.06);
+  animation: ufTimelineDrift 18s var(--ease-soft) infinite alternate;
+}
+@keyframes ufTimelineDrift {
+  from { transform: scale(1.06) translateX(0); }
+  to   { transform: scale(1.1) translateX(-12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uf-timeline-visual img { animation: none; transform: scale(1.04); }
+}
 .uf-timeline-note {
-  margin: clamp(36px, 4vw, 48px) auto 0; max-width: 760px; text-align: center;
+  margin: clamp(24px, 3vw, 36px) auto 0; max-width: 760px; text-align: center;
   font-size: 13px; font-style: italic; color: var(--secondary);
 }
 @media (max-width: 760px) {

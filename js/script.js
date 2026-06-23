@@ -73,8 +73,8 @@ flipCards.forEach(card => {
 
     // Trois phases distinctes avec une petite zone d'ease aux seuils
     let phase = 1;
-    if (progress > 0.62) phase = 3;
-    else if (progress > 0.30) phase = 2;
+    if (progress > 0.72) phase = 3;
+    else if (progress > 0.38) phase = 2;
     stack.dataset.phase = phase;
 
     // Hauteur de la barre de progression — 0%, ~50%, 100%
@@ -97,7 +97,7 @@ flipCards.forEach(card => {
       if (mql.matches) return;
       const step = parseInt(it.dataset.step);
       const total = scrollEl.offsetHeight - window.innerHeight;
-      const target = step === 1 ? 0.05 : step === 2 ? 0.45 : 0.85;
+      const target = step === 1 ? 0.05 : step === 2 ? 0.52 : 0.88;
       const top = scrollEl.offsetTop + total * target;
       window.scrollTo({ top, behavior: 'smooth' });
     });
@@ -230,7 +230,6 @@ function initUfConfigurator() {
     set('#ufLengthOut', state.length + ' m');
     set('#ufHeightOut', fmtMm(state.height));
     set('#ufColorOut', col.name);
-    set('#ufCoteVal', state.length + ' m');
     set('#ufPoseTag', impl.tag);
 
     // Résumé compact en chips
