@@ -1686,8 +1686,9 @@ section.uf-patterns { background: var(--bg-card); }
 
 /* Grille de motifs (utilisée par la section dédiée #motifs) */
 .uf-renders-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
 }
+@media (max-width: 992px) { .uf-renders-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 760px) { .uf-renders-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 380px) { .uf-renders-grid { grid-template-columns: 1fr; } }
 .uf-render-card {
@@ -1695,11 +1696,20 @@ section.uf-patterns { background: var(--bg-card); }
   border-radius: var(--r-md); overflow: hidden;
   transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out), border-color .4s var(--ease-out);
 }
+/* Lien cliquable couvrant toute la carte motif */
+.uf-render-link { display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none; }
+.uf-render-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-md); }
 @media (hover: hover) and (pointer: fine) {
   .uf-render-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--brand-100); }
+  .uf-render-card:hover .uf-render-pattern img { transform: scale(1.03); }
 }
-.uf-render-pattern { aspect-ratio: 1 / 1; background: var(--ink-800); }
+.uf-render-pattern { aspect-ratio: 1 / 1; background: var(--ink-800); overflow: hidden; }
 .uf-render-pattern svg { width: 100%; height: 100%; display: block; }
+.uf-render-pattern img {
+  width: 100%; height: 100%; display: block;
+  object-fit: cover; object-position: center;
+  transition: transform .5s var(--ease-out);
+}
 .uf-render-info { padding: 16px 16px 18px; }
 .uf-render-name {
   font-family: var(--sans); font-size: 12px; font-weight: 700;
