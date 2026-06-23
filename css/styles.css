@@ -1703,97 +1703,99 @@ section.uf-patterns { background: var(--bg-card); }
 /* ============================================================
    TIMELINE / DÉLAI (~4 semaines)
    ============================================================ */
-section.uf-timeline { background: var(--bg-page); padding: clamp(64px, 8vw, 110px) 0; }
-.uf-timeline-head { text-align: center; max-width: 720px; margin: 0 auto clamp(44px, 5vw, 64px); }
+section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px) 0; }
+.uf-timeline-head { text-align: center; max-width: 760px; margin: 0 auto clamp(24px, 3vw, 36px); }
 .uf-timeline-head h2 {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 42px); line-height: 1.12;
-  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px;
+  font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08;
+  letter-spacing: -0.02em; color: var(--ink); margin-bottom: 12px;
 }
 .uf-timeline-head h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
-.uf-timeline-head p { font-size: 16px; line-height: 1.6; color: var(--text); }
-.uf-timeline-track {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
-  position: relative;
+.uf-timeline-head p { font-size: 15.5px; line-height: 1.6; color: var(--text); max-width: 620px; margin: 0 auto; }
+
+/* Chips de réassurance « tout en ligne » */
+.uf-timeline-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 18px; }
+.uf-timeline-chip {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600; color: var(--brand-700);
+  background: var(--brand-50); border: 1px solid var(--brand-100);
+  padding: 6px 12px; border-radius: var(--r-pill);
 }
-.uf-timeline-step {
-  position: relative; padding-top: 34px;
-  counter-increment: ufstep;
+
+/* Frise en 4 cartes + ligne connectrice segmentée */
+.uf-timeline-grid {
+  list-style: none; margin: clamp(28px, 4vw, 44px) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; position: relative;
 }
-/* ligne horizontale reliant les marqueurs */
-.uf-timeline-step::before {
-  content: ''; position: absolute; top: 8px; left: 0; right: -18px; height: 2px;
-  background: var(--line); z-index: 0;
+.uf-timeline-grid::before {
+  content: ''; position: absolute; top: 47px; left: 8%; right: 8%; height: 2px; z-index: 0;
+  background: repeating-linear-gradient(90deg, var(--brand-100) 0 10px, transparent 10px 18px);
 }
-.uf-timeline-step:last-child::before { right: 0; }
-.uf-timeline-step--end::before { background: linear-gradient(90deg, var(--accent), var(--brand-100)); }
-.uf-timeline-marker {
-  position: absolute; top: 0; left: 0; z-index: 1;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: var(--bg-card); border: 2px solid var(--brand-100);
+.uf-timeline-card {
+  position: relative; z-index: 1; display: flex; flex-direction: column;
+  background: var(--bg-card); border: 1px solid var(--line-soft);
+  border-radius: var(--r-lg); padding: 24px 22px 22px; box-shadow: var(--shadow-sm);
+}
+.uf-timeline-step-no {
+  position: absolute; top: 16px; right: 18px;
+  font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink-200);
+}
+.uf-timeline-icon {
+  width: 46px; height: 46px; border-radius: 13px; margin-bottom: 16px; color: var(--accent);
+  background: rgba(53, 130, 63, 0.08);
   display: flex; align-items: center; justify-content: center;
 }
-.uf-timeline-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.uf-timeline-step--end .uf-timeline-marker { border-color: var(--accent); box-shadow: 0 0 0 5px rgba(53,130,63,0.12); }
-.uf-timeline-step--prod::before { background: linear-gradient(90deg, var(--accent), var(--brand-100)); }
-.uf-timeline-step--prod .uf-timeline-marker { border-color: var(--accent); box-shadow: 0 0 0 5px rgba(53,130,63,0.12); }
-.uf-timeline-step--prod .uf-timeline-when { color: var(--accent); font-weight: 700; }
-.uf-timeline-text strong { color: var(--accent); font-weight: 600; }
-/* Badge de délai sur l'étape Production — met le « ≈ 4 semaines » en valeur */
-.uf-timeline-badge {
-  display: inline-block; vertical-align: middle; margin-left: 8px;
-  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: #fff; background: var(--accent);
-  padding: 3px 9px; border-radius: var(--r-pill);
-  box-shadow: 0 3px 8px rgba(53, 130, 63, 0.22);
+.uf-timeline-icon svg {
+  width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.6; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
 }
-.uf-timeline-when {
-  display: inline-block; font-family: var(--sans);
-  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--accent); margin-bottom: 8px;
-}
-.uf-timeline-title {
+.uf-timeline-card-title {
   font-family: var(--serif); font-weight: 400; font-size: 19px;
   color: var(--ink); letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.2;
 }
-.uf-timeline-text { font-size: 14px; line-height: 1.55; color: var(--text); }
-/* Visuel d'ambiance en fin de frise — léger flou + fondu doux */
-.uf-timeline-visual {
-  margin: clamp(28px, 4vw, 44px) 0 0; border-radius: var(--r-lg);
-  overflow: hidden; position: relative; height: clamp(120px, 16vw, 190px);
-  box-shadow: var(--shadow-md);
+.uf-timeline-card-text { font-size: 13.5px; line-height: 1.5; color: var(--text); margin: 0 0 14px; }
+.uf-timeline-tag {
+  align-self: flex-start; margin-top: auto;
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-700);
+  background: var(--brand-50); border: 1px solid var(--brand-100);
+  padding: 4px 10px; border-radius: var(--r-pill);
 }
-.uf-timeline-visual::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(28,31,33,0.12) 100%);
+
+/* Carte production — mise en avant */
+.uf-timeline-card--featured {
+  background: linear-gradient(155deg, #fff 0%, var(--brand-50) 60%, rgba(155, 195, 145, 0.34) 100%);
+  border-color: var(--brand-100); box-shadow: 0 16px 36px rgba(31, 78, 38, 0.12); overflow: hidden;
 }
-.uf-timeline-visual img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: blur(2px) saturate(0.96); transform: scale(1.06);
-  animation: ufTimelineDrift 18s var(--ease-soft) infinite alternate;
+.uf-timeline-card--featured::after {
+  content: ''; position: absolute; top: -18px; right: -18px; width: 120px; height: 120px;
+  opacity: 0.5; pointer-events: none;
+  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 2px);
+  background-size: 13px 13px;
+  -webkit-mask-image: radial-gradient(circle at 100% 0%, #000, transparent 70%);
+  mask-image: radial-gradient(circle at 100% 0%, #000, transparent 70%);
 }
-@keyframes ufTimelineDrift {
-  from { transform: scale(1.06) translateX(0); }
-  to   { transform: scale(1.1) translateX(-12px); }
+.uf-timeline-card--featured .uf-timeline-icon { background: var(--accent); color: #fff; }
+.uf-timeline-card--featured .uf-timeline-step-no { color: var(--brand-100); }
+.uf-timeline-badge {
+  align-self: flex-start; margin-top: auto;
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: #fff; background: var(--accent);
+  padding: 5px 11px; border-radius: var(--r-pill);
+  box-shadow: 0 4px 10px rgba(53, 130, 63, 0.28); position: relative; z-index: 1;
 }
-@media (prefers-reduced-motion: reduce) {
-  .uf-timeline-visual img { animation: none; transform: scale(1.04); }
-}
+
 .uf-timeline-note {
-  margin: clamp(24px, 3vw, 36px) auto 0; max-width: 760px; text-align: center;
+  margin: clamp(20px, 3vw, 32px) auto 0; max-width: 760px; text-align: center;
   font-size: 13px; font-style: italic; color: var(--secondary);
 }
-@media (max-width: 760px) {
-  .uf-timeline-track { grid-template-columns: 1fr; gap: 0; }
-  .uf-timeline-step { padding: 4px 0 28px 30px; }
-  .uf-timeline-step::before { /* devient une ligne verticale */
-    top: 8px; bottom: -4px; left: 8px; right: auto; width: 2px; height: auto;
-  }
-  .uf-timeline-step:last-child::before { bottom: auto; height: 0; }
-  .uf-timeline-marker { top: 2px; }
-  .uf-timeline-when { margin-bottom: 4px; }
+
+@media (max-width: 860px) {
+  .uf-timeline-grid { grid-template-columns: repeat(2, 1fr); }
+  .uf-timeline-grid::before { display: none; }
+}
+@media (max-width: 520px) {
+  .uf-timeline-grid { grid-template-columns: 1fr; }
 }
 
 /* Logo discret dans le CTA final */
