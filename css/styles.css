@@ -2048,3 +2048,11 @@ input:focus-visible, [tabindex]:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; scroll-snap-type: none; }
 }
+
+/* ============================================================
+   ÉPURATION — correctif lisibilité titre hero sur petits écrans
+   (évite que « Partenaire Urbafence » soit rogné). Texte/visuel inchangés.
+   ============================================================ */
+@media (max-width: 520px) {
+  .hero-display { font-size: clamp(28px, 8vw, 42px); }
+}
