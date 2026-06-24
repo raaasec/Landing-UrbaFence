@@ -2005,9 +2005,7 @@ input:focus-visible, [tabindex]:focus-visible {
    par .section-screen et le scroll-snap) est branché dessus pour que les
    sections plein écran et les ancres compensent automatiquement la barre. */
 :root {
-  --uf-nav-gap: 12px;                  /* marge flottante au-dessus de la barre */
-  --uf-nav-bar-h: 58px;                /* hauteur visuelle de la barre */
-  --uf-sticky-nav-height: calc(var(--uf-nav-gap) + var(--uf-nav-bar-h)); /* encombrement total réservé */
+  --uf-sticky-nav-height: 64px;        /* hauteur de la barre, collée en haut */
   --header-offset: var(--uf-sticky-nav-height);
 }
 
@@ -2173,54 +2171,52 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   white-space: nowrap; border: 0;
 }
 
-/* Wrapper plein écran TRANSPARENT : sert de calage pour la barre flottante.
-   Le rendu « glass » est porté par .uf-nav-inner (barre centrée). */
+/* Barre pleine largeur COLLÉE EN HAUT (top:0) — effet verre dépoli lisible.
+   Le fond « glass » couvre toute la barre ; l'intérieur garde un max-width. */
 .uf-sticky-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding-top: var(--uf-nav-gap);
-  padding-inline: clamp(12px, 3vw, 24px);
-  background: transparent;
-  pointer-events: none;                /* les zones vides laissent passer la souris */
-}
-.uf-sticky-nav > .uf-nav-inner { pointer-events: auto; } /* la barre reste cliquable */
-
-/* Barre flottante centrée — effet verre dépoli (glassmorphism) */
-.uf-nav-inner {
-  width: 100%;
-  max-width: 1180px;
-  height: var(--uf-nav-bar-h);
-  margin-inline: auto;
-  padding: 0 14px 0 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: rgba(246, 248, 243, 0.55);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 16px;
-  box-shadow: 0 14px 40px rgba(31, 35, 36, 0.10);
+  height: var(--uf-sticky-nav-height);
+  background: rgba(246, 248, 243, 0.72);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+  border-bottom: 1px solid rgba(31, 35, 36, 0.08);
+  box-shadow: 0 10px 30px rgba(31, 35, 36, 0.08);
   transition: background var(--dur-3) var(--ease),
               box-shadow var(--dur-3) var(--ease);
 }
 /* Repli si backdrop-filter non supporté : fond plus opaque (lisibilité) */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .uf-nav-inner { background: rgba(246, 248, 243, 0.95); }
+  .uf-sticky-nav { background: rgba(246, 248, 243, 0.96); }
 }
-
 /* Renforcement subtil dès qu'on a quitté le tout début de page */
-.uf-sticky-nav.is-scrolled .uf-nav-inner {
-  background: rgba(246, 248, 243, 0.72);
-  box-shadow: 0 16px 44px rgba(31, 35, 36, 0.14);
+.uf-sticky-nav.is-scrolled {
+  background: rgba(246, 248, 243, 0.85);
+  box-shadow: 0 12px 34px rgba(31, 35, 36, 0.12);
 }
 
-/* ---- Logo ---- */
+/* Intérieur centré en GRILLE 3 zones : logo | menu centré | zone droite.
+   Les deux pistes 1fr latérales garantissent un menu vraiment centré,
+   quelle que soit la largeur du logo. */
+.uf-nav-inner {
+  width: 100%;
+  max-width: 1180px;
+  height: 100%;
+  margin-inline: auto;
+  padding: 0 28px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ---- Logo (zone gauche) ---- */
 .uf-nav-logo {
+  grid-column: 1;
+  justify-self: start;
   display: inline-flex;
   align-items: center;
-  flex: 0 0 auto;
   text-decoration: none;
   border-radius: 6px;
 }
@@ -2231,8 +2227,8 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   color: var(--ink-800); letter-spacing: -0.01em;
 }
 
-/* ---- Liste de liens ---- */
-.uf-nav-menu { margin-left: auto; }
+/* ---- Liste de liens (zone centrale, vraiment centrée) ---- */
+.uf-nav-menu { grid-column: 2; justify-self: center; }
 .uf-nav-list {
   list-style: none;
   display: flex;
@@ -2278,13 +2274,13 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 }
 .uf-nav-cta.is-active { background: var(--brand-700); color: #fff; }
 
-/* ---- Burger (masqué desktop) ---- */
+/* ---- Burger (zone droite, masqué desktop) ---- */
 .uf-nav-burger {
   display: none;
+  grid-column: 3;
+  justify-self: end;
   position: relative;
-  flex: 0 0 auto;
   width: 44px; height: 44px;
-  margin-left: auto;
   padding: 0;
   background: transparent;
   border: 1px solid rgba(31, 35, 36, 0.12);
@@ -2324,20 +2320,21 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 @media (max-width: 1000px) {
   .uf-nav-burger { display: block; }
 
-  /* Panneau flottant ancré À DROITE, sous le bouton burger (à droite). */
+  /* Panneau flottant ancré À DROITE, sous le bouton burger (à droite).
+     Fond plus opaque qu'en desktop pour rester parfaitement lisible. */
   .uf-nav-menu {
     position: fixed;
     left: auto;
-    right: clamp(12px, 3vw, 24px);
-    top: calc(var(--uf-nav-gap) + var(--uf-nav-bar-h) + 8px);
+    right: clamp(12px, 3vw, 20px);
+    top: calc(var(--uf-sticky-nav-height) + 8px);
     margin: 0;
-    width: min(320px, calc(100vw - 32px));
+    width: min(320px, calc(100vw - 24px));
     max-height: calc(100dvh - var(--uf-sticky-nav-height) - 24px);
     overflow-y: auto;
-    background: rgba(246, 248, 243, 0.72);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(246, 248, 243, 0.94);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+    backdrop-filter: blur(18px) saturate(135%);
+    border: 1px solid rgba(31, 35, 36, 0.08);
     border-radius: 18px;
     box-shadow: 0 18px 45px rgba(31, 35, 36, 0.16);
     /* Replié par défaut — apparition depuis la droite */
@@ -2350,7 +2347,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
                 visibility var(--dur-2) var(--ease);
   }
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-    .uf-nav-menu { background: rgba(246, 248, 243, 0.97); }
+    .uf-nav-menu { background: rgba(246, 248, 243, 0.98); }
   }
   .uf-sticky-nav.is-open .uf-nav-menu {
     transform: translateX(0) scale(1);
@@ -2379,9 +2376,9 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   }
 }
 
-/* Barre un peu plus basse sur mobile (cascade : --uf-sticky-nav-height suit) */
+/* Barre un peu plus basse sur mobile (cascade : --header-offset suit) */
 @media (max-width: 600px) {
-  :root { --uf-nav-gap: 10px; --uf-nav-bar-h: 52px; }
+  :root { --uf-sticky-nav-height: 58px; }
   .uf-nav-logo img { height: 28px; }
 }
 
@@ -2395,7 +2392,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 
 /* Mouvement réduit : pas d'animation de menu/burger */
 @media (prefers-reduced-motion: reduce) {
-  .uf-nav-inner,
+  .uf-sticky-nav,
   .uf-nav-menu,
   .uf-nav-link,
   .uf-nav-burger-bars,
