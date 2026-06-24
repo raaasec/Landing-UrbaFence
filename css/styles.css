@@ -2622,3 +2622,54 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   MOTION / POLISH PREMIUM  (additif — n'altère pas la mise en page)
+   - variables de motion unifiées
+   - "line reveal" du tiret d'eyebrow (lié à l'observer .reveal existant)
+   - hover lift sur les cartes timeline (seules sans hover) — desktop only
+   - feedback au tap sur appareils tactiles (pas de hover-only)
+   ============================================================ */
+:root {
+  --motion-fast: 160ms;
+  --motion-med:  240ms;
+  --motion-slow: 600ms;
+  --ease-premium:  cubic-bezier(.22, .61, .36, 1);
+  --ease-out-soft: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Tiret d'eyebrow qui se "dessine" quand la section apparaît (dans .reveal) */
+.reveal .eyebrow::before,
+.reveal [data-eyebrow]::before {
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform var(--motion-slow) var(--ease-out-soft);
+}
+.reveal.in-view .eyebrow::before,
+.reveal.in-view [data-eyebrow]::before {
+  transform: scaleX(1); transition-delay: 120ms;
+}
+
+/* Desktop : hover lift discret sur les cartes timeline (cohérence avec les autres cartes) */
+@media (hover: hover) and (pointer: fine) {
+  .uf-timeline-card {
+    transition: transform var(--motion-med) var(--ease-premium),
+                box-shadow var(--motion-med) var(--ease-premium),
+                border-color var(--motion-med) var(--ease-premium);
+  }
+  .uf-timeline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--brand-100);
+  }
+}
+
+/* Tactile : retour visuel au tap (aucun hover-only requis) */
+@media (hover: none) {
+  .btn, .uf-sticky-nav-link, .uf-sticky-nav-cta,
+  .uf-render-link, .real-card, .tppme-item, .uf-timeline-card {
+    transition: transform var(--motion-fast) var(--ease-out-soft);
+  }
+  .btn:active, .uf-sticky-nav-link:active, .uf-sticky-nav-cta:active,
+  .uf-render-link:active, .real-card:active, .tppme-item:active,
+  .uf-timeline-card:active { transform: scale(0.985); }
+}
