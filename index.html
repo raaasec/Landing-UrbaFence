@@ -30,40 +30,36 @@
      Sticky/fixed en haut, logo + ancres vers les grandes parties.
      L'état actif est piloté par IntersectionObserver (js/script.js).
      ============================================================ -->
-<nav class="uf-sticky-nav" id="ufNav" aria-label="Navigation principale de la landing">
-  <div class="uf-nav-inner">
+<nav class="uf-sticky-nav" aria-label="Navigation principale de la landing">
+  <div class="uf-sticky-nav-inner">
 
-    <!-- Logo (ancre vers le hero) -->
-    <a class="uf-nav-logo" href="#cercle-partenaire" aria-label="Urbafence — haut de page">
-      <img src="images/URBA_FENCE_FOND.svg" alt="Urbafence" width="32" height="42"
-           onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-nav-logo-fallback&quot;>Urbafence</span>'">
+    <!-- Logo (zone gauche, ancre vers le hero) -->
+    <a class="uf-sticky-nav-brand" href="#cercle-partenaire" aria-label="Urbafence — haut de page">
+      <img class="uf-sticky-nav-logo" src="images/URBA_FENCE_FOND.svg" alt="Urbafence"
+           onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-sticky-nav-fallback&quot;>Urbafence</span>'">
     </a>
 
-    <!-- Bouton burger (mobile) -->
-    <button class="uf-nav-burger" id="ufNavBurger" type="button"
-            aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="ufNavMenu">
-      <span class="uf-nav-burger-bars" aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
-    </button>
-
-    <!-- CTA droit (desktop) — équilibre le logo de gauche -->
-    <a class="uf-nav-link uf-nav-cta uf-nav-cta--right" href="#activer">Rejoindre</a>
-
-    <!-- Liens -->
-    <div class="uf-nav-menu" id="ufNavMenu">
-      <ul class="uf-nav-list">
-        <li><a class="uf-nav-link" href="#cercle-partenaire">Cercle</a></li>
-        <li><a class="uf-nav-link" href="#urbafence">Urbafence</a></li>
-        <li><a class="uf-nav-link" href="#avantages-rapides">Avantages</a></li>
-        <li><a class="uf-nav-link" href="#sur-mesure">Sur mesure</a></li>
-        <li><a class="uf-nav-link" href="#motifs">Motifs</a></li>
-        <li><a class="uf-nav-link" href="#delais">Délais</a></li>
-        <li><a class="uf-nav-link" href="#cadre">Programme</a></li>
-        <li><a class="uf-nav-link" href="#realisations">Cas d'usage</a></li>
-        <li><a class="uf-nav-link" href="#conditions">Conditions</a></li>
-        <li><a class="uf-nav-link uf-nav-cta uf-nav-cta--inlist" href="#activer">Rejoindre</a></li>
-      </ul>
+    <!-- Menu (zone centrale) : en ligne en desktop, panneau à droite en burger -->
+    <div class="uf-sticky-nav-menu" id="ufStickyNavMenu">
+      <a class="uf-sticky-nav-link" href="#cercle-partenaire">Cercle</a>
+      <a class="uf-sticky-nav-link" href="#urbafence">Urbafence</a>
+      <a class="uf-sticky-nav-link" href="#avantages-rapides">Avantages</a>
+      <a class="uf-sticky-nav-link" href="#sur-mesure">Sur mesure</a>
+      <a class="uf-sticky-nav-link" href="#delais">Délais</a>
+      <a class="uf-sticky-nav-link" href="#cadre">Programme</a>
+      <a class="uf-sticky-nav-link" href="#conditions">Conditions</a>
+      <!-- CTA repris dans le panneau mobile uniquement -->
+      <a class="uf-sticky-nav-link uf-sticky-nav-link--cta" href="#activer">Rejoindre</a>
     </div>
+
+    <!-- CTA « Rejoindre » (zone droite, desktop) -->
+    <a class="uf-sticky-nav-cta" href="#activer">Rejoindre</a>
+
+    <!-- Bouton burger (zone droite, mobile/tablette) -->
+    <button class="uf-sticky-nav-toggle" type="button"
+            aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="ufStickyNavMenu">
+      <span></span><span></span><span></span>
+    </button>
 
   </div>
 </nav>

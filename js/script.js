@@ -295,17 +295,18 @@ else document.addEventListener('DOMContentLoaded', initUfConfigurator);
 
 /* ============================================================
    Barre de navigation fixe (.uf-sticky-nav)
-   - Fond renforcé après un léger scroll (is-scrolled)
-   - Menu burger mobile (aria-expanded, clic lien, Échap)
+   - Menu burger (.is-open sur le menu, aria-expanded sur le bouton)
+   - Fermeture au clic sur un lien + Échap
    - État actif de la section visible (IntersectionObserver)
+   Le JS ne gère que des CLASSES (aucun style inline qui casserait le layout).
    ============================================================ */
 (function initStickyNav() {
-  const nav = document.getElementById('ufNav');
+  const nav = document.querySelector('.uf-sticky-nav');
   if (!nav) return;
 
-  const burger = document.getElementById('ufNavBurger');
-  const menu = document.getElementById('ufNavMenu');
-  const links = Array.from(nav.querySelectorAll('.uf-nav-link'));
+  const toggle = nav.querySelector('.uf-sticky-nav-toggle');
+  const menu = document.getElementById('ufStickyNavMenu');
+  const links = Array.from(nav.querySelectorAll('.uf-sticky-nav-link, .uf-sticky-nav-cta'));
 
   // Associe chaque lien à sa section (les ancres absentes sont ignorées)
   const map = links
@@ -316,29 +317,30 @@ else document.addEventListener('DOMContentLoaded', initUfConfigurator);
     })
     .filter(Boolean);
 
-  /* ----- Menu burger (mobile) ----- */
+  /* ----- Ouverture / fermeture du menu burger ----- */
   function setMenu(open) {
-    nav.classList.toggle('is-open', open);
-    if (!burger) return;
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    if (menu) menu.classList.toggle('is-open', open);
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    }
   }
-  if (burger && menu) {
-    burger.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
-    // Fermeture au clic sur un lien (le scroll vers l'ancre reste géré nativement)
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+    // Fermeture au clic sur un lien (le scroll vers l'ancre reste natif)
     menu.addEventListener('click', e => {
-      if (e.target.closest('.uf-nav-link')) setMenu(false);
+      if (e.target.closest('a')) setMenu(false);
     });
     // Échap ferme le menu et redonne le focus au bouton
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
         setMenu(false);
-        burger.focus();
+        toggle.focus();
       }
     });
   }
 
-  /* ----- État actif + fond renforcé ----- */
+  /* ----- État actif de la section visible ----- */
   function setActive(section) {
     map.forEach(({ link, section: s }) => {
       const on = s === section;
@@ -352,7 +354,6 @@ else document.addEventListener('DOMContentLoaded', initUfConfigurator);
     // Ligne de bascule : un peu sous la barre, pour un changement naturel
     const line = nav.offsetHeight + Math.min(window.innerHeight * 0.28, 220);
     let best = null, bestTop = -Infinity;
-    // Section dont le haut a franchi la ligne et en est la plus proche
     map.forEach(({ section }) => {
       const top = section.getBoundingClientRect().top - line;
       if (top <= 0 && top > bestTop) { bestTop = top; best = section; }
@@ -375,7 +376,6 @@ else document.addEventListener('DOMContentLoaded', initUfConfigurator);
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update, { passive: true });
 
-  // IntersectionObserver : déclenche la mise à jour aux changements de visibilité
   if (map.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(update, {
       threshold: [0, 0.25, 0.5, 0.75, 1]
