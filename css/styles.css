@@ -44,8 +44,8 @@
   --info:    var(--brand-500);
 
   /* ====== TYPOGRAPHIE ====== */
-  --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
-  --font-text:    'Hind', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-text:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Tailles — clamp pour rendu fluide */
@@ -204,7 +204,7 @@ h2, .h2 {
   text-wrap: balance;
 }
 h3, .h3 {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-size: var(--t-h3);
   line-height: var(--lh-cozy);
   letter-spacing: var(--ls-snug);
@@ -2673,3 +2673,42 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   .uf-render-link:active, .real-card:active, .tppme-item:active,
   .uf-timeline-card:active { transform: scale(0.985); }
 }
+
+/* ============================================================
+   DIRECTION TYPO INDUSTRIELLE — IBM Plex Sans Condensed + Inter
+   Titres plus francs/condensés, tracking adouci (le condensé est déjà
+   étroit → on évite les lettres collées), emphase <em> sobre (non italique).
+   Placé en fin de feuille : prime sur les anciennes règles Fraunces.
+   ============================================================ */
+h1, .h1, h2, .h2 {
+  font-weight: 600;
+  font-variation-settings: normal;   /* neutralise les axes Fraunces (opsz/SOFT) */
+}
+h1, .h1 { letter-spacing: -0.01em; }
+h2, .h2 { letter-spacing: -0.005em; }
+h3, .h3 { font-weight: 600; letter-spacing: 0; }
+
+.dual-angles-intro h2, .uf-custom-intro h2,
+.uf-patterns-head h2, .uf-timeline-head h2, .positioning-text h2,
+.realisations-head h2, .process-intro h2, .uf-context-h2 {
+  line-height: 1.08;
+  letter-spacing: -0.006em;
+}
+
+.hero-display { font-weight: 600; line-height: 1.0; letter-spacing: -0.015em; }
+.final-cta h2 { font-weight: 600; letter-spacing: -0.012em; }
+.final-headline-xl { letter-spacing: -0.018em !important; }
+
+/* Emphase de titre : non italique, accent sobre (moins « éditorial ») */
+h1 em, h2 em, h3 em,
+.hero-display em, .final-headline-xl em,
+.dual-angles-intro h2 em, .uf-custom-intro h2 em, .uf-patterns-head h2 em,
+.uf-context-h2 em, .uf-timeline-head h2 em, .realisations-head h2 em,
+.positioning-text h2 em, .process-intro h2 em, .step-card h3 em,
+.final-cta h2 em, .motifs-header h3 em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent);
+}
+/* CTA final sur fond sombre : on garde l'accent clair pour le contraste */
+.final-cta h2 em { color: var(--accent-soft); }
