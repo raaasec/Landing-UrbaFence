@@ -2220,7 +2220,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   text-decoration: none;
   border-radius: 6px;
 }
-.uf-nav-logo img { display: block; width: auto; height: 32px; }
+.uf-nav-logo img { display: block; width: auto; height: 40px; }
 .uf-nav-logo-fallback {
   font-family: var(--serif);
   font-size: 18px; font-weight: 600;
@@ -2379,7 +2379,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 /* Barre un peu plus basse sur mobile (cascade : --header-offset suit) */
 @media (max-width: 600px) {
   :root { --uf-sticky-nav-height: 58px; }
-  .uf-nav-logo img { height: 28px; }
+  .uf-nav-logo img { height: 34px; }
 }
 
 /* Focus visible renforcé sur les éléments de nav */
