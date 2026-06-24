@@ -1241,6 +1241,13 @@ section.uf-context {
   display: grid; grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(28px, 4vw, 56px); align-items: stretch;
 }
+/* Desktop (≥881px, grille 2 colonnes) : image à gauche, texte à droite.
+   En mobile (≤880px, 1 colonne) l'ordre HTML est conservé → texte d'abord. */
+@media (min-width: 881px) {
+  .uf-context-grid { grid-template-columns: 0.95fr 1.05fr; }  /* image (gauche) / texte (droite) */
+  .uf-context-col-right { order: 1; }
+  .uf-context-col-left  { order: 2; }
+}
 .uf-context-h2 {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(28px, 3.2vw, 40px); line-height: 1.06;
