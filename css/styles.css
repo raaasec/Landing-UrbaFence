@@ -2005,7 +2005,9 @@ input:focus-visible, [tabindex]:focus-visible {
    par .section-screen et le scroll-snap) est branché dessus pour que les
    sections plein écran et les ancres compensent automatiquement la barre. */
 :root {
-  --uf-sticky-nav-height: 64px;
+  --uf-nav-gap: 12px;                  /* marge flottante au-dessus de la barre */
+  --uf-nav-bar-h: 58px;                /* hauteur visuelle de la barre */
+  --uf-sticky-nav-height: calc(var(--uf-nav-gap) + var(--uf-nav-bar-h)); /* encombrement total réservé */
   --header-offset: var(--uf-sticky-nav-height);
 }
 
@@ -2171,41 +2173,47 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   white-space: nowrap; border: 0;
 }
 
+/* Wrapper plein écran TRANSPARENT : sert de calage pour la barre flottante.
+   Le rendu « glass » est porté par .uf-nav-inner (barre centrée). */
 .uf-sticky-nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  height: var(--uf-sticky-nav-height);
-  background: rgba(250, 250, 247, 0.86);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(31, 35, 36, 0.08);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
-  transition: background var(--dur-3) var(--ease),
-              box-shadow var(--dur-3) var(--ease),
-              border-color var(--dur-3) var(--ease);
+  padding-top: var(--uf-nav-gap);
+  padding-inline: clamp(12px, 3vw, 24px);
+  background: transparent;
+  pointer-events: none;                /* les zones vides laissent passer la souris */
 }
-/* Repli si backdrop-filter non supporté : fond plus opaque */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .uf-sticky-nav { background: rgba(250, 250, 247, 0.97); }
-}
+.uf-sticky-nav > .uf-nav-inner { pointer-events: auto; } /* la barre reste cliquable */
 
-/* Renforcement subtil dès qu'on a quitté le tout début de page */
-.uf-sticky-nav.is-scrolled {
-  background: rgba(250, 250, 247, 0.94);
-  box-shadow: 0 6px 20px rgba(28, 31, 33, 0.07);
-  border-bottom-color: rgba(31, 35, 36, 0.12);
-}
-
+/* Barre flottante centrée — effet verre dépoli (glassmorphism) */
 .uf-nav-inner {
   width: 100%;
-  max-width: var(--container-wide, 1360px);
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 28px;
+  max-width: 1180px;
+  height: var(--uf-nav-bar-h);
+  margin-inline: auto;
+  padding: 0 14px 0 20px;
   display: flex;
   align-items: center;
   gap: 20px;
+  background: rgba(246, 248, 243, 0.55);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(31, 35, 36, 0.10);
+  transition: background var(--dur-3) var(--ease),
+              box-shadow var(--dur-3) var(--ease);
+}
+/* Repli si backdrop-filter non supporté : fond plus opaque (lisibilité) */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .uf-nav-inner { background: rgba(246, 248, 243, 0.95); }
+}
+
+/* Renforcement subtil dès qu'on a quitté le tout début de page */
+.uf-sticky-nav.is-scrolled .uf-nav-inner {
+  background: rgba(246, 248, 243, 0.72);
+  box-shadow: 0 16px 44px rgba(31, 35, 36, 0.14);
 }
 
 /* ---- Logo ---- */
@@ -2316,28 +2324,36 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 @media (max-width: 1000px) {
   .uf-nav-burger { display: block; }
 
+  /* Panneau flottant ancré À DROITE, sous le bouton burger (à droite). */
   .uf-nav-menu {
     position: fixed;
-    left: 0; right: 0;
-    top: var(--uf-sticky-nav-height);
-    margin-left: 0;
-    background: var(--bg-cream);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(31, 35, 36, 0.10);
-    box-shadow: 0 14px 30px rgba(28, 31, 33, 0.10);
-    /* Replié par défaut */
-    max-height: 0;
-    overflow: hidden;
+    left: auto;
+    right: clamp(12px, 3vw, 24px);
+    top: calc(var(--uf-nav-gap) + var(--uf-nav-bar-h) + 8px);
+    margin: 0;
+    width: min(320px, calc(100vw - 32px));
+    max-height: calc(100dvh - var(--uf-sticky-nav-height) - 24px);
+    overflow-y: auto;
+    background: rgba(246, 248, 243, 0.72);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(31, 35, 36, 0.16);
+    /* Replié par défaut — apparition depuis la droite */
+    transform-origin: top right;
+    transform: translateX(12px) scale(0.98);
     opacity: 0;
     visibility: hidden;
-    transition: max-height var(--dur-3) var(--ease),
+    transition: transform var(--dur-3) var(--ease),
                 opacity var(--dur-2) var(--ease),
                 visibility var(--dur-2) var(--ease);
   }
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .uf-nav-menu { background: rgba(246, 248, 243, 0.97); }
+  }
   .uf-sticky-nav.is-open .uf-nav-menu {
-    max-height: calc(100dvh - var(--uf-sticky-nav-height));
-    overflow-y: auto;
+    transform: translateX(0) scale(1);
     opacity: 1;
     visibility: visible;
   }
@@ -2346,7 +2362,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
     flex-direction: column;
     align-items: stretch;
     gap: 2px;
-    padding: 10px 16px 18px;
+    padding: 10px 12px 14px;
   }
   .uf-nav-link {
     min-height: 46px;
@@ -2363,9 +2379,9 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   }
 }
 
-/* Barre un peu plus basse sur mobile (cascade : --header-offset suit) */
+/* Barre un peu plus basse sur mobile (cascade : --uf-sticky-nav-height suit) */
 @media (max-width: 600px) {
-  :root { --uf-sticky-nav-height: 56px; }
+  :root { --uf-nav-gap: 10px; --uf-nav-bar-h: 52px; }
   .uf-nav-logo img { height: 28px; }
 }
 
@@ -2379,7 +2395,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 
 /* Mouvement réduit : pas d'animation de menu/burger */
 @media (prefers-reduced-motion: reduce) {
-  .uf-sticky-nav,
+  .uf-nav-inner,
   .uf-nav-menu,
   .uf-nav-link,
   .uf-nav-burger-bars,
