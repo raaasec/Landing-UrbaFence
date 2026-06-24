@@ -2587,3 +2587,38 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   .positioning-grid { grid-template-columns: 1fr; }
   .positioning-text { width: 100%; }
 }
+
+/* ---- Configurateur mobile : aperçu STICKY pendant le scroll des contrôles ----
+   .uf-cfg-left (aperçu + résumé + couleurs) reste collé sous la navbar pendant
+   qu'on règle longueur/hauteur/pose/motif. Aperçu compacté pour ne pas manger
+   l'écran. Sticky OK ici : aucun ancêtre n'a overflow:hidden (html/body en clip). */
+@media (max-width: 768px) {
+  .uf-cfg-left {
+    position: sticky;
+    top: calc(var(--uf-sticky-nav-height, 64px) + 8px);
+    z-index: 5;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(246, 248, 243, 0.95);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
+    backdrop-filter: blur(12px) saturate(130%);
+    box-shadow: 0 10px 26px rgba(31, 35, 36, 0.10);
+  }
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .uf-cfg-left { background: rgba(246, 248, 243, 0.98); }
+  }
+  .uf-cfg-stage { height: 150px; }          /* aperçu compact en mode sticky */
+  .uf-cfg-chips { gap: 6px; }
+  .uf-cfg-finish { margin-top: 2px; }
+}
+
+/* ---- Garde-fou « mouvement réduit » (n'affecte que ces utilisateurs) ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
