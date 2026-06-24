@@ -2412,3 +2412,138 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   .uf-sticky-nav-link,
   .uf-sticky-nav-toggle > span { transition: none; }
 }
+
+/* ============================================================
+   RESPONSIVE MOBILE OPTIMISATION
+   Desktop intentionally untouched — tout est borné par des
+   media queries max-width. Objectif : moins de hauteur, des
+   sliders horizontaux swipeables au lieu d'empilements infinis.
+   ============================================================ */
+
+/* ---- Scroll vertical libre sur mobile (pas de snap section/section) ---- */
+@media (max-width: 768px) {
+  html { scroll-snap-type: none; }
+  .section-snap { scroll-snap-align: none; }
+  .section-screen { min-height: auto; }
+  .hero.section-screen { min-height: 100svh; }   /* le hero garde une belle hauteur */
+}
+
+/* ---- Base commune des sliders horizontaux natifs (mobile) ---- */
+@media (max-width: 768px) {
+  .tppme-grid,
+  .uf-renders-grid,
+  .realisations-grid,
+  .uf-timeline-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 4px 2px 14px;          /* respiration + place pour l'ombre */
+    grid-template-columns: none;     /* neutralise la grille desktop */
+    grid-auto-rows: auto;
+    scrollbar-width: none;           /* Firefox */
+  }
+  .tppme-grid::-webkit-scrollbar,
+  .uf-renders-grid::-webkit-scrollbar,
+  .realisations-grid::-webkit-scrollbar,
+  .uf-timeline-grid::-webkit-scrollbar { display: none; }  /* Webkit */
+
+  /* Items : largeur ~viewport, on laisse entrevoir la carte suivante */
+  .tppme-item,
+  .uf-render-card,
+  .real-card,
+  .uf-timeline-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  /* Avantages — la carte mise en avant ne doit pas écraser les autres */
+  .tppme-item { scroll-snap-align: start; }
+
+  /* Motifs — image bien visible */
+  .uf-render-card { flex-basis: 80%; }
+
+  /* Cas d'usage — on annule les spans desktop + hauteur maîtrisée */
+  .realisations-grid { grid-auto-flow: column; }
+  .real-card,
+  .real-card.span-6,
+  .real-card.span-3 {
+    grid-column: auto;
+    flex: 0 0 82%;
+    height: clamp(240px, 62vw, 300px);
+  }
+  .real-card-body { transform: none; opacity: 1; }   /* texte lisible sans hover */
+
+  /* Timeline — slider 4 cartes, on masque la ligne de liaison desktop */
+  .uf-timeline-card { flex-basis: 82%; }
+  .uf-timeline-grid::before { display: none; }
+}
+
+/* ---- Conditions : slider horizontal compact (pinned déjà off ≤760) ---- */
+@media (max-width: 768px) {
+  .steps-progress { display: none; }                 /* progression non pertinente en slider */
+  .process-cols { gap: 0; }
+  .steps-stack {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 4px 2px 14px;
+    perspective: none;
+    scrollbar-width: none;
+  }
+  .steps-stack::-webkit-scrollbar { display: none; }
+  .step-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    min-height: auto;
+  }
+}
+
+/* ---- Indice « balayez » sous chaque slider (mobile, CSS only) ---- */
+@media (max-width: 768px) {
+  section.dual-angles .container::after,
+  section.uf-patterns .container::after,
+  section.realisations .container::after,
+  section.uf-timeline .container::after,
+  section.process .process-cols::after {
+    display: block;
+    margin: 14px auto 0;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-400);
+  }
+  section.dual-angles .container::after   { content: "← Faites glisser pour voir les avantages →"; }
+  section.uf-patterns .container::after   { content: "← Balayez pour découvrir les motifs →"; }
+  section.realisations .container::after  { content: "← Faites glisser les cas d'usage →"; }
+  section.uf-timeline .container::after    { content: "← Faites glisser les étapes →"; }
+  section.process .process-cols::after { content: "← Faites glisser les conditions →"; }
+}
+
+/* ---- Allègement des textes secondaires sur petits écrans ---- */
+@media (max-width: 480px) {
+  /* Cartes = titre + 1 phrase courte : on resserre les corps de texte */
+  .tppme-item-body,
+  .uf-render-meta,
+  .uf-timeline-card-text { font-size: 13px; line-height: 1.45; }
+  /* En-têtes de section un peu plus compacts */
+  .dual-angles-intro p,
+  .uf-patterns-head p,
+  .uf-timeline-head p { font-size: 14.5px; }
+  /* Confort tactile : liens/CTA du menu déjà ≥44px ; cartes cliquables OK */
+}
