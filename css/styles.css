@@ -2608,7 +2608,12 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .uf-cfg-left { background: rgba(246, 248, 243, 0.98); }
   }
-  .uf-cfg-stage { height: 150px; }          /* aperçu compact en mode sticky */
+  /* Cadre assez haut pour contenir TOUTE la plage de hauteur du panneau
+     (1000→1800 mm) avec une marge en haut, tout en restant compact pour le
+     mode sticky. La clôture est légèrement réduite pour le mobile afin de
+     ne jamais toucher le haut du cadre, même à 1800 mm. */
+  .uf-cfg-stage { height: clamp(196px, 54vw, 224px); }
+  .uf-cfg-fence { height: calc(var(--uf-panel-h) * 0.82); }
   .uf-cfg-chips { gap: 6px; }
   .uf-cfg-finish { margin-top: 2px; }
 }
