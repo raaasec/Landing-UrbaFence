@@ -292,3 +292,96 @@ function initUfConfigurator() {
 
 if (document.readyState !== 'loading') initUfConfigurator();
 else document.addEventListener('DOMContentLoaded', initUfConfigurator);
+
+/* ============================================================
+   Barre de navigation fixe (.uf-sticky-nav)
+   - Fond renforcé après un léger scroll (is-scrolled)
+   - Menu burger mobile (aria-expanded, clic lien, Échap)
+   - État actif de la section visible (IntersectionObserver)
+   ============================================================ */
+(function initStickyNav() {
+  const nav = document.getElementById('ufNav');
+  if (!nav) return;
+
+  const burger = document.getElementById('ufNavBurger');
+  const menu = document.getElementById('ufNavMenu');
+  const links = Array.from(nav.querySelectorAll('.uf-nav-link'));
+
+  // Associe chaque lien à sa section (les ancres absentes sont ignorées)
+  const map = links
+    .map(link => {
+      const id = (link.getAttribute('href') || '').replace('#', '');
+      const section = id ? document.getElementById(id) : null;
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+
+  /* ----- Menu burger (mobile) ----- */
+  function setMenu(open) {
+    nav.classList.toggle('is-open', open);
+    if (!burger) return;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  }
+  if (burger && menu) {
+    burger.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
+    // Fermeture au clic sur un lien (le scroll vers l'ancre reste géré nativement)
+    menu.addEventListener('click', e => {
+      if (e.target.closest('.uf-nav-link')) setMenu(false);
+    });
+    // Échap ferme le menu et redonne le focus au bouton
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenu(false);
+        burger.focus();
+      }
+    });
+  }
+
+  /* ----- État actif + fond renforcé ----- */
+  function setActive(section) {
+    map.forEach(({ link, section: s }) => {
+      const on = s === section;
+      link.classList.toggle('is-active', on);
+      if (on) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  function pickActive() {
+    // Ligne de bascule : un peu sous la barre, pour un changement naturel
+    const line = nav.offsetHeight + Math.min(window.innerHeight * 0.28, 220);
+    let best = null, bestTop = -Infinity;
+    // Section dont le haut a franchi la ligne et en est la plus proche
+    map.forEach(({ section }) => {
+      const top = section.getBoundingClientRect().top - line;
+      if (top <= 0 && top > bestTop) { bestTop = top; best = section; }
+    });
+    if (!best && map.length) best = map[0].section; // haut de page → 1re section
+    if (best) setActive(best);
+  }
+
+  let ticking = false;
+  function update() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 20);
+      pickActive();
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+
+  // IntersectionObserver : déclenche la mise à jour aux changements de visibilité
+  if (map.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(update, {
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    });
+    map.forEach(({ section }) => io.observe(section));
+  }
+
+  update(); // état initial
+})();
