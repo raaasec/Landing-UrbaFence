@@ -2547,3 +2547,19 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   .uf-timeline-head p { font-size: 14.5px; }
   /* Confort tactile : liens/CTA du menu déjà ≥44px ; cartes cliquables OK */
 }
+
+/* ---- Utilitaires d'affichage conditionnel (mobile) ----
+   .mobile-hide : visible desktop, masqué ≤768px
+   .mobile-only : masqué par défaut (desktop), affiché ≤768px
+   .tablet-hide : masqué ≤1024px
+   Ces classes ne changent RIEN au desktop (sauf .mobile-only, conçue
+   uniquement pour des éléments ajoutés exprès pour le mobile). */
+.mobile-only { display: none; }
+
+@media (max-width: 1024px) {
+  .tablet-hide { display: none !important; }
+}
+@media (max-width: 768px) {
+  .mobile-hide { display: none !important; }
+  .mobile-only { display: block !important; }
+}
