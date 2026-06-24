@@ -314,9 +314,9 @@
     <!-- Discours -->
     <div class="uf-custom-intro reveal">
       <span class="eyebrow">Sur mesure</span>
-      <h2>Pas un stock à adapter. <em>Une clôture à fabriquer pour votre chantier.</em></h2>
+      <h2>Une clôture configurée pour <em>chaque chantier.</em></h2>
       <p>
-        Le projet commence par vos cotes&nbsp;: dimensions, motif, occultation et couleur, avant mise en production.
+        Dimensions, pose, motif et couleur&nbsp;: chaque projet est préparé avant production.
       </p>
     </div>
 
@@ -375,14 +375,17 @@
         <!-- Colonne droite — contrôles -->
         <div class="uf-cfg-right">
 
-          <div class="uf-cfg-field">
-            <label class="uf-cfg-sublabel" for="ufLength">Longueur <output id="ufLengthOut" for="ufLength">6 m</output></label>
-            <input class="uf-cfg-range" type="range" id="ufLength" min="2" max="12" step="1" value="6">
-          </div>
+          <!-- Longueur + Hauteur côte à côte sur desktop -->
+          <div class="uf-cfg-fields-row">
+            <div class="uf-cfg-field">
+              <label class="uf-cfg-sublabel" for="ufLength">Longueur <output id="ufLengthOut" for="ufLength">6 m</output></label>
+              <input class="uf-cfg-range" type="range" id="ufLength" min="2" max="12" step="1" value="6">
+            </div>
 
-          <div class="uf-cfg-field">
-            <label class="uf-cfg-sublabel" for="ufHeight">Hauteur <output id="ufHeightOut" for="ufHeight">1 500 mm</output></label>
-            <input class="uf-cfg-range" type="range" id="ufHeight" min="1000" max="1800" step="100" value="1500">
+            <div class="uf-cfg-field">
+              <label class="uf-cfg-sublabel" for="ufHeight">Hauteur <output id="ufHeightOut" for="ufHeight">1 500 mm</output></label>
+              <input class="uf-cfg-range" type="range" id="ufHeight" min="1000" max="1800" step="100" value="1500">
+            </div>
           </div>
 
           <div class="uf-cfg-field">

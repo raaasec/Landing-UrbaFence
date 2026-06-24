@@ -2717,3 +2717,49 @@ h1 em, h2 em, h3 em,
 }
 /* CTA final sur fond sombre : on garde l'accent clair pour le contraste */
 .final-cta h2 em { color: var(--accent-soft); }
+
+/* ============================================================
+   SECTION "SUR MESURE" — COMPACTAGE 16:9 (desktop ≥860px)
+   Objectif : tenir dans un écran 16:9 sans casser le configurateur.
+   Tout est borné ≥860px → le mobile (≤768px) reste inchangé.
+   ============================================================ */
+
+/* Longueur + Hauteur : empilés en mobile, côte à côte en desktop */
+.uf-cfg-fields-row { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+@media (min-width: 860px) {
+  /* Section + intro plus ramassées */
+  section.uf-custom { padding: clamp(22px, 2.4vw, 44px) 0; }
+  .uf-custom-intro { margin-bottom: clamp(12px, 1.6vw, 20px); }
+
+  /* Cadre du configurateur : padding réduit en desktop (gain de hauteur) */
+  .uf-configurator { padding: clamp(16px, 1.8vw, 24px); }
+
+  /* Header configurateur compact */
+  .uf-cfg-head { margin-bottom: 8px; }
+  .uf-cfg-title { margin-top: 4px; }
+
+  /* Corps : aperçu à gauche, contrôles resserrés à droite */
+  .uf-cfg-body { gap: clamp(20px, 2.4vw, 32px); }
+  .uf-cfg-right { gap: 12px; }
+  .uf-cfg-field { gap: 7px; }
+  .uf-cfg-left { gap: 12px; }
+
+  /* Longueur + Hauteur sur une seule rangée */
+  .uf-cfg-fields-row { grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  /* Aperçu un peu plus compact (clôture toujours contenue, marge en haut) */
+  .uf-cfg-stage { height: clamp(224px, 27vh, 288px); }
+
+  /* Poses : 3 sur une ligne, plus basses */
+  .uf-cfg-pose { padding: 9px 8px; gap: 5px; }
+  .uf-cfg-pose-ico { width: 32px; height: 24px; }
+
+  /* Motifs : 3 sur une ligne, vignettes plus petites */
+  .uf-cfg-motif { padding: 9px; gap: 6px; }
+  .uf-cfg-motif-swatch { height: 40px; }
+
+  /* Notes en micro-texte (gain de hauteur) */
+  .uf-cfg-note, .uf-cfg-hint, .uf-cfg-cta-sub { font-size: 11px; line-height: 1.4; margin-top: 0; }
+  .uf-cfg-cta-row { margin-top: 2px; }
+}
