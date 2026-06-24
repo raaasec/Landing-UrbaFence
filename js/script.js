@@ -131,7 +131,6 @@ function initUfConfigurator() {
     { id: 'anthracite', name: 'Anthracite',     hex: '#2F3436' },
     { id: 'noir',       name: 'Noir sablé',      hex: '#1F2324' },
     { id: 'quartz',     name: 'Gris quartz',     hex: '#6A6F6B' },
-    { id: 'blanc',      name: 'Blanc cassé',     hex: '#E8E3D7' },
     { id: 'vert',       name: 'Vert Urbafence',  hex: '#35823F' },
     { id: 'bronze',     name: 'Bronze',          hex: '#8A6A43' }
   ];
