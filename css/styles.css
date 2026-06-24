@@ -2005,7 +2005,7 @@ input:focus-visible, [tabindex]:focus-visible {
    par .section-screen et le scroll-snap) est branché dessus pour que les
    sections plein écran et les ancres compensent automatiquement la barre. */
 :root {
-  --uf-sticky-nav-height: 72px;        /* hauteur de la barre, collée en haut */
+  --uf-sticky-nav-height: 68px;        /* hauteur de la barre, collée en haut */
   --header-offset: var(--uf-sticky-nav-height);
 }
 
@@ -2200,8 +2200,9 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
    Les deux pistes 1fr latérales garantissent un menu vraiment centré,
    quelle que soit la largeur du logo. */
 .uf-nav-inner {
-  width: min(1180px, calc(100% - 56px));
+  width: min(1180px, calc(100% - 40px));
   height: 100%;
+  min-height: var(--uf-sticky-nav-height);
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -2218,7 +2219,7 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
   text-decoration: none;
   border-radius: 6px;
 }
-.uf-nav-logo img { display: block; width: auto; height: 52px; }
+.uf-nav-logo img { display: block; width: auto; height: 48px; }
 .uf-nav-logo-fallback {
   font-family: var(--serif);
   font-size: 18px; font-weight: 600;
@@ -2226,17 +2227,20 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 }
 
 /* ---- Liste de liens (zone centrale, vraiment centrée) ---- */
-.uf-nav-menu { grid-column: 2; justify-self: center; }
+.uf-nav-menu { grid-column: 2; justify-self: center; min-width: 0; }
 .uf-nav-list {
   list-style: none;
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;          /* jamais de passage à la ligne sur desktop */
+  white-space: nowrap;
   gap: 2px;
   margin: 0; padding: 0;
 }
 .uf-nav-link {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;             /* les liens ne rétrécissent pas / ne wrappent pas */
   padding: 8px 12px;
   border-radius: 999px;
   font-family: var(--sans);
@@ -2274,8 +2278,9 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 
 /* CTA droit (desktop) : occupe la zone 3 et équilibre le logo à gauche. */
 .uf-nav-cta--right { grid-column: 3; justify-self: end; margin-left: 0; }
-/* Sur desktop, le CTA de la liste centrale est masqué (évite le doublon). */
-@media (min-width: 1001px) {
+/* Sur desktop large (≥1200px), le CTA de la liste centrale est masqué
+   (le CTA droit prend le relais). En dessous : burger → il réapparaît. */
+@media (min-width: 1200px) {
   .uf-nav-list .uf-nav-cta--inlist { display: none; }
 }
 
@@ -2313,17 +2318,10 @@ svg { max-width: 100%; }            /* sécurité : aucun média ne déborde */
 .uf-sticky-nav.is-open .uf-nav-burger-bars::before { transform: rotate(45deg); }
 .uf-sticky-nav.is-open .uf-nav-burger-bars::after  { transform: rotate(-45deg); }
 
-/* ============ TABLETTE COMPACTE : on resserre avant le burger ============ */
-@media (max-width: 1120px) {
-  .uf-nav-link { padding: 8px 9px; font-size: 12.5px; }
-  .uf-nav-list { gap: 0; }
-  .uf-nav-cta { padding: 8px 15px; }
-  .uf-nav-inner { gap: 14px; }
-  .uf-nav-logo img { height: 46px; }   /* logo légèrement réduit en tablette */
-}
-
-/* ============ MOBILE / TABLETTE PORTRAIT : menu burger ============ */
-@media (max-width: 1000px) {
+/* ============ LAPTOP / TABLETTE / MOBILE : menu burger (≤1199px) ============
+   On bascule en burger AVANT que les liens ne puissent se tasser : le menu
+   desktop n'est affiché qu'à partir de 1200px, où tout tient largement. */
+@media (max-width: 1199px) {
   .uf-nav-burger { display: block; }
   .uf-nav-cta--right { display: none; }   /* le burger reprend la zone droite */
 
