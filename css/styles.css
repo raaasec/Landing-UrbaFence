@@ -2282,6 +2282,16 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
   }
   .hero-photo img { object-position: center 82%; }
   .hero-photo-caption { left: 16px; top: 14px; font-size: 10px; }
+
+  /* Carte de marque : conservée sur mobile, compacte, en HAUT-DROITE
+     (la clôture est en bas de l'image → on ne la masque pas). */
+  .hero-photo-2 {
+    top: 12px; right: 12px; bottom: auto; left: auto;
+    width: auto; max-width: 132px; padding: 11px 13px; border-radius: 14px;
+  }
+  .hero-brandcard-logo { height: 34px; }
+  .hero-brandcard-text { font-size: 10.5px; margin-top: 6px; line-height: 1.2; }
+  .hero-brandcard-perf { width: 60px; height: 60px; top: -10px; right: -10px; }
 }
 
 @media (max-width: 480px) {
