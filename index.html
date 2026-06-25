@@ -139,15 +139,45 @@
   <div class="container">
     <div class="uf-context-grid reveal">
 
-      <!-- COLONNE GAUCHE (rendue à DROITE en desktop) — texte + bloc Urbafence -->
-      <div class="uf-context-col-left">
+      <!-- Texte de section (desktop : à droite ; mobile : au-dessus du slider) -->
+      <div class="uf-context-text">
         <span class="eyebrow">Urbafence, concrètement</span>
         <h2 class="uf-context-h2">L'occultation en tôle perforée, <em>sur mesure.</em></h2>
-        <p class="uf-context-lead">
+        <p class="uf-context-lead mobile-hide">
           Une réponse complémentaire pour les projets où l'intimité, la sécurité visuelle et le rendu architectural comptent autant que la clôture elle-même.
         </p>
+        <p class="uf-context-lead mobile-only">
+          Une réponse complémentaire pour limiter les vues, préserver l'intimité et soigner le rendu.
+        </p>
+      </div>
 
-        <!-- Bloc de marque : motif PAKORIS sur tout le fond + dégradé vert charte -->
+      <!-- Médias : image + bloc Urbafence.
+           Desktop : grille (le wrapper est neutralisé via display:contents).
+           Mobile : slider horizontal scroll-snap entre les 2 cartes. -->
+      <div class="uf-context-media">
+
+        <!-- Carte 1 : image naturelle (accent sur la clôture) + badge discret -->
+        <div class="uf-context-visual">
+          <!-- IMG-CONTEXT · Sécurité visuelle Urbafence (paysage) -->
+          <img class="uf-context-img-main"
+               src="images/ecole%20vigi%20pirate.jpg"
+               alt="Clôture Urbafence installée autour d'une cour d'école" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/1200x900/EAF3E7/35823F?text=A+ajouter'">
+          <div class="uf-security-badge">
+            <span class="uf-security-badge-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
+                <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
+              </svg>
+            </span>
+            <div class="uf-security-badge-text">
+              <strong>Sécurité visuelle</strong>
+              <span>Limiter les vues directes sur écoles, collectivités et sites exposés.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 2 : bloc Urbafence (motif PAKORIS plein fond + vert charte) -->
         <article class="uf-occultation-card">
           <span class="uf-occultation-motif" aria-hidden="true"></span>
           <span class="uf-occultation-glow" aria-hidden="true"></span>
@@ -197,30 +227,11 @@
             <span class="uf-occultation-chip">Dimensions au projet</span>
           </div>
         </article>
+
       </div>
 
-      <!-- COLONNE DROITE (rendue à GAUCHE en desktop) — image naturelle + badge discret -->
-      <div class="uf-context-col-right">
-        <div class="uf-context-visual">
-          <!-- IMG-CONTEXT · Sécurité visuelle Urbafence (paysage) -->
-          <img class="uf-context-img-main"
-               src="images/ecole%20vigi%20pirate.jpg"
-               alt="Clôture Urbafence installée autour d'une cour d'école" loading="lazy"
-               onerror="this.onerror=null;this.src='https://placehold.co/1200x900/EAF3E7/35823F?text=A+ajouter'">
-          <div class="uf-security-badge">
-            <span class="uf-security-badge-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
-                <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
-              </svg>
-            </span>
-            <div class="uf-security-badge-text">
-              <strong>Sécurité visuelle</strong>
-              <span>Limiter les vues directes sur écoles, collectivités et sites exposés.</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Hint mobile uniquement : invite au swipe -->
+      <span class="uf-context-hint" aria-hidden="true">Balayez pour voir Urbafence&nbsp;→</span>
 
     </div>
   </div>

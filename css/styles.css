@@ -1234,17 +1234,24 @@ section.uf-context {
   background: var(--bg-card);
   position: relative;
 }
-/* Grille principale : discours+comparaison à gauche, image+sécurité à droite */
+/* Grille principale.
+   Base (≤880) : 1 colonne, blocs empilés (texte, image, carte).
+   Desktop (≥881) : image à gauche (sur 2 rangées), texte + carte à droite. */
 .uf-context-grid {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(28px, 4vw, 56px); align-items: stretch;
+  display: grid; grid-template-columns: 1fr;
+  gap: 28px; align-items: stretch;
 }
-/* Desktop (≥881px, grille 2 colonnes) : image à gauche, texte à droite.
-   En mobile (≤880px, 1 colonne) l'ordre HTML est conservé → texte d'abord. */
+.uf-context-hint { display: none; }
 @media (min-width: 881px) {
-  .uf-context-grid { grid-template-columns: 0.95fr 1.05fr; }  /* image (gauche) / texte (droite) */
-  .uf-context-col-right { order: 1; }
-  .uf-context-col-left  { order: 2; }
+  .uf-context-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-areas: "visual text" "visual card";
+    column-gap: clamp(28px, 4vw, 56px); row-gap: 20px;
+  }
+  .uf-context-media   { display: contents; }      /* le wrapper s'efface : grid-areas sur ses enfants */
+  .uf-context-text    { grid-area: text; align-self: start; }
+  .uf-context-visual  { grid-area: visual; }
+  .uf-occultation-card{ grid-area: card; align-self: start; margin-top: 0; }
 }
 .uf-context-h2 {
   font-family: var(--serif); font-weight: 400;
@@ -1508,6 +1515,49 @@ section.uf-context {
   .uf-context-grid { grid-template-columns: 1fr; gap: 28px; }
   .uf-context-img-main { min-height: clamp(260px, 50vw, 380px); }
 }
+
+/* ---- Mobile (#urbafence) : slider horizontal image ↔ bloc Urbafence ---- */
+@media (max-width: 768px) {
+  :root { --uf-context-mobile-card-height: clamp(360px, 82vw, 440px); }
+
+  .uf-context-grid { display: flex; flex-direction: column; gap: 16px; }
+
+  /* Le wrapper devient le rail du slider (annule display:contents desktop) */
+  .uf-context-media {
+    display: flex; gap: 14px;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    padding: 4px 20px 12px; margin: 0 -20px -4px;
+    scrollbar-width: none;
+  }
+  .uf-context-media::-webkit-scrollbar { display: none; }
+
+  /* Deux cartes : même largeur, MÊME hauteur, swipeables */
+  .uf-context-visual,
+  .uf-occultation-card {
+    flex: 0 0 86%; scroll-snap-align: start;
+    height: var(--uf-context-mobile-card-height);
+    min-height: 0; margin: 0;
+  }
+  .uf-context-img-main { height: 100%; min-height: 0; object-position: center 72%; }
+  .uf-occultation-card { justify-content: space-between; }
+
+  /* Badge réduit, déplacé en haut-gauche, sans description → ne masque plus la clôture */
+  .uf-security-badge {
+    top: 12px; left: 12px; right: auto; bottom: auto;
+    gap: 8px; padding: 7px 11px;
+  }
+  .uf-security-badge-ico { width: 26px; height: 26px; }
+  .uf-security-badge-ico svg { width: 15px; height: 15px; }
+  .uf-security-badge-text strong { font-size: 12px; margin: 0; }
+  .uf-security-badge-text span { display: none; }
+
+  /* Hint de swipe */
+  .uf-context-hint {
+    display: block; text-align: center; margin-top: 2px;
+    font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--secondary);
+  }
+}
+
 @media (max-width: 560px) {
   .uf-compare { grid-template-columns: 1fr; }
   .uf-compare-plus { transform: rotate(90deg); justify-self: center; }
