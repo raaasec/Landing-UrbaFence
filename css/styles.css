@@ -2260,7 +2260,7 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
      du viewport et faisait déborder le titre. Largeur = conteneur, garantie. */
   .hero-grid { display: block; }
   .hero-copy, .hero-visual { min-width: 0; max-width: 100%; }
-  .hero-visual { margin-top: 28px; }
+  .hero-visual { margin-top: 40px; }   /* respiration entre la méta et l'image */
 
   /* Titre : retour à la ligne propre.
      text-wrap:normal (au lieu de balance) → évite une coupure figée avant
