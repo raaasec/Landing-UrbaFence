@@ -1232,16 +1232,7 @@ section.final-cta.final-cta--compact {
    ============================================================ */
 section.uf-context {
   background: var(--bg-card);
-  padding: 0;
   position: relative;
-}
-/* Scroll storytelling « pinned » : le module reste affiché (slide 16:9)
-   pendant qu'on traverse une zone de scroll volontairement courte (~1 écran de plus). */
-.uf-context-scroll { position: relative; height: 185vh; }
-.uf-context-pin {
-  position: sticky; top: 0; min-height: 100vh;
-  display: flex; align-items: center; overflow: hidden;
-  padding: calc(var(--header-offset) + clamp(12px, 3vh, 32px)) 0 clamp(24px, 4vh, 48px);
 }
 /* Grille principale : discours+comparaison à gauche, image+sécurité à droite */
 .uf-context-grid {
@@ -1274,42 +1265,44 @@ section.uf-context {
 }
 
 /* ============================================================
-   MODULE STICKY DE POSITIONNEMENT (#urbafence)
-   Deux cartes superposées dans une "scène" à hauteur fixe.
-   Le scroll (data-phase 1→2, piloté en JS) fait passer le focus
-   de « Vos solutions actuelles » à « Urbafence ».
+   MODULE DE POSITIONNEMENT (#urbafence)
+   Composition statique côte à côte : « offre actuelle » | pont | Urbafence.
+   Révélée en cascade quand la section entre dans le viewport
+   (transition-delay piloté par .uf-context-grid.in-view, sans JS).
    ============================================================ */
-.uf-position-flow { margin-top: 20px; }
-.uf-position-stage {
-  position: relative;
-  height: clamp(238px, 32vh, 280px);
+.uf-position-flow { margin-top: 22px; }
+.uf-position-pair {
+  display: grid; grid-template-columns: minmax(0, 0.86fr) 88px minmax(0, 1.3fr);
+  gap: 8px; align-items: center;
 }
 .uf-position-card {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px;
-  border-radius: var(--r-lg); padding: 20px 22px; text-align: left;
-  transition: transform .9s cubic-bezier(.16,1,.3,1), opacity .55s var(--ease-out);
-  will-change: transform, opacity;
+  display: flex; flex-direction: column; gap: 8px;
+  border-radius: var(--r-lg); padding: 15px 16px; text-align: left; position: relative;
 }
-/* Carte socle métier — neutre, discrète */
-.uf-position-card--base {
-  background: var(--bg-page); border: 1px solid var(--line-soft);
-  box-shadow: var(--shadow-sm); z-index: 1;
-  opacity: 1; transform: translateY(0) scale(1);
+
+/* Entrée en cascade — état initial puis révélé via .in-view de la grille */
+.uf-position-card, .uf-position-bridge {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s var(--ease-out), transform .8s cubic-bezier(.16,1,.3,1);
 }
+.uf-position-card--brand { transform: translateY(20px) scale(0.97); }
+.uf-context-grid.in-view .uf-position-card--base  { opacity: 1; transform: translateY(0); transition-delay: .05s; }
+.uf-context-grid.in-view .uf-position-bridge       { opacity: 1; transform: translateY(0); transition-delay: .32s; }
+.uf-context-grid.in-view .uf-position-card--brand  { opacity: 1; transform: translateY(0) scale(1); transition-delay: .56s; }
+
+/* ---- Carte 1 : socle métier (secondaire, recessive) ---- */
+.uf-position-card--base { background: var(--bg-page); border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm); }
 .uf-position-label {
-  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary);
 }
-.uf-position-base-text { font-size: 13px; line-height: 1.45; color: var(--ink-400); margin: 0 0 2px; }
-
-/* Solutions : tuiles icône + libellé */
-.uf-position-solutions { display: flex; flex-wrap: wrap; gap: 8px; }
+.uf-position-base-sub { font-size: 11.5px; color: var(--ink-400); margin-top: -2px; }
+.uf-position-solutions { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
 .uf-position-sol {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 9px; width: 100%;
   font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-700);
   background: var(--bg-card); border: 1px solid var(--line-soft);
-  padding: 7px 12px 7px 8px; border-radius: var(--r-pill);
+  padding: 6px 11px 6px 6px; border-radius: var(--r-pill);
 }
 .uf-position-sol-ico {
   width: 24px; height: 24px; flex: 0 0 auto; border-radius: 7px;
@@ -1321,152 +1314,74 @@ section.uf-context {
   stroke-linecap: round; stroke-linejoin: round;
 }
 
-.uf-position-chips { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
-.uf-position-chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
-  color: var(--ink-500); background: var(--bg-card); border: 1px solid var(--line-soft);
-  padding: 4px 10px; border-radius: var(--r-pill);
+/* ---- Pont central : complément occultation (relie, n'oppose pas) ---- */
+.uf-position-bridge {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  text-align: center;
 }
-.uf-position-chip--brand { color: var(--brand-700); background: #fff; border-color: var(--brand-100); }
-.uf-position-chip-ico {
-  width: 12px; height: 12px; flex: 0 0 auto;
-  stroke: currentColor; stroke-width: 1.7; fill: none;
-  stroke-linecap: round; stroke-linejoin: round; color: var(--accent);
+.uf-position-bridge-ico {
+  width: 38px; height: 38px; flex: 0 0 auto; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: #fff; box-shadow: 0 8px 18px rgba(53, 130, 63, 0.28);
 }
-.uf-position-chip-ico circle { fill: currentColor; stroke: none; }
+.uf-position-bridge-ico svg {
+  width: 19px; height: 19px; stroke: currentColor; stroke-width: 1.7; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.uf-position-bridge-label {
+  font-family: var(--sans); font-size: 9.5px; font-weight: 700; line-height: 1.25;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-700);
+}
 
-/* Carte réponse Urbafence — premium, contrastée (cachée au départ) */
+/* ---- Carte 2 : Urbafence, réponse premium (dominante) ---- */
 .uf-position-card--brand {
-  z-index: 2; overflow: hidden;
+  overflow: hidden; gap: 9px; padding: 16px 18px;
   background: linear-gradient(150deg, #ffffff 0%, var(--brand-50) 50%, rgba(155, 195, 145, 0.42) 100%);
   border: 1px solid var(--brand-100);
-  box-shadow: 0 26px 54px rgba(31, 78, 38, 0.20);
-  opacity: 0; transform: translateY(42px) scale(0.94); pointer-events: none;
+  box-shadow: 0 22px 46px rgba(31, 78, 38, 0.18);
 }
-/* Motif perforé un peu plus présent sur la carte brand */
-.uf-position-perf { width: 130px; height: 130px; opacity: 0.55; }
-/* Logo en filigrane (grand, très léger) côté droit */
-.uf-position-watermark {
-  position: absolute; right: -10px; bottom: -14px; z-index: 0; pointer-events: none;
-  opacity: 0.06;
+.uf-position-perf { width: 120px; height: 120px; opacity: 0.5; }
+.uf-position-watermark { position: absolute; right: -8px; bottom: -14px; z-index: 0; pointer-events: none; opacity: 0.06; }
+.uf-position-watermark img { height: 130px; width: auto; display: block; }
+.uf-position-brand-head { display: flex; align-items: center; gap: 11px; position: relative; z-index: 1; }
+.uf-position-brandtag { display: flex; align-items: center; }
+.uf-position-logo { height: 42px; width: auto; display: block; }
+.uf-position-label--brand { font-family: var(--serif); font-size: 20px; color: var(--brand-700); }
+.uf-position-brand-eyebrow {
+  font-family: var(--sans); font-size: 9.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);
+  padding: 4px 9px; border-radius: var(--r-pill);
+  background: #fff; border: 1px solid var(--brand-100);
 }
-.uf-position-watermark img { height: 150px; width: auto; display: block; }
-/* Logo de marque, bien présent en haut de carte */
-.uf-position-brandtag { position: relative; z-index: 1; display: flex; align-items: center; }
-.uf-position-logo { height: 46px; width: auto; display: block; }
-.uf-position-label--brand {
-  font-family: var(--serif); font-size: 22px; color: var(--brand-700);
-  position: relative; z-index: 1;
+.uf-position-text {
+  font-family: var(--serif); font-size: 15.5px; line-height: 1.25; color: var(--ink);
+  margin: 0; position: relative; z-index: 1;
 }
-.uf-position-title {
-  font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.18;
-  letter-spacing: -0.01em; color: var(--ink); margin: 0; position: relative; z-index: 1;
+.uf-position-benefits {
+  list-style: none; margin: 1px 0 0; padding: 0; position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 6px;
 }
-.uf-position-title em { font-style: italic; font-weight: 300; color: var(--accent); }
-.uf-position-text { font-size: 12.5px; line-height: 1.45; color: var(--ink-700); margin: 0; position: relative; z-index: 1; max-width: 92%; }
-
-/* Callout pivot — pastille glass straddle le haut de la scène (cachée au départ) */
-.uf-position-callout {
-  position: absolute; left: 50%; top: 0; z-index: 4;
-  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
-  font-family: var(--sans); font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.04em; color: var(--brand-700);
-  padding: 7px 14px; border-radius: var(--r-pill);
-  background: rgba(246, 248, 243, 0.86);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-  border: 1px solid var(--brand-100); box-shadow: 0 10px 24px rgba(31, 78, 38, 0.18);
-  opacity: 0; transform: translate(-50%, 12px) scale(0.96); pointer-events: none;
-  transition: transform .6s cubic-bezier(.16,1,.3,1), opacity .5s var(--ease-out);
+.uf-position-benefits li {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sans); font-size: 12.5px; font-weight: 500; color: var(--ink-700);
 }
-.uf-position-callout-ico {
-  width: 18px; height: 18px; flex: 0 0 auto;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 6px; background: var(--accent); color: #fff;
-}
-.uf-position-callout-ico svg {
-  width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.8; fill: none;
+.uf-position-benefits svg {
+  width: 16px; height: 16px; flex: 0 0 auto;
+  stroke: var(--accent); stroke-width: 1.7; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
 
-/* ---- PHASE 2 : Urbafence prend le focus ---- */
-.uf-position-stage[data-phase="2"] .uf-position-card--base {
-  opacity: 0.45; transform: translateY(-12px) scale(0.96);
+/* ---- Mobile : empilage simple du pont et des cartes ---- */
+@media (max-width: 560px) {
+  .uf-position-pair { grid-template-columns: 1fr; gap: 10px; }
+  .uf-position-bridge { flex-direction: row; gap: 10px; }
+  .uf-position-bridge-label br { display: none; }
 }
-.uf-position-stage[data-phase="2"] .uf-position-card--brand {
-  opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
-}
-.uf-position-stage[data-phase="2"] .uf-position-callout {
-  opacity: 1; transform: translate(-50%, -50%) scale(1);
-}
-
-/* ---- Pied : progression 01 → 02 + indice de scroll ---- */
-.uf-position-foot {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  margin-top: 14px; min-height: 22px;
-}
-.uf-position-progress { display: inline-flex; align-items: center; gap: 10px; }
-.uf-position-progress-step {
-  font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 1;
-  color: var(--ink-300); transition: color .5s var(--ease);
-}
-.uf-position-progress-step[data-step="1"] { color: var(--accent); }
-.uf-position-progress-track {
-  position: relative; width: 56px; height: 2px; border-radius: 2px;
-  background: var(--line); overflow: hidden;
-}
-.uf-position-progress-fill {
-  position: absolute; left: 0; top: 0; height: 100%; width: 0;
-  background: var(--accent); transition: width .7s cubic-bezier(.16,1,.3,1);
-}
-.uf-position-scrollcue {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--sans); font-size: 11.5px; font-weight: 600; color: var(--secondary);
-  transition: opacity .4s var(--ease);
-}
-.uf-position-scrollcue-arrow {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--brand-50); color: var(--accent);
-  animation: ufScrollBob 1.6s var(--ease) infinite;
-}
-.uf-position-scrollcue-arrow svg {
-  width: 13px; height: 13px; stroke: currentColor; stroke-width: 2; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
-}
-@keyframes ufScrollBob {
-  0%, 100% { transform: translateY(-2px); }
-  50%      { transform: translateY(2px); }
-}
-
-/* Réactions du pied à la phase (combinateur de frères, sans JS) */
-.uf-position-stage[data-phase="2"] ~ .uf-position-foot .uf-position-progress-fill { width: 100%; }
-.uf-position-stage[data-phase="2"] ~ .uf-position-foot .uf-position-progress-step[data-step="1"] { color: var(--ink-300); }
-.uf-position-stage[data-phase="2"] ~ .uf-position-foot .uf-position-progress-step[data-step="2"] { color: var(--accent); }
-.uf-position-stage[data-phase="2"] ~ .uf-position-foot .uf-position-scrollcue { opacity: 0; }
-
-/* ---- Fallback "tout visible" (mobile) ---- */
-.uf-position-stage[data-phase="static"] { height: auto; }
-.uf-position-stage[data-phase="static"] .uf-position-card {
-  position: static; inset: auto; opacity: 1; transform: none; pointer-events: auto;
-}
-.uf-position-stage[data-phase="static"] .uf-position-card--base { margin-bottom: 12px; }
-.uf-position-stage[data-phase="static"] .uf-position-callout {
-  position: static; transform: none; opacity: 1;
-  margin: 0 0 12px; left: auto; top: auto;
-}
-.uf-position-stage[data-phase="static"] ~ .uf-position-foot { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .uf-position-card, .uf-position-callout,
-  .uf-position-progress-step, .uf-position-progress-fill, .uf-position-scrollcue {
-    transition: none !important;
+  .uf-position-card, .uf-position-bridge {
+    transition: none !important; transform: none !important; opacity: 1 !important;
   }
-  .uf-position-scrollcue-arrow { animation: none !important; }
-  .uf-position-card--brand { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
-  .uf-position-card--base  { opacity: 0.5 !important; transform: none !important; }
-  .uf-position-callout { opacity: 1 !important; transform: translate(-50%, -50%) !important; }
-  .uf-position-progress-fill { width: 100% !important; }
 }
 
 /* Comparaison : solutions actuelles + Urbafence */
@@ -1609,13 +1524,6 @@ section.uf-context {
 @media (max-width: 880px) {
   .uf-context-grid { grid-template-columns: 1fr; gap: 28px; }
   .uf-context-img-main { min-height: clamp(260px, 50vw, 380px); }
-  /* Pas de pin sur tablette/mobile : la section redevient un bloc qui respire */
-  section.uf-context { padding: clamp(40px, 5vw, 72px) 0; }
-  .uf-context-scroll { height: auto; }
-  .uf-context-pin {
-    position: static; min-height: 0; height: auto;
-    overflow: visible; display: block; padding: 0;
-  }
 }
 @media (max-width: 560px) {
   .uf-compare { grid-template-columns: 1fr; }
