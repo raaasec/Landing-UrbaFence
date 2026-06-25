@@ -2234,12 +2234,63 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
 @media (max-width: 400px) {
   .container { padding: 0 16px; }
   .hero-logo { height: 56px; }
-  .hero-display { font-size: clamp(30px, 9.5vw, 40px); }
   .hero-photo-2 { width: clamp(128px, 50%, 160px); padding: 12px; bottom: -16px; right: -6px; }
   .hero-brandcard-logo { height: 40px; }
   .hero-brandcard-text { font-size: 11px; }
   .uf-compare-logo { height: 34px; }
   .uf-timeline-card { padding: 20px 18px 18px; }
+}
+
+/* ============================================================
+   HERO — PASSE RESPONSIVE MOBILE DÉDIÉE
+   Desktop (≥769px) inchangé. Tout est isolé en max-width et placé
+   après les blocs hero existants pour un état mobile déterministe.
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Dégage la navbar sans gros blanc ; section non interminable */
+  .hero.section-screen { padding-top: calc(var(--header-offset) + 20px); }
+  section.hero { padding-bottom: 48px; }
+
+  /* Colonne unique. On passe en display:block (au lieu de grid) : les blocs
+     sont de toute façon empilés, et cela élimine tout sizing intrinsèque de
+     piste de grille (image 1792px, méta) qui élargissait la colonne au-delà
+     du viewport et faisait déborder le titre. Largeur = conteneur, garantie. */
+  .hero-grid { display: block; }
+  .hero-copy, .hero-visual { min-width: 0; max-width: 100%; }
+  .hero-visual { margin-top: 28px; }
+
+  /* Titre : retour à la ligne propre.
+     text-wrap:normal (au lieu de balance) → évite une coupure figée avant
+     le swap de police web qui faisait déborder le titre sur petit écran. */
+  .hero-display { gap: 6px; text-wrap: normal; }
+  .hero-display .line { max-width: 100%; overflow-wrap: break-word; }
+  .hero-divider { max-width: 160px; margin: 2px 0; }
+
+  /* Lead + méta : la méta passe sur plusieurs lignes (corrige le débordement) */
+  .hero-lead { margin-bottom: 24px; }
+  .hero-meta { display: flex; flex-wrap: wrap; row-gap: 4px; margin-top: 22px; max-width: 100%; }
+
+  /* CTA : pleine largeur, confort tactile (≥50px) */
+  .hero-cta-row { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; }
+  .hero-cta-row .btn { width: 100%; min-height: 50px; justify-content: center; }
+
+  /* Image : ratio paysage maîtrisé, cadrée sur la clôture (bas de l'image) */
+  .hero-visual { aspect-ratio: auto; width: 100%; max-width: 520px; margin: 0 auto; }
+  .hero-photo {
+    position: relative; inset: auto;
+    height: clamp(240px, 56vw, 340px); border-radius: 18px;
+  }
+  .hero-photo img { object-position: center 82%; }
+  .hero-photo-caption { left: 16px; top: 14px; font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .hero.section-screen { padding-top: calc(var(--header-offset) + 14px); }
+  .hero-invite { font-size: 10.5px; padding: 6px 13px 6px 11px; margin-bottom: 18px; }
+  .hero-display { font-size: clamp(30px, 9vw, 40px); margin-bottom: 22px; }
+  .hero-lead { font-size: 14.5px; }
+  .hero-meta { font-size: 11.5px; }
+  .hero-photo { height: clamp(220px, 62vw, 300px); }
 }
 
 /* ============================================================
