@@ -2269,9 +2269,9 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
   .hero-display .line { max-width: 100%; overflow-wrap: break-word; }
   .hero-divider { max-width: 150px; margin: 2px 0; }
 
-  /* Lead + méta : un seul lead court (long en .mobile-hide) ; méta courte et discrète */
+  /* Lead court unique (long en .mobile-hide) ; méta masquée sur mobile */
   .hero-lead { margin-bottom: 22px; }
-  .hero-meta { display: flex; flex-wrap: wrap; row-gap: 4px; margin-top: 18px; max-width: 100%; }
+  .hero-meta { display: none; }
 
   /* CTA : pleine largeur, confort tactile (≥50px) */
   .hero-cta-row { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; }
