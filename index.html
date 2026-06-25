@@ -152,10 +152,12 @@
           <li>Dimensions, motif et couleur au projet</li>
         </ul>
 
-        <!-- Comparaison : bases chantier + Urbafence -->
-        <div class="uf-compare">
-          <div class="uf-compare-side uf-compare-base">
-            <span class="uf-compare-label">Vos bases chantier</span>
+        <!-- Positionnement : solutions habituelles → besoin d'occultation → réponse Urbafence.
+             Flux directionnel (et non un « + »), pour montrer la complémentarité, pas l'équivalence. -->
+        <div class="uf-flow">
+          <!-- Zone neutre, volontairement discrète : ce que le pro a déjà -->
+          <div class="uf-flow-base">
+            <span class="uf-flow-label">Solutions habituelles</span>
             <div class="uf-compare-chips">
               <span class="uf-chip">Grillage</span>
               <span class="uf-chip">Barreaudage</span>
@@ -163,22 +165,30 @@
             </div>
           </div>
 
-          <div class="uf-compare-plus" aria-hidden="true">+</div>
+          <!-- Pont directionnel : le déclencheur projet -->
+          <div class="uf-flow-bridge" aria-hidden="true">
+            <span class="uf-flow-trigger">Besoin d'occultation</span>
+            <svg class="uf-flow-arrow" viewBox="0 0 40 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12 H33"></path>
+              <path d="M26 5 L35 12 L26 19"></path>
+            </svg>
+          </div>
 
-          <div class="uf-compare-side uf-compare-brand">
+          <!-- Réponse Urbafence : carte dominante -->
+          <div class="uf-flow-brand">
             <span class="uf-compare-perf" aria-hidden="true"></span>
             <img class="uf-compare-logo" src="images/URBA_FENCE_FOND.svg" alt="Urbafence"
                  width="101" height="131"
-                 onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-compare-label uf-compare-label--brand&quot;>Urbafence</span>'">
-            <span class="uf-compare-sub uf-compare-sub--brand">Occultation sur mesure</span>
+                 onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-flow-label uf-flow-label--brand&quot;>Urbafence</span>'">
+            <span class="uf-compare-sub--brand">Tôle perforée occultante, fabriquée sur mesure.</span>
             <div class="uf-compare-chips">
-              <span class="uf-chip uf-chip--brand">Tôle perforée</span>
               <span class="uf-chip uf-chip--brand">Intimité</span>
+              <span class="uf-chip uf-chip--brand">Sécurité visuelle</span>
               <span class="uf-chip uf-chip--brand">Sur mesure</span>
             </div>
           </div>
         </div>
-        <p class="uf-compare-foot mobile-hide">Pour les projets où la clôture doit aussi occulter.</p>
+        <p class="uf-compare-foot mobile-hide">Vous gardez vos solutions habituelles — Urbafence intervient quand le projet demande plus d'occultation.</p>
       </div>
 
       <!-- COLONNE DROITE — preuve visuelle + badge sécurité -->

@@ -1314,6 +1314,55 @@ section.uf-context {
   display: flex; align-items: center; justify-content: center;
   font-family: var(--sans); font-size: 18px; color: var(--accent); line-height: 1;
 }
+
+/* ---- Flux de positionnement : solutions habituelles → besoin → Urbafence ----
+   Remplace le « + » ambigu par un flux vertical directionnel :
+   la zone « habituelle » est volontairement discrète, Urbafence est la réponse forte. */
+.uf-flow {
+  display: flex; flex-direction: column; gap: 9px; margin-top: 6px; max-width: 500px;
+}
+/* Zone neutre, recessive : ce que le pro pose déjà (label + chips sur une ligne) */
+.uf-flow-base {
+  border-radius: var(--r-md); padding: 11px 15px;
+  background: var(--bg-page); border: 1px dashed var(--line);
+  display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap;
+}
+.uf-flow-base .uf-compare-chips { flex: 1 1 auto; }
+.uf-flow-label {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary);
+}
+.uf-flow-label--brand {
+  color: var(--brand-700); position: relative; z-index: 1;
+  font-size: 15px; letter-spacing: 0.02em;
+}
+/* Pont directionnel : déclencheur projet + flèche descendante */
+.uf-flow-bridge {
+  display: flex; align-items: center; justify-content: center; gap: 11px;
+  padding: 1px 0;
+}
+.uf-flow-trigger {
+  font-family: var(--sans); font-size: 10px; font-weight: 700; line-height: 1.15;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand-700);
+  background: rgba(246, 248, 243, 0.82);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border: 1px solid var(--brand-100); border-radius: var(--r-pill);
+  padding: 6px 13px; box-shadow: 0 6px 16px rgba(31, 78, 38, 0.10);
+}
+.uf-flow-arrow {
+  width: 22px; height: 18px; color: var(--accent); transform: rotate(90deg);
+  stroke: currentColor; stroke-width: 2; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+/* Réponse Urbafence : carte dominante (gradient marque + motif perforé) */
+.uf-flow-brand {
+  border-radius: var(--r-md); padding: 15px 18px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 9px;
+  background: linear-gradient(150deg, #ffffff 0%, var(--brand-50) 55%, rgba(155, 195, 145, 0.34) 100%);
+  border: 1px solid var(--brand-100); box-shadow: 0 12px 28px rgba(31, 78, 38, 0.10);
+}
+.uf-flow-brand .uf-compare-logo { height: 38px; }
+
 .uf-compare-foot {
   margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--ink-700);
 }
@@ -1361,6 +1410,10 @@ section.uf-context {
 @media (max-width: 560px) {
   .uf-compare { grid-template-columns: 1fr; }
   .uf-compare-plus { transform: rotate(90deg); justify-self: center; }
+  /* Flux : la zone neutre passe label au-dessus des chips ; glass plus opaque */
+  .uf-flow { max-width: none; }
+  .uf-flow-base { flex-direction: column; align-items: flex-start; gap: 9px; }
+  .uf-flow-trigger { background: var(--brand-50); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 
 /* ============================================================
