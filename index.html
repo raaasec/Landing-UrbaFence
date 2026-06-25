@@ -135,85 +135,93 @@
 </section>
 
 <!-- ============== QUI EST URBAFENCE ? — contexte ============== -->
-<section class="uf-context section-screen section-snap bg-pattern-perf" id="urbafence">
-  <div class="container">
-    <div class="uf-context-grid reveal">
+<section class="uf-context bg-pattern-perf" id="urbafence">
+  <!-- Scroll storytelling « pinned » (même principe que #conditions) :
+       le module reste affiché comme une slide 16:9, les 2 cartes évoluent au scroll. -->
+  <div class="uf-context-scroll" id="ufPositionScroll">
+    <div class="uf-context-pin">
+      <div class="container">
+        <div class="uf-context-grid reveal">
 
-      <!-- COLONNE GAUCHE — positionnement de marque -->
-      <div class="uf-context-col-left">
-        <span class="eyebrow">Urbafence, concrètement</span>
-        <h2 class="uf-context-h2">L'occultation sur mesure pour vos <em>projets de clôture.</em></h2>
-        <p class="uf-context-lead">
-          Une solution Dampere en tôle perforée, pensée pour les projets où l'intimité, la sécurité visuelle et le rendu architectural deviennent essentiels.
-        </p>
-        <ul class="uf-context-points" aria-label="Points clés">
-          <li>Tôle perforée occultante</li>
-          <li>Fabrication à la demande</li>
-          <li>Dimensions, motif et couleur au projet</li>
-        </ul>
+          <!-- COLONNE GAUCHE — narration + module sticky 2 cartes -->
+          <div class="uf-context-col-left">
+            <span class="eyebrow">Urbafence, concrètement</span>
+            <h2 class="uf-context-h2">Quand la clôture doit <em>aussi occulter.</em></h2>
+            <p class="uf-context-lead">
+              Vos solutions habituelles restent votre socle. Urbafence intervient quand le projet demande plus d'intimité, de sécurité visuelle et de sur-mesure.
+            </p>
 
-        <!-- Positionnement : solutions habituelles → besoin d'occultation → réponse Urbafence.
-             Flux directionnel (et non un « + »), pour montrer la complémentarité, pas l'équivalence. -->
-        <div class="uf-flow">
-          <!-- Zone neutre, volontairement discrète : ce que le pro a déjà -->
-          <div class="uf-flow-base">
-            <span class="uf-flow-label">Solutions habituelles</span>
-            <div class="uf-compare-chips">
-              <span class="uf-chip">Grillage</span>
-              <span class="uf-chip">Barreaudage</span>
-              <span class="uf-chip">Panneau rigide</span>
+            <!-- Module : la carte « solutions actuelles » est visible d'abord,
+                 puis la carte Urbafence prend le focus au scroll. -->
+            <div class="uf-position-flow">
+              <div class="uf-position-stage" id="ufPositionStage" data-phase="1">
+
+                <!-- Carte socle métier — neutre, discrète -->
+                <article class="uf-position-card uf-position-card--base">
+                  <span class="uf-position-label">Vos solutions actuelles</span>
+                  <p class="uf-position-base-text">Votre base chantier pour la plupart des projets.</p>
+                  <div class="uf-position-chips">
+                    <span class="uf-position-chip">Grillage</span>
+                    <span class="uf-position-chip">Barreaudage</span>
+                    <span class="uf-position-chip">Panneau rigide</span>
+                  </div>
+                </article>
+
+                <!-- Callout pivot — apparaît à la transition -->
+                <span class="uf-position-callout" aria-hidden="true">
+                  <span class="uf-position-callout-ico">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 12 s4 -7 10 -7 s10 7 10 7 s-4 7 -10 7 s-10 -7 -10 -7 Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </span>
+                  Besoin d'occultation
+                </span>
+
+                <!-- Carte réponse Urbafence — premium, contrastée -->
+                <article class="uf-position-card uf-position-card--brand">
+                  <span class="uf-compare-perf" aria-hidden="true"></span>
+                  <img class="uf-position-logo" src="images/URBA_FENCE_FOND.svg" alt="Urbafence"
+                       width="101" height="131"
+                       onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-position-label uf-position-label--brand&quot;>Urbafence</span>'">
+                  <h3 class="uf-position-title">Occultation en tôle perforée</h3>
+                  <p class="uf-position-text">Une réponse sur mesure pour limiter les vues directes et préserver l'intimité.</p>
+                  <div class="uf-position-chips">
+                    <span class="uf-position-chip uf-position-chip--brand">Tôle perforée</span>
+                    <span class="uf-position-chip uf-position-chip--brand">Sur mesure</span>
+                    <span class="uf-position-chip uf-position-chip--brand">Sécurité visuelle</span>
+                  </div>
+                </article>
+
+              </div>
             </div>
           </div>
 
-          <!-- Pont directionnel : le déclencheur projet -->
-          <div class="uf-flow-bridge" aria-hidden="true">
-            <span class="uf-flow-trigger">Besoin d'occultation</span>
-            <svg class="uf-flow-arrow" viewBox="0 0 40 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3 12 H33"></path>
-              <path d="M26 5 L35 12 L26 19"></path>
-            </svg>
-          </div>
-
-          <!-- Réponse Urbafence : carte dominante -->
-          <div class="uf-flow-brand">
-            <span class="uf-compare-perf" aria-hidden="true"></span>
-            <img class="uf-compare-logo" src="images/URBA_FENCE_FOND.svg" alt="Urbafence"
-                 width="101" height="131"
-                 onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-flow-label uf-flow-label--brand&quot;>Urbafence</span>'">
-            <span class="uf-compare-sub--brand">Tôle perforée occultante, fabriquée sur mesure.</span>
-            <div class="uf-compare-chips">
-              <span class="uf-chip uf-chip--brand">Intimité</span>
-              <span class="uf-chip uf-chip--brand">Sécurité visuelle</span>
-              <span class="uf-chip uf-chip--brand">Sur mesure</span>
+          <!-- COLONNE DROITE — preuve visuelle + badge sécurité (inchangée) -->
+          <div class="uf-context-col-right">
+            <div class="uf-context-visual">
+              <!-- IMG-CONTEXT · Sécurité visuelle Urbafence (paysage) -->
+              <img class="uf-context-img-main"
+                   src="images/ecole%20vigi%20pirate.jpg"
+                   alt="Clôture Urbafence installée autour d'une cour d'école" loading="lazy"
+                   onerror="this.onerror=null;this.src='https://placehold.co/1200x900/EAF3E7/35823F?text=A+ajouter'">
+              <div class="uf-security-badge">
+                <span class="uf-security-badge-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
+                    <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
+                  </svg>
+                </span>
+                <div class="uf-security-badge-text">
+                  <strong>Sécurité visuelle</strong>
+                  <span>Limiter les vues directes sur écoles, collectivités et sites exposés.</span>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
-        <p class="uf-compare-foot mobile-hide">Vous gardez vos solutions habituelles — Urbafence intervient quand le projet demande plus d'occultation.</p>
       </div>
-
-      <!-- COLONNE DROITE — preuve visuelle + badge sécurité -->
-      <div class="uf-context-col-right">
-        <div class="uf-context-visual">
-          <!-- IMG-CONTEXT · Sécurité visuelle Urbafence (paysage) -->
-          <img class="uf-context-img-main"
-               src="images/ecole%20vigi%20pirate.jpg"
-               alt="Clôture Urbafence installée autour d'une cour d'école" loading="lazy"
-               onerror="this.onerror=null;this.src='https://placehold.co/1200x900/EAF3E7/35823F?text=A+ajouter'">
-          <div class="uf-security-badge">
-            <span class="uf-security-badge-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
-                <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
-              </svg>
-            </span>
-            <div class="uf-security-badge-text">
-              <strong>Sécurité visuelle</strong>
-              <span>Limiter les vues directes sur écoles, collectivités et sites exposés.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>

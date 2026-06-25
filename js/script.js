@@ -119,6 +119,42 @@ flipCards.forEach(card => {
   applyMobileFallback();
 })();
 
+/* ===== Positionnement #urbafence — bascule 2 cartes pilotée au scroll =====
+   Même principe que le process : on lit la progression dans la zone "scroll"
+   et on passe le stage en phase 1 (solutions actuelles) puis 2 (Urbafence). */
+(function () {
+  const scrollEl = document.getElementById('ufPositionScroll');
+  const stage    = document.getElementById('ufPositionStage');
+  if (!scrollEl || !stage) return;
+
+  // Pas d'effet pinné en tablette/mobile : les 2 cartes s'affichent en pile statique
+  const mql = window.matchMedia('(max-width: 880px)');
+
+  let raf = 0;
+  function update() {
+    raf = 0;
+    if (mql.matches) return;
+
+    const rect  = scrollEl.getBoundingClientRect();
+    const total = scrollEl.offsetHeight - window.innerHeight;
+    const scrolled = Math.max(0, Math.min(total, -rect.top));
+    const progress = total > 0 ? scrolled / total : 0;
+
+    stage.dataset.phase = progress > 0.4 ? '2' : '1';
+  }
+  function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+
+  function applyFallback() {
+    if (mql.matches) stage.dataset.phase = 'static';
+    else { stage.dataset.phase = '1'; update(); }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', applyFallback);
+  if (mql.addEventListener) mql.addEventListener('change', applyFallback);
+  applyFallback();
+})();
+
 /* ===== Mini-configurateur Urbafence (démonstratif) =====
    Pilote l'aperçu via des variables CSS et met à jour le résumé.
    Sort proprement si la section n'est pas présente. */

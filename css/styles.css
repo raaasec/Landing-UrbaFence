@@ -1232,9 +1232,16 @@ section.final-cta.final-cta--compact {
    ============================================================ */
 section.uf-context {
   background: var(--bg-card);
-  padding: clamp(40px, 5vw, 72px) 0;
+  padding: 0;
   position: relative;
-  justify-content: center;
+}
+/* Scroll storytelling « pinned » : le module reste affiché (slide 16:9)
+   pendant qu'on traverse une zone de scroll volontairement courte (~1 écran de plus). */
+.uf-context-scroll { position: relative; height: 185vh; }
+.uf-context-pin {
+  position: sticky; top: 0; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
+  padding: calc(var(--header-offset) + clamp(12px, 3vh, 32px)) 0 clamp(24px, 4vh, 48px);
 }
 /* Grille principale : discours+comparaison à gauche, image+sécurité à droite */
 .uf-context-grid {
@@ -1264,6 +1271,116 @@ section.uf-context {
 .uf-context-points li::before {
   content: '✓'; position: absolute; left: 0; top: 0;
   color: var(--accent); font-weight: 700; font-size: 13px;
+}
+
+/* ============================================================
+   MODULE STICKY DE POSITIONNEMENT (#urbafence)
+   Deux cartes superposées dans une "scène" à hauteur fixe.
+   Le scroll (data-phase 1→2, piloté en JS) fait passer le focus
+   de « Vos solutions actuelles » à « Urbafence ».
+   ============================================================ */
+.uf-position-flow { margin-top: 22px; }
+.uf-position-stage {
+  position: relative;
+  height: clamp(220px, 30vh, 264px);
+}
+.uf-position-card {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 9px;
+  border-radius: var(--r-lg); padding: 20px 22px; text-align: left;
+  transition: transform .85s cubic-bezier(.22,.61,.36,1), opacity .6s var(--ease-out);
+  will-change: transform, opacity;
+}
+/* Carte socle métier — neutre, discrète */
+.uf-position-card--base {
+  background: var(--bg-page); border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-sm); z-index: 1;
+  opacity: 1; transform: translateY(0) scale(1);
+}
+.uf-position-label {
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary);
+}
+.uf-position-base-text { font-size: 13px; line-height: 1.45; color: var(--ink-400); margin: 0; }
+.uf-position-chips { display: flex; flex-wrap: wrap; gap: 6px; position: relative; z-index: 1; }
+.uf-position-chip {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
+  color: var(--ink-500); background: var(--bg-card); border: 1px solid var(--line-soft);
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.uf-position-chip--brand { color: var(--brand-700); background: #fff; border-color: var(--brand-100); }
+
+/* Carte réponse Urbafence — premium, contrastée (cachée au départ) */
+.uf-position-card--brand {
+  z-index: 2; overflow: hidden;
+  background: linear-gradient(150deg, #ffffff 0%, var(--brand-50) 52%, rgba(155, 195, 145, 0.40) 100%);
+  border: 1px solid var(--brand-100);
+  box-shadow: 0 22px 48px rgba(31, 78, 38, 0.18);
+  opacity: 0; transform: translateY(28px) scale(0.96); pointer-events: none;
+}
+.uf-position-logo { height: 34px; width: auto; display: block; position: relative; z-index: 1; }
+.uf-position-label--brand {
+  font-family: var(--serif); font-size: 17px; color: var(--brand-700);
+  position: relative; z-index: 1;
+}
+.uf-position-title {
+  font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.15;
+  letter-spacing: -0.01em; color: var(--ink); margin: 0; position: relative; z-index: 1;
+}
+.uf-position-text { font-size: 13px; line-height: 1.45; color: var(--ink-700); margin: 0; position: relative; z-index: 1; }
+
+/* Callout pivot — pastille glass straddle le haut de la scène (cachée au départ) */
+.uf-position-callout {
+  position: absolute; left: 50%; top: 0; z-index: 3;
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  font-family: var(--sans); font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-700);
+  padding: 7px 13px; border-radius: var(--r-pill);
+  background: rgba(246, 248, 243, 0.82);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid var(--brand-100); box-shadow: 0 8px 20px rgba(31, 78, 38, 0.16);
+  opacity: 0; transform: translate(-50%, -30%) scale(0.96); pointer-events: none;
+  transition: transform .55s var(--ease-out), opacity .5s var(--ease-out);
+}
+.uf-position-callout-ico {
+  width: 18px; height: 18px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; background: var(--accent); color: #fff;
+}
+.uf-position-callout-ico svg {
+  width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.8; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---- PHASE 2 : Urbafence prend le focus ---- */
+.uf-position-stage[data-phase="2"] .uf-position-card--base {
+  opacity: 0.42; transform: translateY(-14px) scale(0.965);
+}
+.uf-position-stage[data-phase="2"] .uf-position-card--brand {
+  opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+}
+.uf-position-stage[data-phase="2"] .uf-position-callout {
+  opacity: 1; transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---- Fallback "tout visible" (mobile + reduced-motion) ---- */
+.uf-position-stage[data-phase="static"] { height: auto; }
+.uf-position-stage[data-phase="static"] .uf-position-card {
+  position: static; inset: auto; opacity: 1; transform: none; pointer-events: auto;
+}
+.uf-position-stage[data-phase="static"] .uf-position-card--base { margin-bottom: 12px; }
+.uf-position-stage[data-phase="static"] .uf-position-callout {
+  position: static; transform: none; opacity: 1;
+  margin: 0 auto 12px; left: auto; top: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uf-position-card, .uf-position-callout {
+    transition: none !important;
+  }
+  .uf-position-card--brand { opacity: 1 !important; transform: none !important; pointer-events: auto !important; }
+  .uf-position-card--base  { opacity: 0.5 !important; transform: none !important; }
+  .uf-position-callout { opacity: 1 !important; transform: translate(-50%, -50%) !important; }
 }
 
 /* Comparaison : solutions actuelles + Urbafence */
@@ -1406,6 +1523,13 @@ section.uf-context {
 @media (max-width: 880px) {
   .uf-context-grid { grid-template-columns: 1fr; gap: 28px; }
   .uf-context-img-main { min-height: clamp(260px, 50vw, 380px); }
+  /* Pas de pin sur tablette/mobile : la section redevient un bloc qui respire */
+  section.uf-context { padding: clamp(40px, 5vw, 72px) 0; }
+  .uf-context-scroll { height: auto; }
+  .uf-context-pin {
+    position: static; min-height: 0; height: auto;
+    overflow: visible; display: block; padding: 0;
+  }
 }
 @media (max-width: 560px) {
   .uf-compare { grid-template-columns: 1fr; }
