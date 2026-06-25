@@ -102,7 +102,7 @@
           </a>
           <a href="#conditions" class="btn btn-ghost">Voir les conditions</a>
         </div>
-        <div class="hero-meta">Statut valable 1 an · 3 commandes pour prolonger vos avantages</div>
+        <div class="hero-meta">Conditions valables 1 an · 3 commandes pour conserver vos avantages</div>
       </div>
 
       <!-- COLONNE DROITE — composition visuelle (2 photos) -->
@@ -255,7 +255,7 @@
             <path d="M20 14 V 17 a 2 2 0 0 1 -2 2 H 16 V 13 H 18 a 2 2 0 0 1 2 1 Z"></path>
           </svg>
         </span>
-        <h4 class="tppme-item-title">Support dédié</h4>
+        <h4 class="tppme-item-title">Support technique dédié</h4>
         </div>
         <p class="tppme-item-body">Des réponses plus rapides sur vos configurations et délais.</p>
       </li>
@@ -554,20 +554,14 @@
 <section class="uf-timeline section-screen section-snap bg-pattern-grid" id="delais">
   <div class="container">
     <div class="uf-timeline-head reveal">
-      <span class="eyebrow">Parcours en ligne</span>
-      <h2>Du configurateur à la production, <em>tout reste lisible.</em></h2>
-      <p>Vous configurez votre projet en ligne. Vos conditions partenaires s'appliquent sur votre compte. Après validation, la production démarre.</p>
-      <div class="uf-timeline-chips mobile-hide">
-        <span class="uf-timeline-chip">Configurateur en ligne</span>
-        <span class="uf-timeline-chip">Remise partenaire</span>
-        <span class="uf-timeline-chip">Validation projet</span>
-        <span class="uf-timeline-chip">Production sur mesure</span>
-      </div>
+      <span class="eyebrow">Parcours projet</span>
+      <h2>Du configurateur à la <em>production.</em></h2>
+      <p>Vous configurez votre projet en ligne, validez les éléments, puis la fabrication démarre.</p>
     </div>
 
     <ol class="uf-timeline-grid reveal">
 
-      <li class="uf-timeline-card">
+      <li class="uf-timeline-card uf-timeline-card--config">
         <span class="uf-timeline-step-no" aria-hidden="true">01</span>
         <span class="uf-timeline-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -579,40 +573,40 @@
             <circle cx="9.7" cy="12.5" r="1.4"></circle>
           </svg>
         </span>
-        <h3 class="uf-timeline-card-title">Configurez</h3>
+        <h3 class="uf-timeline-card-title">Configuration</h3>
         <p class="uf-timeline-card-text">Dimensions, pose, motif et couleur dans le configurateur Urbafence.</p>
         <span class="uf-timeline-tag">En ligne</span>
+
+        <!-- Callout glass : la remise partenaire s'applique dès la configuration -->
+        <span class="uf-timeline-callout" aria-hidden="true">
+          <span class="uf-timeline-callout-ico">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17 L17 7"></path>
+              <circle cx="8" cy="8" r="2"></circle>
+              <circle cx="16" cy="16" r="2"></circle>
+            </svg>
+          </span>
+          Remise partenaire appliquée automatiquement
+          <span class="uf-timeline-callout-tip"></span>
+        </span>
       </li>
 
       <li class="uf-timeline-card">
         <span class="uf-timeline-step-no" aria-hidden="true">02</span>
         <span class="uf-timeline-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7.5" cy="7.5" r="2.5"></circle>
-            <circle cx="16.5" cy="16.5" r="2.5"></circle>
-            <path d="M18 6 L6 18"></path>
+            <path d="M7 3 H14 L19 8 V21 H7 Z"></path>
+            <path d="M14 3 V8 H19"></path>
+            <path d="M9.5 14 L11.5 16 L15 12"></path>
           </svg>
         </span>
-        <h3 class="uf-timeline-card-title">Retrouvez vos conditions</h3>
-        <p class="uf-timeline-card-text">Votre remise partenaire s'applique sur vos projets éligibles.</p>
-        <span class="uf-timeline-tag">Partenaire</span>
-      </li>
-
-      <li class="uf-timeline-card">
-        <span class="uf-timeline-step-no" aria-hidden="true">03</span>
-        <span class="uf-timeline-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M8 12.5 L11 15.5 L16 9"></path>
-          </svg>
-        </span>
-        <h3 class="uf-timeline-card-title">Validez</h3>
-        <p class="uf-timeline-card-text">Le projet est confirmé avant lancement.</p>
-        <span class="uf-timeline-tag">Validation</span>
+        <h3 class="uf-timeline-card-title">Validation</h3>
+        <p class="uf-timeline-card-text">Le projet est vérifié et confirmé avant lancement.</p>
+        <span class="uf-timeline-tag">Avant lancement</span>
       </li>
 
       <li class="uf-timeline-card uf-timeline-card--featured">
-        <span class="uf-timeline-step-no" aria-hidden="true">04</span>
+        <span class="uf-timeline-step-no" aria-hidden="true">03</span>
         <span class="uf-timeline-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="3.2"></circle>
@@ -620,14 +614,14 @@
           </svg>
         </span>
         <h3 class="uf-timeline-card-title">Production</h3>
-        <p class="uf-timeline-card-text">Environ 4 semaines de production après validation.</p>
+        <p class="uf-timeline-card-text">Après validation, comptez environ 4 semaines de production.</p>
         <span class="uf-timeline-badge">≈ 4 semaines</span>
       </li>
 
     </ol>
 
-    <p class="uf-timeline-note reveal mobile-hide">
-      Délai indicatif, selon configuration et charge atelier.
+    <p class="uf-timeline-note reveal">
+      Délai indicatif selon configuration et charge atelier.
     </p>
   </div>
 </section>
@@ -643,7 +637,7 @@
              onerror="this.onerror=null;this.src='https://placehold.co/1000x1200/EAF3E7/35823F?text=A+ajouter'">
       </div>
       <div class="positioning-text reveal">
-        <span class="eyebrow">L'origine du Cercle</span>
+        <span class="eyebrow">Pourquoi ce programme&nbsp;?</span>
         <h2>Récompenser les pros qui <em>pensent Urbafence.</em></h2>
         <p>
           Le <strong>Cercle Partenaire</strong> valorise les professionnels qui intègrent régulièrement Urbafence à leurs projets. Un programme simple&nbsp;: vos avantages sont activés, vos conditions visibles en ligne, et vos démarches vont plus vite.
@@ -790,7 +784,7 @@
         <div class="process-intro">
           <span class="eyebrow">Les conditions</span>
           <h2>Un cadre qui vit <em>dans la durée.</em></h2>
-          <p>Un statut valable 1 an, reconductible avec 3 commandes sur l'année.</p>
+          <p>Des conditions valables 1 an, reconductibles avec 3 commandes sur l'année.</p>
         </div>
 
         <div class="process-cols">
@@ -808,7 +802,7 @@
           </div>
           <div class="steps-progress-item" data-step="3" data-active="false">
             <span class="num">03</span>
-            <span class="label">Renouvellement</span>
+            <span class="label">Conservation</span>
           </div>
         </div>
 
@@ -851,7 +845,7 @@
             <div class="step-card-chips">
               <span class="step-chip">15 % de remise</span>
               <span class="step-chip">Prix bloqués 3 mois</span>
-              <span class="step-chip">Support dédié</span>
+              <span class="step-chip">Support technique dédié</span>
             </div>
             <div class="step-card-foot">Au rythme de vos chantiers</div>
           </article>
@@ -859,8 +853,8 @@
           <article class="step-card" data-step="3">
             <div class="step-card-num">03</div>
             <span class="step-card-eyebrow">Étape 03</span>
-            <h3>Renouvelez votre statut</h3>
-            <p>3 commandes sur l'année suffisent à reconduire votre statut et à prolonger vos avantages pour 12 mois.</p>
+            <h3>Conservez vos avantages</h3>
+            <p>3 commandes sur l'année suffisent à conserver vos conditions partenaires pour les 12 mois suivants.</p>
             <div class="step-highlight">
               <span class="step-highlight-num">3</span>
               <span class="step-highlight-text">commandes<br>sur l'année</span>
@@ -908,8 +902,8 @@
     </a>
     <span class="final-cta-hint">Accédez à votre espace · par e-mail ou via le chatbot</span>
     <div class="final-cta-features">
-      <span class="final-cta-feature">Statut valable 1 an</span>
-      <span class="final-cta-feature">3 commandes pour prolonger vos avantages</span>
+      <span class="final-cta-feature">Conditions valables 1 an</span>
+      <span class="final-cta-feature">3 commandes pour conserver vos avantages</span>
     </div>
   </div>
 </section>
