@@ -139,83 +139,85 @@
   <div class="container">
     <div class="uf-context-grid reveal">
 
-      <!-- COLONNE GAUCHE — narration courte -->
+      <!-- COLONNE GAUCHE (rendue à DROITE en desktop) — texte + bloc Urbafence -->
       <div class="uf-context-col-left">
         <span class="eyebrow">Urbafence, concrètement</span>
         <h2 class="uf-context-h2">L'occultation en tôle perforée, <em>sur mesure.</em></h2>
         <p class="uf-context-lead">
           Une réponse complémentaire pour les projets où l'intimité, la sécurité visuelle et le rendu architectural comptent autant que la clôture elle-même.
         </p>
-        <div class="uf-occultation-chips">
-          <span class="uf-occultation-chip uf-occultation-chip--light">Sur mesure</span>
-          <span class="uf-occultation-chip uf-occultation-chip--light">Motif</span>
-          <span class="uf-occultation-chip uf-occultation-chip--light">Couleur</span>
-          <span class="uf-occultation-chip uf-occultation-chip--light">Dimensions au projet</span>
-        </div>
+
+        <!-- Bloc de marque : motif PAKORIS sur tout le fond + dégradé vert charte -->
+        <article class="uf-occultation-card">
+          <span class="uf-occultation-motif" aria-hidden="true"></span>
+          <span class="uf-occultation-glow" aria-hidden="true"></span>
+
+          <div class="uf-occultation-head">
+            <span class="uf-occultation-logo">
+              <img src="images/URBA_FENCE_FOND.svg" alt="Urbafence" width="101" height="131"
+                   onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-occultation-logo-fallback&quot;>Urbafence</span>'">
+            </span>
+            <span class="uf-occultation-sub">Tôle perforée occultante</span>
+          </div>
+
+          <ul class="uf-occultation-benefits">
+            <li class="uf-occultation-benefit">
+              <span class="uf-occultation-benefit-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.5 12 s3.6 -6.5 9.5 -6.5 s9.5 6.5 9.5 6.5 s-3.6 6.5 -9.5 6.5 s-9.5 -6.5 -9.5 -6.5 Z"></path>
+                  <path d="M9 6 V18 M12 5.4 V18.6 M15 6 V18"></path>
+                </svg>
+              </span>
+              Limiter les vues directes
+            </li>
+            <li class="uf-occultation-benefit">
+              <span class="uf-occultation-benefit-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 3 L19 6 V11 c0 4.5 -3 7.5 -7 9 c-4 -1.5 -7 -4.5 -7 -9 V6 Z"></path>
+                  <path d="M9.2 12 l2 2 l3.6 -3.8"></path>
+                </svg>
+              </span>
+              Préserver l'intimité
+            </li>
+            <li class="uf-occultation-benefit">
+              <span class="uf-occultation-benefit-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 20 V8 L12 4 L20 8 V20"></path>
+                  <path d="M4 20 H20 M9 20 V13 H15 V20"></path>
+                </svg>
+              </span>
+              Soigner le rendu architectural
+            </li>
+          </ul>
+
+          <div class="uf-occultation-chips">
+            <span class="uf-occultation-chip">Sur mesure</span>
+            <span class="uf-occultation-chip">Motif</span>
+            <span class="uf-occultation-chip">Couleur</span>
+            <span class="uf-occultation-chip">Dimensions au projet</span>
+          </div>
+        </article>
       </div>
 
-      <!-- COLONNE DROITE — composition de marque intégrée :
-           image école (cas d'usage) + trame perforée qui filtre la vue
-           + tag sécurité + panneau Urbafence en bas. Un seul objet visuel. -->
+      <!-- COLONNE DROITE (rendue à GAUCHE en desktop) — image naturelle + badge discret -->
       <div class="uf-context-col-right">
-        <div class="uf-occultation-scene">
-          <!-- IMG-CONTEXT · Sécurité visuelle Urbafence -->
-          <img class="uf-occultation-img"
+        <div class="uf-context-visual">
+          <!-- IMG-CONTEXT · Sécurité visuelle Urbafence (paysage) -->
+          <img class="uf-context-img-main"
                src="images/ecole%20vigi%20pirate.jpg"
                alt="Clôture Urbafence installée autour d'une cour d'école" loading="lazy"
                onerror="this.onerror=null;this.src='https://placehold.co/1200x900/EAF3E7/35823F?text=A+ajouter'">
-
-          <!-- Trame perforée : on voit l'image, partiellement filtrée (occultation) -->
-          <span class="uf-occultation-perf" aria-hidden="true"></span>
-          <span class="uf-occultation-glow" aria-hidden="true"></span>
-
-          <!-- Tag sécurité, intégré (remplace le badge isolé) -->
-          <span class="uf-occultation-tag">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
-              <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
-            </svg>
-            Sécurité visuelle
-          </span>
-
-          <!-- Panneau de marque, fondu dans le bas de l'image -->
-          <div class="uf-occultation-panel">
-            <div class="uf-occultation-head">
-              <span class="uf-occultation-logo">
-                <img src="images/URBA_FENCE_FOND.svg" alt="Urbafence" width="101" height="131"
-                     onerror="this.onerror=null;this.outerHTML='<span class=&quot;uf-occultation-logo-fallback&quot;>Urbafence</span>'">
-              </span>
-              <span class="uf-occultation-sub">Tôle perforée occultante</span>
+          <div class="uf-security-badge">
+            <span class="uf-security-badge-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3 L20 6 V11 c0 5 -3.5 8.5 -8 10 c-4.5 -1.5 -8 -5 -8 -10 V6 Z"></path>
+                <path d="M12 9 a3 3 0 0 1 0 6 a3 3 0 0 1 0 -6 Z"></path>
+              </svg>
+            </span>
+            <div class="uf-security-badge-text">
+              <strong>Sécurité visuelle</strong>
+              <span>Limiter les vues directes sur écoles, collectivités et sites exposés.</span>
             </div>
-            <ul class="uf-occultation-benefits">
-              <li class="uf-occultation-benefit">
-                <span class="uf-occultation-benefit-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.5 12 s3.6 -6.5 9.5 -6.5 s9.5 6.5 9.5 6.5 s-3.6 6.5 -9.5 6.5 s-9.5 -6.5 -9.5 -6.5 Z"></path>
-                    <path d="M9 6 V18 M12 5.4 V18.6 M15 6 V18"></path>
-                  </svg>
-                </span>
-                Limiter les vues directes
-              </li>
-              <li class="uf-occultation-benefit">
-                <span class="uf-occultation-benefit-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3 L19 6 V11 c0 4.5 -3 7.5 -7 9 c-4 -1.5 -7 -4.5 -7 -9 V6 Z"></path>
-                    <path d="M9.2 12 l2 2 l3.6 -3.8"></path>
-                  </svg>
-                </span>
-                Préserver l'intimité
-              </li>
-              <li class="uf-occultation-benefit">
-                <span class="uf-occultation-benefit-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 20 V8 L12 4 L20 8 V20"></path>
-                    <path d="M4 20 H20 M9 20 V13 H15 V20"></path>
-                  </svg>
-                </span>
-                Soigner le rendu architectural
-              </li>
-            </ul>
           </div>
         </div>
       </div>

@@ -1265,149 +1265,106 @@ section.uf-context {
 }
 
 /* ============================================================
-   COMPOSITION OCCULTATION (#urbafence)
-   Un seul objet de marque : image (cas d'usage) + trame perforée
-   qui filtre la vue + tag sécurité + panneau Urbafence fondu en bas.
+   BLOC URBAFENCE (#urbafence) — sous le texte, colonne droite.
+   Dégradé vert charte + vrai motif PAKORIS couvrant TOUT le fond.
    ============================================================ */
 
-/* Chips de la colonne gauche (sur fond clair) */
-.uf-occultation-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.uf-occultation-chip {
-  font-family: var(--sans); font-size: 11.5px; font-weight: 600;
-  padding: 5px 12px; border-radius: var(--r-pill);
-  transition: transform .4s cubic-bezier(.16,1,.3,1), border-color .4s var(--ease), background .4s var(--ease);
-}
-.uf-occultation-chip--light {
-  color: var(--brand-700); background: var(--brand-50); border: 1px solid var(--brand-100);
-}
-
-/* ---- La scène (colonne droite) ---- */
-.uf-occultation-scene {
-  position: relative; height: 100%; min-height: clamp(380px, 50vh, 470px);
-  border-radius: 22px; overflow: hidden; isolation: isolate;
-  border: 1px solid rgba(31, 78, 38, 0.12);
-  box-shadow: 0 34px 70px rgba(8, 16, 11, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  opacity: 0; transform: translateY(24px) scale(0.985);
-  transition: opacity .8s var(--ease-out), transform .85s cubic-bezier(.16,1,.3,1), box-shadow .55s var(--ease-out);
+/* Bloc de marque autonome */
+.uf-occultation-card {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: 22px; border-radius: 20px; padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 15px;
+  background: linear-gradient(135deg, #245B2C 0%, #2E7038 56%, #357F3E 100%);
+  border: 1px solid rgba(155, 195, 145, 0.30);
+  box-shadow: 0 22px 48px rgba(20, 45, 24, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s var(--ease-out);
   will-change: transform;
 }
-.uf-context-grid.in-view .uf-occultation-scene { opacity: 1; transform: none; transition-delay: .12s; }
-
-.uf-occultation-img {
-  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
-  object-fit: cover; object-position: center 58%; display: block;
-  transition: transform .9s cubic-bezier(.16,1,.3,1);
-}
-
-/* Trame perforée : visible sur la partie haute de l'image (vue filtrée) */
-.uf-occultation-perf {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1.8px);
-  background-size: 13px 13px; opacity: 0.18; mix-blend-mode: soft-light;
-  -webkit-mask-image: linear-gradient(to bottom, #000 4%, #000 26%, transparent 54%);
-  mask-image: linear-gradient(to bottom, #000 4%, #000 26%, transparent 54%);
-  transition: background-position .65s var(--ease-out), opacity .6s var(--ease-out);
-}
-.uf-occultation-glow {
-  position: absolute; top: -25%; right: -18%; width: 70%; height: 90%; z-index: 1; pointer-events: none;
-  background: radial-gradient(circle at 60% 40%, rgba(124, 196, 112, 0.34), transparent 60%);
-  opacity: 0.7; transition: opacity .6s var(--ease-out), transform .65s var(--ease-out);
-}
-
-/* Tag sécurité intégré (haut-gauche) */
-.uf-occultation-tag {
-  position: absolute; top: 14px; left: 14px; z-index: 3;
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: var(--sans); font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand-700);
-  padding: 6px 12px 6px 9px; border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 8px 20px rgba(8, 16, 11, 0.22);
-}
-.uf-occultation-tag svg {
-  width: 15px; height: 15px; stroke: var(--accent); stroke-width: 1.6; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
-}
-
-/* Panneau de marque, fondu dans le bas de l'image — teinte verte charte (moins sombre) */
-.uf-occultation-panel {
-  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; overflow: hidden;
-  padding: 80px 24px 22px;
-  display: flex; flex-direction: column; gap: 14px;
-  background: linear-gradient(to top,
-    #1b3f23 0%, rgba(31, 78, 38, 0.95) 42%, rgba(31, 78, 38, 0.60) 70%, transparent 100%);
-}
-/* Vrai motif de la gamme (PAKORIS) en texture ton-sur-ton, côté droit (remplit le vide).
-   Repli gracieux : si l'image ne charge pas, le panneau reste un dégradé vert propre. */
-.uf-occultation-panel::after {
-  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+/* Motif officiel PAKORIS sur TOUTE la surface (pas coupé à la moitié) */
+.uf-occultation-motif {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image: url('https://urbafence.com/wp-content/uploads/sites/3/2025/12/SPM20095-PAKORIS-par-Dampere.jpg?x44392');
-  background-size: cover; background-position: right center;
-  filter: grayscale(1) contrast(1.05) brightness(1.25);
-  mix-blend-mode: screen; opacity: 0.20;
-  -webkit-mask-image: linear-gradient(90deg, transparent 36%, #000 96%);
-  mask-image: linear-gradient(90deg, transparent 36%, #000 96%);
+  background-size: cover; background-position: center;
+  filter: grayscale(1) contrast(1.05) brightness(1.3);
+  mix-blend-mode: screen; opacity: 0.15;
   transition: transform .7s var(--ease-out), opacity .6s var(--ease-out);
 }
-.uf-occultation-panel > * { position: relative; z-index: 1; }
+.uf-occultation-glow {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle at 86% 16%, rgba(159, 199, 145, 0.40), transparent 55%);
+  opacity: 0.7; transition: opacity .6s var(--ease-out);
+}
+.uf-occultation-head, .uf-occultation-benefits, .uf-occultation-chips { position: relative; z-index: 1; }
+
+/* En-tête : logo (blanc) + libellé */
 .uf-occultation-head { display: flex; align-items: center; gap: 14px; }
 .uf-occultation-logo { display: inline-flex; }
 .uf-occultation-logo img {
   height: 50px; width: auto; display: block;
-  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
   transition: transform .55s cubic-bezier(.16,1,.3,1);
 }
 .uf-occultation-logo-fallback { font-family: var(--serif); font-size: 26px; color: #fff; }
 .uf-occultation-sub {
-  font-family: var(--sans); font-size: 11.5px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.16em; color: #b3d9a7;
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: #d8eccf;
 }
 
-.uf-occultation-benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+/* Bénéfices */
+.uf-occultation-benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .uf-occultation-benefit {
   display: flex; align-items: center; gap: 12px;
-  font-family: var(--sans); font-size: 13.5px; font-weight: 500; color: rgba(240, 246, 237, 0.94);
+  font-family: var(--sans); font-size: 13.5px; font-weight: 500; color: #f1f7ee;
 }
 .uf-occultation-benefit-ico {
   width: 30px; height: 30px; flex: 0 0 auto; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(155, 195, 145, 0.16); color: #c2e2b6; border: 1px solid rgba(155, 195, 145, 0.26);
+  background: rgba(255, 255, 255, 0.13); color: #eaf6e3; border: 1px solid rgba(255, 255, 255, 0.22);
 }
 .uf-occultation-benefit-ico svg {
   width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.6; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
 
-/* ---- Hover desktop : la composition réagit comme un objet ---- */
+/* Chips (sur fond vert) */
+.uf-occultation-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.uf-occultation-chip {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600; color: #eef6e9;
+  background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 5px 12px; border-radius: var(--r-pill);
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  transition: transform .4s cubic-bezier(.16,1,.3,1), border-color .4s var(--ease), background .4s var(--ease);
+}
+
+/* Image (colonne gauche) : naturelle, scale léger au hover */
+.uf-context-visual { overflow: hidden; border-radius: var(--r-lg); }
+.uf-context-img-main { transition: transform .9s cubic-bezier(.16,1,.3,1); }
+
+/* ---- Hover desktop ---- */
 @media (hover: hover) {
-  .uf-occultation-scene:hover {
+  .uf-occultation-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 48px 92px rgba(8, 16, 11, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow: 0 34px 66px rgba(20, 45, 24, 0.38), 0 0 0 1px rgba(159, 199, 145, 0.40),
+                0 14px 40px rgba(53, 130, 63, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.10);
   }
-  .uf-occultation-scene:hover .uf-occultation-img { transform: scale(1.045); }
-  .uf-occultation-scene:hover .uf-occultation-perf { background-position: 10px 7px; opacity: 0.28; }
-  .uf-occultation-scene:hover .uf-occultation-glow { opacity: 1; transform: translate(12px, -8px) scale(1.05); }
-  .uf-occultation-scene:hover .uf-occultation-panel::after { opacity: 0.30; transform: translateX(-7px) scale(1.05); }
-  .uf-occultation-scene:hover .uf-occultation-logo img { transform: scale(1.05); }
-  .uf-occultation-chip--light:hover { background: #fff; border-color: var(--brand-300, var(--accent)); }
+  .uf-occultation-card:hover .uf-occultation-motif { opacity: 0.24; transform: translateX(-5px) scale(1.04); }
+  .uf-occultation-card:hover .uf-occultation-glow { opacity: 1; }
+  .uf-occultation-card:hover .uf-occultation-logo img { transform: scale(1.04); }
+  .uf-occultation-card:hover .uf-occultation-chip { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.42); }
+  .uf-context-visual:hover .uf-context-img-main { transform: scale(1.03); }
 }
 
 /* ---- Mobile ---- */
-@media (max-width: 880px) {
-  .uf-occultation-scene { min-height: clamp(360px, 70vw, 440px); }
-}
 @media (max-width: 560px) {
-  .uf-occultation-panel { padding: 64px 18px 18px; }
-  .uf-occultation-logo img { height: 42px; }
+  .uf-occultation-card { padding: 20px; }
+  .uf-occultation-logo img { height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .uf-occultation-scene, .uf-occultation-scene *,
-  .uf-occultation-chip {
+  .uf-occultation-card, .uf-occultation-card *,
+  .uf-context-visual, .uf-context-visual * {
     animation: none !important; transition: none !important; transform: none !important;
   }
-  .uf-occultation-scene { opacity: 1 !important; }
 }
 
 /* Comparaison : solutions actuelles + Urbafence */
