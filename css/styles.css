@@ -1265,145 +1265,96 @@ section.uf-context {
 }
 
 /* ============================================================
-   MODULE DE POSITIONNEMENT (#urbafence)
-   Composition statique côte à côte : « offre actuelle » | pont | Urbafence.
-   Révélée en cascade quand la section entre dans le viewport
-   (transition-delay piloté par .uf-context-grid.in-view, sans JS).
+   MODULE OCCULTATION (#urbafence) — carte de marque Urbafence
+   Carte sombre premium ; le motif perforé en fond évoque la tôle
+   qui filtre les vues sans murer. Hover = sensation de matière.
    ============================================================ */
-.uf-position-flow { margin-top: 22px; }
-.uf-position-pair {
-  display: grid; grid-template-columns: minmax(0, 0.86fr) 88px minmax(0, 1.3fr);
-  gap: 8px; align-items: center;
+.uf-occultation-module { margin-top: 22px; }
+.uf-occultation-card {
+  position: relative; overflow: hidden; isolation: isolate;
+  border-radius: var(--r-lg); padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 16px;
+  background: linear-gradient(150deg, #223027 0%, #1a2620 55%, #131e19 100%);
+  border: 1px solid rgba(155, 195, 145, 0.18);
+  box-shadow: 0 26px 54px rgba(12, 20, 15, 0.40);
+  transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s var(--ease-out);
+  will-change: transform;
 }
-.uf-position-card {
-  display: flex; flex-direction: column; gap: 8px;
-  border-radius: var(--r-lg); padding: 15px 16px; text-align: left; position: relative;
+.uf-occultation-perf {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(214, 232, 208, 0.55) 1px, transparent 1.7px);
+  background-size: 13px 13px; opacity: 0.11;
+  -webkit-mask-image: linear-gradient(105deg, transparent 28%, #000 100%);
+  mask-image: linear-gradient(105deg, transparent 28%, #000 100%);
+  transition: background-position .6s var(--ease-out), opacity .6s var(--ease-out);
+}
+.uf-occultation-glow {
+  position: absolute; top: -40%; right: -20%; width: 70%; height: 120%; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle at 60% 40%, rgba(120, 190, 110, 0.30), transparent 62%);
+  opacity: 0.6; transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+}
+.uf-occultation-head, .uf-occultation-benefits, .uf-occultation-chips { position: relative; z-index: 1; }
+
+.uf-occultation-head { display: flex; flex-direction: column; gap: 11px; }
+.uf-occultation-logo { display: inline-flex; }
+.uf-occultation-logo img {
+  height: 52px; width: auto; display: block;
+  filter: brightness(0) invert(1); transition: transform .55s var(--ease-out);
+}
+.uf-occultation-logo-fallback { font-family: var(--serif); font-size: 26px; color: #fff; letter-spacing: 0.01em; }
+.uf-occultation-sub {
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: #a9d29c;
 }
 
-/* Entrée LATÉRALE en cascade (gauche → droite), jouée une fois au reveal :
-   la carte socle entre par la gauche puis recule en secondaire, le pont se pose,
-   et Urbafence glisse depuis la droite pour prendre le focus. */
-.uf-position-card--base  { opacity: 0; transform: translateX(-24px) scale(0.98); }
-.uf-position-bridge      { opacity: 0; transform: translateY(8px); }
-.uf-position-card--brand { opacity: 0; transform: translateX(56px) scale(0.94); }
-
-.uf-context-grid.in-view .uf-position-card--base {
-  animation: ufBaseIn 0.9s cubic-bezier(.16,1,.3,1) 0.1s forwards;
+.uf-occultation-benefits { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+.uf-occultation-benefit {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--sans); font-size: 14px; font-weight: 500; color: rgba(238, 244, 235, 0.92);
 }
-.uf-context-grid.in-view .uf-position-bridge {
-  animation: ufBridgeIn 0.6s var(--ease-out) 0.45s forwards;
-}
-.uf-context-grid.in-view .uf-position-card--brand {
-  animation: ufBrandIn 0.85s cubic-bezier(.16,1,.3,1) 0.55s forwards;
-}
-@keyframes ufBaseIn {
-  0%   { opacity: 0;   transform: translateX(-24px) scale(0.98); }
-  45%  { opacity: 1;   transform: translateX(0) scale(1); }
-  100% { opacity: 0.6; transform: translateX(-8px) scale(0.965); }
-}
-@keyframes ufBridgeIn {
-  0%   { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-@keyframes ufBrandIn {
-  0%   { opacity: 0; transform: translateX(56px) scale(0.94); }
-  100% { opacity: 1; transform: translateX(0) scale(1); }
-}
-
-/* ---- Carte 1 : socle métier (secondaire, recessive) ---- */
-.uf-position-card--base { background: var(--bg-page); border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm); }
-.uf-position-label {
-  font-family: var(--sans); font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--secondary);
-}
-.uf-position-base-sub { font-size: 11.5px; color: var(--ink-400); margin-top: -2px; }
-.uf-position-solutions { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
-.uf-position-sol {
-  display: inline-flex; align-items: center; gap: 9px; width: 100%;
-  font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-700);
-  background: var(--bg-card); border: 1px solid var(--line-soft);
-  padding: 6px 11px 6px 6px; border-radius: var(--r-pill);
-}
-.uf-position-sol-ico {
-  width: 24px; height: 24px; flex: 0 0 auto; border-radius: 7px;
+.uf-occultation-benefit-ico {
+  width: 32px; height: 32px; flex: 0 0 auto; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--bg-page); color: var(--secondary);
+  background: rgba(155, 195, 145, 0.14); color: #b7dcab;
+  border: 1px solid rgba(155, 195, 145, 0.20);
 }
-.uf-position-sol-ico svg {
-  width: 15px; height: 15px; stroke: currentColor; stroke-width: 1.5; fill: none;
+.uf-occultation-benefit-ico svg {
+  width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.6; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
 
-/* ---- Pont central : complément occultation (relie, n'oppose pas) ---- */
-.uf-position-bridge {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
-  text-align: center;
-}
-.uf-position-bridge-ico {
-  width: 38px; height: 38px; flex: 0 0 auto; border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--accent); color: #fff; box-shadow: 0 8px 18px rgba(53, 130, 63, 0.28);
-}
-.uf-position-bridge-ico svg {
-  width: 19px; height: 19px; stroke: currentColor; stroke-width: 1.7; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
-}
-.uf-position-bridge-label {
-  font-family: var(--sans); font-size: 9.5px; font-weight: 700; line-height: 1.25;
-  text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-700);
+.uf-occultation-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.uf-occultation-chip {
+  font-family: var(--sans); font-size: 11.5px; font-weight: 600; color: rgba(238, 244, 235, 0.82);
+  background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 5px 12px; border-radius: var(--r-pill);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .4s var(--ease-out), border-color .4s var(--ease), background .4s var(--ease);
 }
 
-/* ---- Carte 2 : Urbafence, réponse premium (dominante) ---- */
-.uf-position-card--brand {
-  overflow: hidden; gap: 9px; padding: 16px 18px;
-  background: linear-gradient(150deg, #ffffff 0%, var(--brand-50) 50%, rgba(155, 195, 145, 0.42) 100%);
-  border: 1px solid var(--brand-100);
-  box-shadow: 0 22px 46px rgba(31, 78, 38, 0.18);
-}
-.uf-position-perf { width: 120px; height: 120px; opacity: 0.5; }
-.uf-position-watermark { position: absolute; right: -8px; bottom: -14px; z-index: 0; pointer-events: none; opacity: 0.06; }
-.uf-position-watermark img { height: 130px; width: auto; display: block; }
-.uf-position-brand-head { display: flex; align-items: center; gap: 11px; position: relative; z-index: 1; }
-.uf-position-brandtag { display: flex; align-items: center; }
-.uf-position-logo { height: 42px; width: auto; display: block; }
-.uf-position-label--brand { font-family: var(--serif); font-size: 20px; color: var(--brand-700); }
-.uf-position-brand-eyebrow {
-  font-family: var(--sans); font-size: 9.5px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);
-  padding: 4px 9px; border-radius: var(--r-pill);
-  background: #fff; border: 1px solid var(--brand-100);
-}
-.uf-position-text {
-  font-family: var(--serif); font-size: 15.5px; line-height: 1.25; color: var(--ink);
-  margin: 0; position: relative; z-index: 1;
-}
-.uf-position-benefits {
-  list-style: none; margin: 1px 0 0; padding: 0; position: relative; z-index: 1;
-  display: flex; flex-direction: column; gap: 6px;
-}
-.uf-position-benefits li {
-  display: flex; align-items: center; gap: 9px;
-  font-family: var(--sans); font-size: 12.5px; font-weight: 500; color: var(--ink-700);
-}
-.uf-position-benefits svg {
-  width: 16px; height: 16px; flex: 0 0 auto;
-  stroke: var(--accent); stroke-width: 1.7; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
+@media (hover: hover) {
+  .uf-occultation-card:hover {
+    transform: translateY(-6px) scale(1.012);
+    box-shadow: 0 36px 72px rgba(12, 20, 15, 0.50),
+                0 0 0 1px rgba(155, 195, 145, 0.28),
+                0 16px 44px rgba(53, 130, 63, 0.22);
+  }
+  .uf-occultation-card:hover .uf-occultation-perf { background-position: 7px 5px; opacity: 0.17; }
+  .uf-occultation-card:hover .uf-occultation-glow { opacity: 1; transform: translate(10px, -8px); }
+  .uf-occultation-card:hover .uf-occultation-logo img { transform: scale(1.04); }
+  .uf-occultation-card:hover .uf-occultation-chip { border-color: rgba(155, 195, 145, 0.34); }
 }
 
-/* ---- Mobile : empilage simple du pont et des cartes ---- */
 @media (max-width: 560px) {
-  .uf-position-pair { grid-template-columns: 1fr; gap: 10px; }
-  .uf-position-bridge { flex-direction: row; gap: 10px; }
-  .uf-position-bridge-label br { display: none; }
+  .uf-occultation-card { padding: 20px; }
+  .uf-occultation-logo img { height: 46px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .uf-position-card, .uf-position-bridge,
-  .uf-context-grid.in-view .uf-position-card,
-  .uf-context-grid.in-view .uf-position-bridge {
-    animation: none !important; transition: none !important;
-    transform: none !important; opacity: 1 !important;
+  .uf-occultation-card, .uf-occultation-card *,
+  .uf-occultation-chip, .uf-occultation-benefit,
+  .uf-occultation-perf, .uf-occultation-glow {
+    animation: none !important; transition: none !important; transform: none !important;
   }
 }
 
