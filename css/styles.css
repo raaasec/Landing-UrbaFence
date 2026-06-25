@@ -2248,8 +2248,11 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
    ============================================================ */
 @media (max-width: 768px) {
   /* Dégage la navbar sans gros blanc ; section non interminable */
-  .hero.section-screen { padding-top: calc(var(--header-offset) + 20px); }
-  section.hero { padding-bottom: 48px; }
+  .hero.section-screen { padding-top: calc(var(--header-offset) + 16px); }
+  section.hero { padding-bottom: 44px; }
+
+  /* Badge « Invitation · Cercle Partenaire » masqué (encombrant, contexte déjà donné) */
+  .hero-invite { display: none !important; }
 
   /* Colonne unique. On passe en display:block (au lieu de grid) : les blocs
      sont de toute façon empilés, et cela élimine tout sizing intrinsèque de
@@ -2262,13 +2265,13 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
   /* Titre : retour à la ligne propre.
      text-wrap:normal (au lieu de balance) → évite une coupure figée avant
      le swap de police web qui faisait déborder le titre sur petit écran. */
-  .hero-display { gap: 6px; text-wrap: normal; }
+  .hero-display { gap: 6px; text-wrap: normal; margin-bottom: 20px; }
   .hero-display .line { max-width: 100%; overflow-wrap: break-word; }
-  .hero-divider { max-width: 160px; margin: 2px 0; }
+  .hero-divider { max-width: 150px; margin: 2px 0; }
 
-  /* Lead + méta : la méta passe sur plusieurs lignes (corrige le débordement) */
-  .hero-lead { margin-bottom: 24px; }
-  .hero-meta { display: flex; flex-wrap: wrap; row-gap: 4px; margin-top: 22px; max-width: 100%; }
+  /* Lead + méta : un seul lead court (long en .mobile-hide) ; méta courte et discrète */
+  .hero-lead { margin-bottom: 22px; }
+  .hero-meta { display: flex; flex-wrap: wrap; row-gap: 4px; margin-top: 18px; max-width: 100%; }
 
   /* CTA : pleine largeur, confort tactile (≥50px) */
   .hero-cta-row { display: grid; grid-template-columns: 1fr; gap: 10px; width: 100%; }
@@ -2278,20 +2281,24 @@ section.uf-timeline { background: var(--bg-page); padding: clamp(40px, 5vw, 72px
   .hero-visual { aspect-ratio: auto; width: 100%; max-width: 520px; margin: 0 auto; }
   .hero-photo {
     position: relative; inset: auto;
-    height: clamp(240px, 56vw, 340px); border-radius: 18px;
+    height: clamp(300px, 76vw, 430px); border-radius: 18px;
   }
-  .hero-photo img { object-position: center 82%; }
-  .hero-photo-caption { left: 16px; top: 14px; font-size: 10px; }
+  .hero-photo img { object-position: center 75%; }
+
+  /* Caption réduite à une seule ligne (« Cour d'école ») pour éviter la
+     redondance avec la carte de marque ; 2e ligne masquée. */
+  .hero-photo-caption { left: 14px; top: 12px; font-size: 9.5px; gap: 0; }
+  .hero-photo-caption .ref { display: none; }
 
   /* Carte de marque : conservée sur mobile, compacte, en HAUT-DROITE
-     (la clôture est en bas de l'image → on ne la masque pas). */
+     (la clôture est en bas de l'image → on ne la masque pas ; opposée à la caption). */
   .hero-photo-2 {
     top: 12px; right: 12px; bottom: auto; left: auto;
-    width: auto; max-width: 132px; padding: 11px 13px; border-radius: 14px;
+    width: auto; max-width: 124px; padding: 9px 11px; border-radius: 14px;
   }
-  .hero-brandcard-logo { height: 34px; }
-  .hero-brandcard-text { font-size: 10.5px; margin-top: 6px; line-height: 1.2; }
-  .hero-brandcard-perf { width: 60px; height: 60px; top: -10px; right: -10px; }
+  .hero-brandcard-logo { height: 30px; }
+  .hero-brandcard-text { font-size: 10px; margin-top: 5px; line-height: 1.15; }
+  .hero-brandcard-perf { width: 54px; height: 54px; top: -10px; right: -10px; }
 }
 
 @media (max-width: 480px) {
