@@ -10,13 +10,15 @@ HTML email autonome (tables + CSS inline + un `<style>` responsive). **Aucun JS,
 
 | Placeholder | Remplacer par |
 |---|---|
-| `[LIEN_LANDING_A_REMPLACER]` | URL landing (× boutons principal + final) — ex. `https://landing-urba-fence.vercel.app/` |
 | `[URL_LOGO_URBAFENCE_PNG_A_REMPLACER]` | **Optionnel** — logo PNG/JPG hébergé (voir « Logo » ci-dessous) |
-| `[ADRESSE_POSTALE_A_REMPLACER]` | Adresse postale de l'expéditeur (Dampere) |
-| `[LIEN_DESINSCRIPTION_A_REMPLACER]` | Lien de désinscription |
-| `[LIEN_CONFIDENTIALITE_A_REMPLACER]` | Politique de confidentialité |
 
+Déjà renseigné : **lien landing** (`https://landing-urba-fence.vercel.app/#urbafence`, boutons principal + final)
+et **adresse postale** (6 rue de la Mare Blanche, 77186 Noisiel — Marne-la-Vallée).
 Personnalisation Zoho : `${Contacts.First Name}` (prévoir un fallback « Bonjour, » si vide).
+
+> ⚠️ **Liens désinscription & politique de confidentialité : RETIRÉS** à la demande.
+> Rappel : en emailing B2B (RGPD/CNIL), un moyen d'**opt-out** reste attendu et son absence
+> peut nuire à la **délivrabilité**. Si besoin, gérer la désinscription via le **lien natif Zoho**.
 
 ---
 
@@ -42,10 +44,10 @@ Le **SVG ne s'affiche pas en email** : pour un vrai logo, héberger un **PNG** (
 ## Compatibilité Zoho CRM / délivrabilité
 - HTML autonome, tables, CSS inline, media query `max-width:600px`. Pas de JS, pas de CSS externe, pas de SVG comme logo final.
 - Boutons « bulletproof » VML pour Outlook.
-- Footer conformité conservé (adresse, raison de l'envoi, désinscription, confidentialité). Vérifier **SPF/DKIM/DMARC** et la base légale B2B.
+- Footer : adresse + raison de l'envoi conservées. Liens désinscription/confidentialité retirés (gérer l'opt-out via Zoho). Vérifier **SPF/DKIM/DMARC** et la base légale B2B.
 
 ## Checklist
-- [ ] Placeholders liens/adresse remplacés ; `${Contacts.First Name}` + fallback.
+- [ ] `[LIEN_LANDING_A_REMPLACER]` remplacé (×2) ; `${Contacts.First Name}` + fallback. (Adresse OK, liens opt-out retirés.)
 - [ ] Logo : laisser le monogramme « UF » ou héberger un PNG et remplacer le bloc.
 - [ ] Images : vérifier qu'elles s'affichent (site Vercel en ligne) ; extensions en `.jpg`.
 - [ ] Collé dans Zoho CRM (Insert HTML) + **prévisualisé + envoi test à soi-même**.
