@@ -36,46 +36,68 @@ Puis : module **Contacts → sélectionner les contacts → Send Email / Mass Em
 
 ---
 
-## 2. Placeholders à remplacer (avant envoi)
+## 2. Placeholders restants à remplacer (avant envoi)
+
+> ✅ **Les images sont déjà en URLs absolues** (site Vercel déployé) — plus aucun placeholder d'image.
+> Il ne reste que des **liens/texte** à compléter :
 
 | Placeholder | Remplacer par |
 |---|---|
-| `[URL_LOGO_ABSOLUE_A_REMPLACER]` | URL **https directe** du logo Urbafence (~240 px de large) |
-| `[URL_IMAGE_ECOLE_ABSOLUE_A_REMPLACER]` | URL https directe de l'image hero (cour d'école), ~1168 px |
-| `[URL_GALERIE_1_A_REMPLACER]` | Galerie 1 — Écoles & collectivités |
-| `[URL_GALERIE_2_A_REMPLACER]` | Galerie 2 — Locaux techniques |
-| `[URL_GALERIE_3_A_REMPLACER]` | Galerie 3 — Sites exposés |
-| `[LIEN_LANDING_A_REMPLACER]` | URL de la landing « Cercle Partenaire » (apparaît sur les 2 CTA) |
+| `[LIEN_LANDING_A_REMPLACER]` | URL de la landing « Cercle Partenaire » (apparaît sur les 2 CTA — 4 occurrences avec les variantes Outlook) |
 | `[ADRESSE_POSTALE_A_REMPLACER]` | Adresse postale complète de l'expéditeur (Dampere) |
 | `[LIEN_DESINSCRIPTION_A_REMPLACER]` | Lien de désinscription |
 | `[LIEN_CONFIDENTIALITE_A_REMPLACER]` | URL de la politique de confidentialité (recommandé RGPD ; sinon retirer ce lien du footer) |
 
+> Le `[LIEN_LANDING_A_REMPLACER]` peut être renseigné avec `https://landing-urba-fence.vercel.app/`.
 > Les 3 images de galerie pointent déjà vers `https://urbafence.com/blog/` (lien en dur, à conserver).
-> Astuce : un simple **Rechercher/Remplacer** (`[`) permet de tous les retrouver.
+
+---
+
+## 2 bis. Images utilisées dans l'email
+
+Toutes les images sont servies en **URL absolue https** depuis le site Vercel déployé
+(`https://landing-urba-fence.vercel.app/images/…`). **Aucun chemin relatif** dans le mail.
+
+| Rôle | URL |
+|---|---|
+| Logo Urbafence | `https://landing-urba-fence.vercel.app/images/URBA_FENCE_FOND.svg` |
+| Hero / école | `https://landing-urba-fence.vercel.app/images/cours-ecole-securite-visuelle-urbafence.jpg` |
+| Galerie 1 — Écoles & collectivités | `https://landing-urba-fence.vercel.app/images/ecole-urbafence-2.jpg` |
+| Galerie 2 — Locaux techniques | `https://landing-urba-fence.vercel.app/images/local-velo-urbafence.png` |
+| Galerie 3 — Sites exposés | `https://landing-urba-fence.vercel.app/images/gendarmerie-urbafence.jpg` |
+
+URLs disponibles si tu veux changer les visuels de galerie :
+- Local poubelle : `https://landing-urba-fence.vercel.app/images/local-poubelle-urbafence.png`
+- Santé / hôpital : `https://landing-urba-fence.vercel.app/images/hopitaux-urbafence.jpg`
+- Long linéaire / hors centre-ville : `https://landing-urba-fence.vercel.app/images/hors-ville-urbafence.png`
+- Fond CTA (si besoin) : `https://landing-urba-fence.vercel.app/images/cta-fond.jpg`
+
+> ⚠️ **Logo en `.svg`** : le SVG **ne s'affiche pas** dans la plupart des clients mail
+> (Gmail le bloque, Outlook ne le rend pas). Pour un rendu fiable du logo,
+> **héberger une version PNG** (ex. `URBA_FENCE_FOND.png`, fond clair, ~240 px) et remplacer
+> l'URL du logo dans le `<img>` du header. À défaut, le texte `alt="Urbafence — une solution Dampere"`
+> s'affichera à la place. Les autres images (`.jpg` / `.png`) sont, elles, bien compatibles.
 
 ---
 
 ## 3. Images : hébergement (point clé)
 
-Dans un email, **les chemins locaux ne fonctionnent pas** (`images/x.jpg`, `../images/x.jpg`) :
+Dans un email, **les chemins locaux ne fonctionnent pas** (`images/x.jpg`, `../images/x.jpg`, `/images/x.jpg`) :
 la boîte mail du destinataire n'a pas accès à ton disque ni au dépôt.
 
-➡️ **Toutes les images doivent être hébergées en ligne**, idéalement **sur urbafence.com**
-(ou un CDN/hébergeur d'images), et référencées par des **URLs directes en https** pointant
-**vers le fichier image** (pas vers une page HTML qui contient l'image).
+➡️ **C'est déjà réglé** : les images sont servies en **URL absolue https** depuis le site déployé
+sur Vercel (`https://landing-urba-fence.vercel.app/images/…` — voir §2 bis). Ce sont des URLs
+**publiques et directes vers le fichier image**, donc compatibles Gmail / Outlook / Apple Mail.
 
-- ✅ Correct : `https://urbafence.com/wp-content/uploads/.../ecole.jpg`
-- ❌ Incorrect : `images/ecole.jpg` · `../images/ecole.jpg` · lien vers une page
+- ✅ Correct : `https://landing-urba-fence.vercel.app/images/cours-ecole-securite-visuelle-urbafence.jpg`
+- ❌ Incorrect : `images/ecole.jpg` · `../images/ecole.jpg` · `/images/ecole.jpg` · lien vers une page
 
-Tailles / poids conseillés :
-- Logo : ~240 px de large (affiché 120).
-- Hero (école) : ~1168 px (affiché 584, retina ×2), **< ~300 Ko**.
-- Galerie : ~368 px chacune (affiché 184, retina ×2), **< ~120 Ko/image**.
+Optionnel : si tu préfères servir les images depuis **urbafence.com**, ré-héberge-les là-bas et
+remplace simplement le préfixe d'URL — la structure du mail reste identique.
 
-Toujours : `alt` (déjà présent), `width` défini, `display:block`. Le mail reste lisible **si les images ne chargent pas** (alt + texte porteur du message).
-
-> Les images de la landing existent dans `/images/` du dépôt mais en **chemins locaux** :
-> elles servent à `preview-local.html` uniquement. Pour l'envoi, héberge-les en ligne et colle les URLs https.
+Tailles déjà optimisées côté dépôt (hero ~0,5 Mo, galerie ~0,3 Mo). Toujours : `alt` (présent),
+`width` défini, `display:block`. Le mail reste lisible **si les images ne chargent pas**
+(alt + texte porteur du message).
 
 ---
 
@@ -155,8 +177,9 @@ Se désinscrire : [LIEN_DESINSCRIPTION_A_REMPLACER]
 
 ## 9. Checklist avant envoi
 
-- [ ] Images **hébergées en ligne** (idéalement urbafence.com), URLs **https directes**, poids optimisé, `alt` OK.
-- [ ] Tous les placeholders `[…]` remplacés (logo, hero, 3 galerie, landing, adresse, désinscription, confidentialité).
+- [ ] Images : URLs absolues Vercel déjà en place — vérifier qu'elles **s'affichent** (site déployé en ligne).
+- [ ] **Logo** : remplacer le `.svg` par un **`.png` hébergé** (le SVG ne s'affiche pas en mail). Voir §2 bis.
+- [ ] Placeholders **liens/texte** remplacés : `[LIEN_LANDING…]`, `[ADRESSE_POSTALE…]`, `[LIEN_DESINSCRIPTION…]`, `[LIEN_CONFIDENTIALITE…]`.
 - [ ] `[LIEN_LANDING_A_REMPLACER]` → landing déployée (testé).
 - [ ] HTML collé dans le modèle Zoho CRM (Insert HTML) **+ prévisualisé**.
 - [ ] Variable `${Contacts.First Name}` valide + fallback prénom.
