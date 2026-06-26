@@ -12,7 +12,7 @@ HTML email autonome (tables + CSS inline + un `<style>` responsive). **Aucun JS,
 |---|---|
 | `[URL_LOGO_URBAFENCE_PNG_A_REMPLACER]` | **Optionnel** — logo PNG/JPG hébergé (voir « Logo » ci-dessous) |
 
-Déjà renseigné : **lien landing** (`https://landing-urba-fence.vercel.app/#urbafence`, boutons principal + final)
+Déjà renseigné : **lien landing** (`https://landing-urba-fence.vercel.app/`, boutons principal + final)
 et **adresse postale** (6 rue de la Mare Blanche, 77186 Noisiel — Marne-la-Vallée).
 Personnalisation Zoho : `${Contacts.First Name}` (prévoir un fallback « Bonjour, » si vide).
 
